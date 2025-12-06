@@ -22,6 +22,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Configurazione Tailwind con CSS Variables per il cambio tema -->
     <script>
         tailwind.config = {
             darkMode: 'class', 
@@ -54,7 +55,7 @@
     </script>
 
     <style>
-        /* --- THEMING --- */
+        /* --- DEFINIZIONE COLORI (THEMING) --- */
         :root {
             /* TEMA NORMALE */
             --primary-50: #ecfdf5;
@@ -71,7 +72,7 @@
             --accent-600: #d97706;
             --accent-700: #b45309;
 
-            --bg-color: #fff7ed; /* Bianco Puro */
+            --bg-color: #ffffff; /* Bianco Puro */
         }
 
         /* TEMA SPECIALE (Porsche Miami Blue) */
@@ -91,30 +92,15 @@
             --accent-700: #9d004c;
 
             --bg-color: #e0f9ff; /* Sfondo Miami Blue */
-
-            /* TILES SVG GENERATA CON IMMAGINI PNG */
-            --bg-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cimage href='Cat-Icon-PNG-Pic.png' x='10' y='10' width='40' height='40' /%3E%3Cimage href='pusheen.png' x='250' y='10' width='40' height='40' /%3E%3Cimage href='3%20s.png' x='10' y='250' width='40' height='40' /%3E%3Cimage href='cat.png' x='250' y='250' width='40' height='40' /%3E%3Cimage href='Pusheen_the_Cat.png' x='130' y='130' width='40' height='40' /%3E%3C/svg%3E");
-            
-            --bg-size: 300px 300px; 
-            --bg-opacity: 0.25; 
         }
 
-        /* Gestione visibilità Gatti Extra */
-        .special-cat-icon { display: none; }
-        body.special-mode .special-cat-icon { 
-            display: inline-block; 
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        
         /* Transizioni fluide */
         body, div, nav, button, span, i, h1, h2, h3, p, a {
             transition-property: color, background-color, border-color, fill, stroke;
             transition-duration: 500ms;
         }
 
-        /* --- BACKGROUND LAYERS FISSI --- */
+        /* --- BACKGROUND LAYERS --- */
         #bg-color-layer {
             position: fixed;
             inset: 0;
@@ -122,40 +108,70 @@
             background-color: var(--bg-color);
             transition: background-color 0.5s ease;
         }
-        
-        #bg-pattern-layer {
+
+        /* Container per la griglia di gatti (Generata via JS per controllo totale) */
+        #bg-cats-grid {
             position: fixed;
             inset: 0;
             z-index: -1;
-            background-image: var(--bg-image);
-            background-size: var(--bg-size);
-            background-repeat: repeat;
-            opacity: var(--bg-opacity);
+            opacity: 0; /* Invisibile di default */
             pointer-events: none;
-            transition: all 0.5s ease;
+            transition: opacity 0.5s ease;
+            overflow: hidden;
+            /* Flex wrap per creare la griglia fluida */
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Visibile solo in special mode */
+        body.special-mode #bg-cats-grid {
+            opacity: 0.25; 
+        }
+
+        /* La singola "Mattonella" (Tile) */
+        .cat-tile {
+            position: relative;
+            flex-shrink: 0;
+            /* border: 1px solid rgba(0,0,0,0.1); Decommenta per debug griglia */
+        }
+
+        /* Stile icone dentro la tile */
+        .cat-icon {
+            position: absolute;
+            width: 30px; /* Dimensione richiesta: 30px */
+            height: 30px;
+            object-fit: contain;
+        }
+
+        /* 5 Posizioni Fisse nella Tile (4 angoli + centro) - Nessuna sovrapposizione */
+        .pos-tl { top: 15px; left: 15px; }      /* Top Left */
+        .pos-tr { top: 15px; right: 15px; }     /* Top Right */
+        .pos-bl { bottom: 15px; left: 15px; }   /* Bottom Left */
+        .pos-br { bottom: 15px; right: 15px; }  /* Bottom Right */
+        .pos-c  { top: 50%; left: 50%; transform: translate(-50%, -50%); } /* Center */
+
+        /* Gatto che salta nel tasto */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { 
+            display: inline-block; 
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
-        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
     </style>
 </head>
 <body class="text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
     
     <!-- BACKGROUND SYSTEM -->
     <div id="bg-color-layer"></div>
-    <div id="bg-pattern-layer"></div>
+    <div id="bg-cats-grid"></div>
 
     <!-- === LOGIN SCREEN === -->
     <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
@@ -498,6 +514,7 @@
                 document.getElementById('site-content').classList.remove('hidden');
                 document.getElementById('site-content').classList.add('flex');
                 document.body.classList.remove('overflow-hidden');
+                
                 // INIZIALIZZA LA GRIGLIA DI GATTI APPENA SI ENTRA
                 generateCatsGrid();
                 // RENDERING INIZIALE IMPORTANTE
@@ -585,6 +602,8 @@
                 iconSpecial.forEach(i => { i.classList.remove('text-slate-400'); i.classList.add('text-primary-600'); });
                 
                 console.log("Modalità Speciale Attivata");
+                // Rigenera griglia per assicurarsi che sia corretta
+                generateCatsGrid();
             } else {
                 body.classList.remove('special-mode');
                 
@@ -735,8 +754,8 @@
                     
                     <!-- Contenitore centrale aggiornato per centrare e formattare meglio il testo -->
                     <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-4 max-w-4xl mx-auto mt-0">
-                        <!-- BOX BIANCO AGGIORNATO (bg-white/95 + text-dark) -->
-                        <div class="bg-white/95 backdrop-blur-sm p-8 rounded-3xl border border-white/20 shadow-2xl">
+                        <!-- BOX BIANCO AGGIORNATO (bg-white) -->
+                        <div class="bg-white p-8 rounded-3xl border border-white/20 shadow-2xl">
                             <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">
                                 EdoViaggy Experience
                             </span>
