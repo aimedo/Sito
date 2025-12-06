@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- META TAG PER BLOCCARE L'INDICIZZAZIONE DELLE IMMAGINI SU GOOGLE -->
+    <meta name="robots" content="noimageindex">
+    <meta name="googlebot" content="noimageindex">
+    
     <title>EdoViaggy | Escursioni a Cavallo</title>
     
     <!-- Tailwind CSS -->
@@ -19,10 +24,11 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class', // Abilita dark mode manuale per la modalità speciale
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'], // Unico font per tutto il sito
+                        sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
                         // Verde Natura (Primary)
@@ -30,16 +36,16 @@
                             50: '#ecfdf5',
                             100: '#d1fae5',
                             500: '#10b981',
-                            600: '#059669', // Smeraldo base
+                            600: '#059669',
                             700: '#047857',
                             800: '#065f46',
-                            900: '#064e3b', // Smeraldo scuro
+                            900: '#064e3b',
                         },
                         // Arancio Terra/Sole (Accent)
                         accent: {
                             50: '#fffbeb',
                             100: '#fef3c7',
-                            500: '#f59e0b', // Ambra
+                            500: '#f59e0b',
                             600: '#d97706',
                             700: '#b45309',
                         }
@@ -50,20 +56,20 @@
     </script>
 
     <style>
-        /* Custom Scrollbar Global - Ora Grigia e Pulita */
+        /* Custom Scrollbar Global */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f5f9; /* Grigio chiarissimo */
+            background: #f1f5f9;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; /* Grigio neutro */
+            background: #cbd5e1;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; /* Grigio più scuro all'hover */
+            background: #94a3b8;
         }
 
         .no-scrollbar::-webkit-scrollbar {
@@ -92,111 +98,176 @@
             transform: scale(1.1);
         }
         
-        /* Pattern di sfondo sottile */
         .bg-pattern {
             background-image: radial-gradient(#059669 0.5px, transparent 0.5px);
             background-size: 20px 20px;
             opacity: 0.05;
         }
+
+        /* --- STILI MODALITÀ SPECIALE (Placeholder) --- */
+        body.special-mode {
+            /* Qui inseriremo i dettagli grafici dopo */
+            transition: all 0.5s ease;
+        }
+        
+        /* Animazione shake per errore login */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
     </style>
 </head>
-<body class="bg-orange-50/50 text-slate-800 font-sans antialiased flex flex-col min-h-screen relative">
+<body class="bg-orange-50/50 text-slate-800 font-sans antialiased flex flex-col min-h-screen relative transition-colors duration-500 overflow-hidden">
     
-    <!-- Background Pattern Layer -->
-    <div class="fixed inset-0 bg-pattern pointer-events-none z-[-1]"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary-100 shadow-sm transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="router('home')">
-                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-primary-600 transition-colors duration-300">
-                        <i class="fa-solid fa-horse-head text-xl text-primary-700 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <span class="font-bold text-2xl tracking-tight text-primary-900">EdoViaggy</span>
-                </div>
-
-                <!-- Central Menu (Desktop) -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#" onclick="router('home')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Home</a>
-                    <a href="#" onclick="router('about')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Chi Siamo</a>
-                </div>
-
-                <!-- Right Side (Booking Button) -->
-                <div class="flex items-center gap-4">
-                    <button onclick="router('about')" class="md:hidden text-slate-600 hover:text-primary-600 font-medium">
-                        Chi Siamo
-                    </button>
-
-                    <button onclick="router('booking')" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex items-center shadow-md">
-                        <i data-lucide="calendar-heart" class="w-4 h-4 mr-2"></i>
-                        Prenota Ora
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content Area -->
-    <main id="app" class="flex-grow pt-20">
-        <!-- Content will be injected here by JavaScript -->
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-primary-900 text-white py-16 mt-auto relative overflow-hidden">
-        <!-- Decorative Circle -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-800 opacity-20 pointer-events-none"></div>
+    <!-- === LOGIN SCREEN === -->
+    <div id="login-screen" class="fixed inset-0 z-[100] bg-orange-50 flex items-center justify-center p-4">
+        <!-- Background decorativo login -->
+        <div class="absolute inset-0 bg-pattern pointer-events-none opacity-20"></div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center mb-6">
-                        <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3"></i>
-                        <span class="font-bold text-2xl">EdoViaggy</span>
-                    </div>
-                    <!-- TESTO CAUBOI -->
-                    <p class="text-primary-100 text-base leading-relaxed max-w-sm mb-6">
-                        Scopri la libertà di cavalcare immerso nella natura. Esperienze autentiche per ogni CAUBOI.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
-                            <i class="fa-brands fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
-                            <i class="fa-brands fa-facebook-f text-xl"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
-                            <i class="fa-brands fa-whatsapp text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-accent-400 mb-6">Navigazione</h3>
-                    <ul class="space-y-3 text-primary-100">
-                        <li><a href="#" onclick="router('home')" class="hover:text-accent-400 hover:pl-2 transition-all">Home</a></li>
-                        <li><a href="#" onclick="router('about')" class="hover:text-accent-400 hover:pl-2 transition-all">Chi Siamo</a></li>
-                        <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Le Nostre Guide</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-accent-400 mb-6">Note Legali</h3>
-                    <ul class="space-y-3 text-primary-100">
-                        <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Termini & Condizioni</a></li>
-                    </ul>
-                </div>
+        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-primary-100 relative z-10 fade-in">
+            <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-primary-100">
+                <i class="fa-solid fa-lock text-3xl text-primary-600"></i>
             </div>
-            <div class="border-t border-primary-800 mt-12 pt-8 text-center text-primary-300 text-sm">
-                <p>&copy; 2025 EdoViaggy. Tutti i diritti riservati.</p>
+            <h2 class="text-3xl font-bold text-primary-900 mb-2">Area Riservata</h2>
+            <p class="text-slate-500 mb-8 text-sm">Benvenuto in EdoViaggy. Per accedere, rispondi alla domanda segreta.</p>
+            
+            <div class="text-left mb-6">
+                <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Domanda di Sicurezza</label>
+                <div class="bg-primary-50/50 p-4 rounded-xl border border-primary-100 mb-4 text-slate-700 font-medium">
+                    <i class="fa-solid fa-circle-question mr-2 text-accent-500"></i>
+                    Come si chiama il GOOOFO per eccellenza?
+                </div>
+                
+                <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Risposta</label>
+                <input type="text" id="password-input" class="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 outline-none transition-all text-lg" placeholder="Scrivi la parola magica..." onkeypress="handleEnter(event)">
+                <p id="error-msg" class="text-red-500 text-sm mt-3 hidden font-medium flex items-center">
+                    <i class="fa-solid fa-circle-exclamation mr-2"></i> Risposta errata, riprova!
+                </p>
             </div>
+            
+            <button onclick="checkLogin()" class="w-full bg-primary-700 hover:bg-primary-800 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-primary-700/30 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center">
+                <span class="mr-2">Sblocca Sito</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
-    </footer>
+    </div>
+
+    <!-- === MAIN SITE CONTENT (Initially Hidden) === -->
+    <div id="site-content" class="hidden flex-col min-h-screen w-full">
+        <!-- Background Pattern Layer -->
+        <div class="fixed inset-0 bg-pattern pointer-events-none z-[-1]"></div>
+
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary-100 shadow-sm transition-all duration-300" id="navbar">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="router('home')">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-primary-600 transition-colors duration-300">
+                            <i class="fa-solid fa-horse-head text-xl text-primary-700 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-primary-900">EdoViaggy</span>
+                    </div>
+
+                    <!-- Central Menu (Desktop) -->
+                    <div class="hidden md:flex space-x-8 items-center">
+                        <a href="#" onclick="router('home')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Home</a>
+                        <a href="#" onclick="router('about')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Chi Siamo</a>
+                    </div>
+
+                    <!-- Right Side (Toggle & Buttons) -->
+                    <div class="flex items-center gap-4">
+                        
+                        <!-- TOGGLE MODALITÀ -->
+                        <div class="flex items-center gap-2 bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200 mr-2" title="Cambia Modalità">
+                            <!-- Icona Normale (Cavallo) - Attiva di default -->
+                            <i class="fa-solid fa-horse text-primary-600 text-sm transition-colors duration-300" id="icon-normal"></i>
+                            
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" id="mode-toggle" onchange="toggleSpecialMode()">
+                                <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purple-600"></div>
+                            </label>
+                            
+                            <!-- Icona Speciale (Bacchetta) - Disattiva di default -->
+                            <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-sm transition-colors duration-300" id="icon-special"></i>
+                        </div>
+
+                        <button onclick="router('about')" class="md:hidden text-slate-600 hover:text-primary-600 font-medium">
+                            Chi Siamo
+                        </button>
+
+                        <button onclick="router('booking')" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex items-center shadow-md">
+                            <i data-lucide="calendar-heart" class="w-4 h-4 mr-2"></i>
+                            Prenota Ora
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="app" class="flex-grow pt-20">
+            <!-- Content will be injected here by JavaScript -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-primary-900 text-white py-16 mt-auto relative overflow-hidden">
+            <!-- Decorative Circle -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-800 opacity-20 pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center mb-6">
+                            <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3"></i>
+                            <span class="font-bold text-2xl">EdoViaggy</span>
+                        </div>
+                        <!-- TESTO CAUBOI -->
+                        <p class="text-primary-100 text-base leading-relaxed max-w-sm mb-6">
+                            Scopri la libertà di cavalcare immerso nella natura. Esperienze autentiche per ogni CAUBOI.
+                        </p>
+                        <div class="flex space-x-4">
+                            <!-- Instagram (Link Aggiornato) -->
+                            <a href="https://www.instagram.com/aim_edo?igsh=em52MjF3dzZvYXh5&utm_source=qr" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </a>
+                            <!-- YouTube (Nuovo Link) -->
+                            <a href="https://www.youtube.com/shorts/SXHMnicI6Pg" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
+                                <i class="fa-brands fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-accent-400 mb-6">Navigazione</h3>
+                        <ul class="space-y-3 text-primary-100">
+                            <li><a href="#" onclick="router('home')" class="hover:text-accent-400 hover:pl-2 transition-all">Home</a></li>
+                            <li><a href="#" onclick="router('about')" class="hover:text-accent-400 hover:pl-2 transition-all">Chi Siamo</a></li>
+                            <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Le Nostre Guide</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-accent-400 mb-6">Note Legali</h3>
+                        <ul class="space-y-3 text-primary-100">
+                            <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Termini & Condizioni</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-primary-800 mt-12 pt-8 text-center text-primary-300 text-sm">
+                    <p>&copy; 2025 EdoViaggy. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- JavaScript Data & Logic -->
     <script>
         // --- DATA ---
-        // Backup image URL from Unsplash
         const fallbackImage = "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
 
         const trips = [
@@ -266,7 +337,6 @@
                 duration: "1 Ora",
                 vicinoATorino: false,
                 cancellazione: "Cancellazione gratuita fino a 24h",
-                // IMMAGINI AGGIORNATE PER PARCO ADDA (con %20 per gli spazi)
                 image: "adda1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "adda1%20-%20dimensioni%20medie.jpeg",
                 description: "Goditi un'ora di totale immersione nella natura lungo le rive del fiume Adda. Un percorso suggestivo attraverso boschi e sentieri fluviali, perfetto per staccare dalla routine quotidiana.",
@@ -294,7 +364,6 @@
                 duration: "1 Ora",
                 vicinoATorino: false,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // IMMAGINI AGGIORNATE PER MONTAGNE LECCHESI (con %20 per gli spazi)
                 image: "Lec1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Lec1%20-%20dimensioni%20medie.jpeg",
                 description: "Esplora i sentieri della Valsassina con una passeggiata rigenerante. Cavalca attraverso boschi di faggi e betulle ammirando le Grigne. Un'esperienza autentica di montagna.",
@@ -324,7 +393,6 @@
                 duration: "1 Ora",
                 vicinoATorino: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // IMMAGINI AGGIORNATE PER CANAVESE (con %20 per gli spazi)
                 image: "Cana1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Cana1%20-%20dimensioni%20medie.jpeg",
                 description: "Una passeggiata rilassante tra i boschi e le colline del Canavese, a due passi da Torino. Scopri la bellezza della natura piemontese in sella a cavalli docili e ben addestrati.",
@@ -372,9 +440,70 @@
             }
         ];
 
+        // --- LOGIN LOGIC ---
+        function checkLogin() {
+            const input = document.getElementById('password-input').value.toLowerCase().trim();
+            const errorMsg = document.getElementById('error-msg');
+            const loginBox = document.querySelector('#login-screen > div');
+            
+            // Password: "nelson"
+            if (input === 'nelson') { 
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('site-content').classList.remove('hidden');
+                document.getElementById('site-content').classList.add('flex');
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                errorMsg.classList.remove('hidden');
+                // Effetto "shake" per errore
+                loginBox.classList.add('shake');
+                setTimeout(() => {
+                    loginBox.classList.remove('shake');
+                }, 500);
+            }
+        }
+
+        // Permette di premere "Invio" per fare il login
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                checkLogin();
+            }
+        }
+
         // --- APP STATE ---
         const app = document.getElementById('app');
-        let currentFilter = 'all'; // 'all' or 'torino'
+        let currentFilter = 'all'; 
+        let isSpecialMode = false; // Nuovo stato per la modalità speciale
+
+        // --- TOGGLE LOGIC ---
+        function toggleSpecialMode() {
+            const body = document.body;
+            const iconNormal = document.getElementById('icon-normal');
+            const iconSpecial = document.getElementById('icon-special');
+            
+            isSpecialMode = !isSpecialMode;
+            
+            if (isSpecialMode) {
+                body.classList.add('special-mode');
+                // Aggiorna icone
+                iconNormal.classList.remove('text-primary-600');
+                iconNormal.classList.add('text-slate-400');
+                
+                iconSpecial.classList.remove('text-slate-400');
+                iconSpecial.classList.add('text-purple-600'); // Colore magico
+                
+                console.log("Modalità Speciale Attivata");
+            } else {
+                body.classList.remove('special-mode');
+                // Aggiorna icone
+                iconNormal.classList.add('text-primary-600');
+                iconNormal.classList.remove('text-slate-400');
+                
+                iconSpecial.classList.add('text-slate-400');
+                iconSpecial.classList.remove('text-purple-600');
+                
+                console.log("Modalità Normale Attivata");
+            }
+        }
 
         // --- HELPER FUNCTIONS ---
         window.scrollGallery = function(direction) {
@@ -384,12 +513,14 @@
                 const maxScroll = container.scrollWidth - container.clientWidth;
                 
                 if (direction === 'left') {
+                    // Se siamo all'inizio (o quasi), vai alla fine
                     if (container.scrollLeft <= 5) {
                          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
                     } else {
                         container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
                     }
                 } else {
+                    // Se siamo alla fine (o quasi), torna all'inizio
                     if (container.scrollLeft >= maxScroll - 5) {
                         container.scrollTo({ left: 0, behavior: 'smooth' });
                     } else {
@@ -494,10 +625,10 @@
                             </span>
                             <!-- TITOLO AGGIORNATO -->
                             <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                                Vivi la magia della natura <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">natura</span> <br>in sella a un cavallo.
+                                Magia in sella a <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">un cavallo.</span>
                             </h1>
                             <p class="text-xl text-primary-50 mb-10 leading-relaxed font-light drop-shadow-md">
-                                Dalle passeggiate tranquille alle passeggiate tranquille (non siamo capaci di andare a cavallo).
+                                Solo passeggiate tranquille (non siamo capaci).
                             </p>
                             <!-- TASTI RIMOSSI -->
                         </div>
