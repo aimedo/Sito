@@ -13,7 +13,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter (Font pulito e moderno) -->
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
@@ -22,7 +22,6 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Configurazione Tailwind con CSS Variables per il cambio tema -->
     <script>
         tailwind.config = {
             darkMode: 'class', 
@@ -55,9 +54,9 @@
     </script>
 
     <style>
-        /* --- DEFINIZIONE COLORI (THEMING) --- */
+        /* --- THEMING --- */
         :root {
-            /* TEMA NORMALE: Sfondo BIANCO PURO */
+            /* TEMA NORMALE */
             --primary-50: #ecfdf5;
             --primary-100: #d1fae5;
             --primary-500: #10b981;
@@ -68,23 +67,15 @@
 
             --accent-50: #fffbeb;
             --accent-100: #fef3c7;
-            --accent-500: #f59e0b; /* Ambra */
+            --accent-500: #f59e0b; 
             --accent-600: #d97706;
             --accent-700: #b45309;
 
-            --bg-color: #ffffff; /* BIANCO PURO RICHIESTO */
-            
-            /* Nessun pattern in modalità normale */
-            --bg-image: none;
-            --bg-size: auto;
-            --bg-position: 0 0;
-            --bg-repeat: no-repeat;
-            --layer-opacity: 0;
+            --bg-color: #ffffff; /* Bianco Puro */
         }
 
-        /* TEMA SPECIALE (Porsche Miami Blue + Gatti PNG Utente) */
+        /* TEMA SPECIALE (Porsche Miami Blue) */
         body.special-mode {
-            /* Miami Blue Palette */
             --primary-50: #e0f9ff;
             --primary-100: #b3ecff;
             --primary-500: #00A9E0; 
@@ -93,52 +84,13 @@
             --primary-800: #004D6E;
             --primary-900: #00334A;
 
-            /* Accent Rosa per contrasto */
             --accent-50: #f0fdf4;
             --accent-100: #dcfce7;
             --accent-500: #FF007F; 
             --accent-600: #db006a;
             --accent-700: #9d004c;
 
-            --bg-color: #c7f3ff; /* Un Miami Blue chiaro per lo sfondo pagina */
-
-            /* SFONDO GATTI PNG CARICATI DALL'UTENTE 
-               5 Immagini per i 5 lati (4 angoli + centro)
-            */
-            --bg-image: 
-                url('Cat-Icon-PNG-Pic.png'),  /* Top Left */
-                url('pusheen.png'),           /* Top Right */
-                url('3%20s.png'),             /* Bottom Left */
-                url('cat.png'),               /* Bottom Right */
-                url('Pusheen_the_Cat.png');   /* Center */
-            
-            /* POSIZIONI: Ai 5 "lati" (angoli + centro) */
-            --bg-position: 
-                0% 0%,       /* Top Left */
-                100% 0%,     /* Top Right */
-                0% 100%,     /* Bottom Left */
-                100% 100%,   /* Bottom Right */
-                50% 50%;     /* Center */
-
-            /* TAGLIA: 30px come richiesto */
-            --bg-size: 30px 30px, 30px 30px, 30px 30px, 30px 30px, 30px 30px;
-            
-            /* SPACE: Distribuisce le icone evitando sovrapposizioni e creando la "tile" larga */
-            --bg-repeat: space; 
-            
-            --layer-opacity: 0.3; 
-        }
-
-        /* Gestione visibilità Gatti Extra */
-        .special-cat-icon { display: none; }
-        body.special-mode .special-cat-icon { 
-            display: inline-block; 
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+            --bg-color: #e0f9ff; /* Sfondo Miami Blue */
         }
 
         /* Transizioni fluide */
@@ -147,7 +99,7 @@
             transition-duration: 500ms;
         }
 
-        /* --- BACKGROUND LAYERS FISSI --- */
+        /* --- BACKGROUND LAYERS --- */
         #bg-color-layer {
             position: fixed;
             inset: 0;
@@ -155,47 +107,76 @@
             background-color: var(--bg-color);
             transition: background-color 0.5s ease;
         }
-        
-        #bg-pattern-layer {
+
+        /* Container per la griglia di gatti */
+        #bg-cats-grid {
             position: fixed;
             inset: 0;
             z-index: -1;
-            background-image: var(--bg-image);
-            background-size: var(--bg-size);
-            background-position: var(--bg-position);
-            background-repeat: var(--bg-repeat);
-            opacity: var(--layer-opacity);
+            opacity: 0; /* Invisibile di default */
             pointer-events: none;
-            transition: all 0.5s ease;
+            transition: opacity 0.5s ease;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Visibile solo in special mode */
+        body.special-mode #bg-cats-grid {
+            opacity: 0.2; /* Opacità icone */
+        }
+
+        /* La singola "Mattonella" (Tile) da 200px */
+        .cat-tile {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            flex-shrink: 0;
+            /* border: 1px dashed rgba(0,0,0,0.1); Debug: decommenta per vedere la griglia */
+        }
+
+        /* Stile icone dentro la tile */
+        .cat-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* Posizioni Fisse nella Tile (con padding per evitare sovrapposizioni coi vicini) */
+        .pos-tl { top: 15px; left: 15px; }      /* Top Left */
+        .pos-tr { top: 15px; right: 15px; }     /* Top Right */
+        .pos-bl { bottom: 15px; left: 15px; }   /* Bottom Left */
+        .pos-br { bottom: 15px; right: 15px; }  /* Bottom Right */
+        .pos-c  { top: 50%; left: 50%; transform: translate(-50%, -50%); } /* Center */
+
+        /* Gatto che salta nel tasto */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { 
+            display: inline-block; 
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+
+        /* Zoom Immagini Card */
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
-        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
     </style>
 </head>
 <body class="text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
     
     <!-- BACKGROUND SYSTEM -->
     <div id="bg-color-layer"></div>
-    <div id="bg-pattern-layer"></div>
+    <!-- Griglia generata via JS -->
+    <div id="bg-cats-grid"></div>
 
     <!-- === LOGIN SCREEN === -->
     <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
-        <!-- Pattern anche nel login -->
-        <div class="absolute inset-0 pointer-events-none" style="background-image: var(--bg-image); background-size: var(--bg-size); background-repeat: repeat; opacity: var(--bg-opacity);"></div>
-        
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-primary-100 relative z-10 fade-in">
             <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-primary-100">
                 <i class="fa-solid fa-lock text-3xl text-primary-600"></i>
@@ -205,7 +186,6 @@
             
             <div class="text-left mb-6">
                 <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Domanda di Sicurezza</label>
-                <!-- FIX ALLINEAMENTO -->
                 <div class="bg-primary-50/50 p-4 rounded-xl border border-primary-100 mb-4 text-slate-700 font-medium flex items-center justify-center">
                     <span>Come si chiama il GOOOFO per eccellenza?</span>
                 </div>
@@ -258,14 +238,14 @@
                     <!-- Right Side Mobile -->
                     <div class="flex items-center gap-4">
                         
-                        <!-- Prenota Ora Button (Visibile sempre) -->
+                        <!-- Prenota Ora Button -->
                         <button onclick="router('booking')" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex items-center shadow-md">
                             <i data-lucide="calendar-heart" class="w-4 h-4 mr-2"></i>
                             <span class="hidden md:inline">Prenota Ora</span>
                             <span class="md:hidden">Prenota</span>
                         </button>
 
-                        <!-- Hamburger Button (Mobile Only) -->
+                        <!-- Hamburger Button -->
                         <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-slate-600 focus:outline-none p-2 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors">
                             <i class="fa-solid fa-bars text-xl"></i>
                         </button>
@@ -273,7 +253,7 @@
                 </div>
             </div>
 
-            <!-- Mobile Menu (Hidden by default) -->
+            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-primary-100 absolute w-full left-0 top-20 shadow-lg z-40 transition-all duration-300">
                 <div class="px-6 py-6 space-y-6 flex flex-col items-center">
                     <a href="#" onclick="router('home'); toggleMenu()" class="text-slate-700 hover:text-primary-600 font-bold text-lg">Home</a>
@@ -310,16 +290,13 @@
                             <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3 transition-colors duration-500"></i>
                             <span class="font-bold text-2xl">EdoViaggy</span>
                         </div>
-                        <!-- TESTO CAUBOI -->
                         <p class="text-primary-100 text-base leading-relaxed max-w-sm mb-6">
                             Scopri la libertà di cavalcare immerso nella natura. Esperienze autentiche per ogni CAUBOI.
                         </p>
                         <div class="flex space-x-4">
-                            <!-- Instagram (Link Aggiornato) -->
                             <a href="https://www.instagram.com/aim_edo?igsh=em52MjF3dzZvYXh5&utm_source=qr" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
                                 <i class="fa-brands fa-instagram text-xl"></i>
                             </a>
-                            <!-- YouTube (Nuovo Link) -->
                             <a href="https://www.youtube.com/shorts/SXHMnicI6Pg" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
                                 <i class="fa-brands fa-youtube text-xl"></i>
                             </a>
@@ -536,6 +513,9 @@
                 document.getElementById('site-content').classList.remove('hidden');
                 document.getElementById('site-content').classList.add('flex');
                 document.body.classList.remove('overflow-hidden');
+                
+                // INIZIALIZZA LA GRIGLIA DI GATTI APPENA SI ENTRA
+                generateCatsGrid();
                 // RENDERING INIZIALE IMPORTANTE
                 renderHome();
             } else {
@@ -557,6 +537,43 @@
             if (e.key === 'Enter') {
                 checkLogin();
             }
+        }
+
+        // --- BACKGROUND GENERATOR (TILES) ---
+        // Genera una griglia di tiles 200x200px con i gatti posizionati
+        function generateCatsGrid() {
+            const container = document.getElementById('bg-cats-grid');
+            container.innerHTML = ''; // Pulisci
+            
+            // Calcola quante tiles servono per coprire lo schermo
+            const cols = Math.ceil(window.innerWidth / 200) + 1;
+            const rows = Math.ceil(window.innerHeight / 200) + 1;
+            const totalTiles = cols * rows;
+
+            // Lista immagini (spazi codificati per src html)
+            const catImages = [
+                'Cat-Icon-PNG-Pic.png',
+                'pusheen.png',
+                '3%20s.png',
+                'cat.png',
+                'Pusheen_the_Cat.png'
+            ];
+
+            let html = '';
+            
+            // Genera le tiles
+            for(let i=0; i<totalTiles; i++) {
+                html += `
+                <div class="cat-tile">
+                    <img src="${catImages[0]}" class="cat-icon pos-tl" alt="">
+                    <img src="${catImages[1]}" class="cat-icon pos-tr" alt="">
+                    <img src="${catImages[2]}" class="cat-icon pos-bl" alt="">
+                    <img src="${catImages[3]}" class="cat-icon pos-br" alt="">
+                    <img src="${catImages[4]}" class="cat-icon pos-c" alt="">
+                </div>`;
+            }
+            
+            container.innerHTML = html;
         }
 
         // --- APP STATE ---
@@ -1180,6 +1197,15 @@
         // --- INITIALIZATION ---
         // Non chiamiamo renderHome() qui, lasciamo che sia l'utente a fare il login.
         // Il contenuto del sito è nascosto di default e il login screen è visibile.
+        
+        // --- RESIZE LISTENER ---
+        // Rigenera la griglia se la finestra cambia dimensione
+        window.addEventListener('resize', () => {
+            if (document.body.classList.contains('special-mode')) {
+                generateCatsGrid();
+            }
+        });
+        
     </script>
 </body>
 </html>
