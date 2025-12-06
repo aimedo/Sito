@@ -32,7 +32,6 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        // Definiamo i colori tramite variabili CSS per poterli cambiare dinamicamente
                         primary: {
                             50: 'var(--primary-50)',
                             100: 'var(--primary-100)',
@@ -49,8 +48,6 @@
                             600: 'var(--accent-600)',
                             700: 'var(--accent-700)',
                         },
-                        // Colore di sfondo pagina
-                        pagebg: 'var(--page-bg)',
                     }
                 }
             }
@@ -75,7 +72,7 @@
             --accent-600: #d97706;
             --accent-700: #b45309;
 
-            --page-bg: #fff7ed; /* Arancino chiarissimo */
+            --bg-color: #fff7ed; /* Arancino chiarissimo */
             
             /* Pattern Puntinato Normale */
             --bg-image: radial-gradient(#059669 0.5px, transparent 0.5px);
@@ -96,53 +93,46 @@
             --primary-800: #004D6E;
             --primary-900: #00334A;
 
-            /* Accent Rosa/Fucsia per contrasto "Miami" */
+            /* Accent Rosa/Fucsia per contrasto */
             --accent-50: #f0fdf4;
             --accent-100: #dcfce7;
             --accent-500: #FF007F; 
             --accent-600: #db006a;
             --accent-700: #9d004c;
 
-            --page-bg: #e0f9ff; 
+            --bg-color: #e0f9ff; /* Azzurrino Miami */
 
-            /* SFONDO GATTI PNG CARICATI DALL'UTENTE */
+            /* SFONDO GATTI: 5 Immagini selezionate per evitare il caos */
             --bg-image: 
                 url('Cat-Icon-PNG-Pic.png'),
                 url('pusheen.png'),
-                url('3%20s.png'),
                 url('cat.png'),
-                url('983-9833291_pusheen-cat.png'),
                 url('Pusheen_the_Cat.png'),
                 url('cats-icon-17.jpg.png');
             
-            /* POSIZIONAMENTO SPARSO (Scatter)
-               Coordinate diverse per ogni immagine per "mischiare" il pattern.
+            /* SPAZIATURA INTELLIGENTE:
+               Usiamo 'space' che distribuisce le immagini equamente.
+               Diamo offset diversi (position) per "sfasare" le griglie.
             */
-            --bg-position: 
-                5% 5%,
-                20% 25%,
-                40% 10%,
-                60% 40%,
-                80% 15%,
-                10% 60%,
-                90% 80%;
-
-            /* RIDIMENSIONAMENTO DRASTICO (10px MAX) */
-            --bg-size: 10px auto, 10px auto, 10px auto, 10px auto, 10px auto, 10px auto, 10px auto; 
-            
-            /* USARE 'SPACE' PER DISTANZIARE */
             --bg-repeat: space; 
             
-            --layer-opacity: 0.25; /* Opacità leggermente alzata dato che sono piccolissimi */
+            --bg-position: 
+                0 0,        /* Top Left */
+                50% 50%,    /* Center */
+                100% 0,     /* Top Right */
+                0 100%,     /* Bottom Left */
+                100% 100%;  /* Bottom Right */
+
+            /* RIDIMENSIONAMENTO A 40px */
+            --bg-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+            
+            --layer-opacity: 0.2; /* Visibili ma non fastidiosi */
         }
 
         /* Gestione visibilità Gatti Extra */
-        .special-cat-icon {
-            display: none; /* Nascosto di default */
-        }
-        
-        body.special-mode .special-cat-icon {
-            display: inline-block; /* Visibile in special mode */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { 
+            display: inline-block; 
             animation: bounce 2s infinite;
         }
 
@@ -151,84 +141,66 @@
             50% { transform: translateY(-3px); }
         }
 
-        /* Transizioni fluide per il cambio colore */
+        /* Transizioni fluide */
         body, div, nav, button, span, i, h1, h2, h3, p, a {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-property: color, background-color, border-color, fill, stroke;
             transition-duration: 500ms;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Custom Scrollbar Global */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .img-zoom-container {
-            overflow: hidden;
-        }
-        .img-zoom-container img {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .img-zoom-container:hover img {
-            transform: scale(1.1);
-        }
-        
-        .bg-pattern-layer {
+        /* IL BACKGROUND LAYER GESTISCE COLORE E IMMAGINE */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color); /* Colore solido qui */
             background-image: var(--bg-image);
             background-size: var(--bg-size);
             background-position: var(--bg-position);
-            background-repeat: var(--bg-repeat); 
-            opacity: var(--layer-opacity);
-            transition: all 0.5s ease;
-            width: 100%;
-            height: 100%;
+            background-repeat: var(--bg-repeat);
+            
+            /* Usiamo un pseudo-elemento per l'opacità delle sole immagini se necessario, 
+               ma qui applichiamo opacità al blend o usiamo png trasparenti.
+               Per semplicità, applichiamo il colore al div e le immagini sopra.
+            */
+            transition: background-color 0.5s ease;
         }
+        
+        /* Poiché l'opacità si applica a tutto il div (colore incluso), 
+           dobbiamo separare il colore dalle immagini se vogliamo immagini trasparenti su colore solido.
+           Creo due layer fissi nel body.
+        */
 
-        /* Animazione shake per errore login */
-        .shake {
-            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-        }
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .img-zoom-container:hover img { transform: scale(1.1); }
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
     </style>
 </head>
-<body class="bg-pagebg text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-hidden">
+<body class="text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
     
+    <!-- BACKGROUND SYSTEM (Fixed) -->
+    <!-- 1. Colore di sfondo solido (copre tutto, cambia col toggle) -->
+    <div class="fixed inset-0 z-[-2]" style="background-color: var(--bg-color); transition: background-color 0.5s ease;"></div>
+    
+    <!-- 2. Pattern immagini (sopra il colore, con opacità controllata) -->
+    <div class="fixed inset-0 z-[-1]" style="background-image: var(--bg-image); background-size: var(--bg-size); background-position: var(--bg-position); background-repeat: var(--bg-repeat); opacity: var(--layer-opacity); transition: opacity 0.5s ease; pointer-events: none;"></div>
+
     <!-- === LOGIN SCREEN === -->
-    <div id="login-screen" class="fixed inset-0 z-[100] bg-pagebg flex items-center justify-center p-4 transition-colors duration-500">
-        <!-- Background decorativo login -->
-        <div class="absolute inset-0 bg-pattern-layer pointer-events-none"></div>
+    <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
+        <!-- Pattern anche nel login -->
+        <div class="absolute inset-0 pointer-events-none" style="background-image: var(--bg-image); background-size: var(--bg-size); background-position: var(--bg-position); background-repeat: var(--bg-repeat); opacity: var(--layer-opacity);"></div>
         
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-primary-100 relative z-10 fade-in">
             <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-primary-100">
@@ -239,7 +211,6 @@
             
             <div class="text-left mb-6">
                 <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Domanda di Sicurezza</label>
-                <!-- FIX ALLINEAMENTO -->
                 <div class="bg-primary-50/50 p-4 rounded-xl border border-primary-100 mb-4 text-slate-700 font-medium flex items-center justify-center">
                     <span>Come si chiama il GOOOFO per eccellenza?</span>
                 </div>
@@ -260,9 +231,7 @@
 
     <!-- === MAIN SITE CONTENT (Initially Hidden) === -->
     <div id="site-content" class="hidden flex-col min-h-screen w-full transition-colors duration-500">
-        <!-- Background Pattern Layer -->
-        <div class="fixed inset-0 bg-pattern-layer pointer-events-none z-[-1]"></div>
-
+        
         <!-- Navigation -->
         <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary-100 shadow-sm transition-all duration-300" id="navbar">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -275,37 +244,55 @@
                         <span class="font-bold text-2xl tracking-tight text-primary-900">EdoViaggy</span>
                     </div>
 
-                    <!-- Central Menu (Desktop) -->
-                    <div class="hidden md:flex space-x-8 items-center">
+                    <!-- Desktop Menu (Links + Toggle) -->
+                    <div class="hidden md:flex items-center gap-8">
                         <a href="#" onclick="router('home')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Home</a>
                         <a href="#" onclick="router('about')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Chi Siamo</a>
-                    </div>
-
-                    <!-- Right Side (Toggle & Buttons) -->
-                    <div class="flex items-center gap-4">
                         
-                        <!-- TOGGLE MODALITÀ -->
-                        <div class="flex items-center gap-2 bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200 mr-2" title="Cambia Modalità">
-                            <!-- Icona Normale (Cavallo) - Attiva di default -->
-                            <i class="fa-solid fa-horse text-primary-600 text-sm transition-colors duration-300" id="icon-normal"></i>
-                            
+                        <!-- TOGGLE MODALITÀ (Desktop) -->
+                        <div class="flex items-center gap-2 bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200" title="Cambia Modalità">
+                            <i class="fa-solid fa-horse text-primary-600 text-sm transition-colors duration-300" id="icon-normal-desktop"></i>
                             <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" id="mode-toggle" onchange="toggleSpecialMode()">
+                                <input type="checkbox" value="" class="sr-only peer" id="mode-toggle-desktop" onchange="toggleSpecialMode()">
                                 <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-600"></div>
                             </label>
-                            
-                            <!-- Icona Speciale (Bacchetta) - Disattiva di default -->
-                            <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-sm transition-colors duration-300" id="icon-special"></i>
+                            <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-sm transition-colors duration-300" id="icon-special-desktop"></i>
                         </div>
+                    </div>
 
-                        <button onclick="router('about')" class="md:hidden text-slate-600 hover:text-primary-600 font-medium">
-                            Chi Siamo
-                        </button>
-
+                    <!-- Right Side Mobile -->
+                    <div class="flex items-center gap-4">
+                        
+                        <!-- Prenota Ora Button (Visibile sempre) -->
                         <button onclick="router('booking')" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex items-center shadow-md">
                             <i data-lucide="calendar-heart" class="w-4 h-4 mr-2"></i>
-                            Prenota Ora
+                            <span class="hidden md:inline">Prenota Ora</span>
+                            <span class="md:hidden">Prenota</span>
                         </button>
+
+                        <!-- Hamburger Button (Mobile Only) -->
+                        <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-slate-600 focus:outline-none p-2 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors">
+                            <i class="fa-solid fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-primary-100 absolute w-full left-0 top-20 shadow-lg z-40 transition-all duration-300">
+                <div class="px-6 py-6 space-y-6 flex flex-col items-center">
+                    <a href="#" onclick="router('home'); toggleMenu()" class="text-slate-700 hover:text-primary-600 font-bold text-lg">Home</a>
+                    <a href="#" onclick="router('about'); toggleMenu()" class="text-slate-700 hover:text-primary-600 font-bold text-lg">Chi Siamo</a>
+                    
+                    <!-- TOGGLE MODALITÀ (Mobile) -->
+                    <div class="flex items-center gap-3 bg-slate-100 rounded-full px-4 py-2 border border-slate-200 mt-2" title="Cambia Modalità">
+                        <span class="text-sm font-medium text-slate-500 mr-2">Modalità:</span>
+                        <i class="fa-solid fa-horse text-primary-600 text-lg transition-colors duration-300" id="icon-normal-mobile"></i>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer" id="mode-toggle-mobile" onchange="toggleSpecialMode()">
+                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                        </label>
+                        <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-lg transition-colors duration-300" id="icon-special-mobile"></i>
                     </div>
                 </div>
             </div>
@@ -585,32 +572,28 @@
         // --- TOGGLE LOGIC ---
         function toggleSpecialMode() {
             const body = document.body;
-            const iconNormal = document.getElementById('icon-normal');
-            const iconSpecial = document.getElementById('icon-special');
+            const iconNormal = document.querySelectorAll('#icon-normal-desktop, #icon-normal-mobile');
+            const iconSpecial = document.querySelectorAll('#icon-special-desktop, #icon-special-mobile');
             
             isSpecialMode = !isSpecialMode;
             
             if (isSpecialMode) {
                 body.classList.add('special-mode');
                 // Aggiorna icone
-                iconNormal.classList.remove('text-primary-600');
-                iconNormal.classList.add('text-slate-400');
-                
-                iconSpecial.classList.remove('text-slate-400');
-                iconSpecial.classList.add('text-primary-600'); // Colore attivo (che sarà blu in special mode)
+                iconNormal.forEach(i => { i.classList.remove('text-primary-600'); i.classList.add('text-slate-400'); });
+                iconSpecial.forEach(i => { i.classList.remove('text-slate-400'); i.classList.add('text-primary-600'); });
                 
                 console.log("Modalità Speciale Attivata");
             } else {
                 body.classList.remove('special-mode');
                 // Aggiorna icone
-                iconNormal.classList.add('text-primary-600');
-                iconNormal.classList.remove('text-slate-400');
-                
-                iconSpecial.classList.add('text-slate-400');
-                iconSpecial.classList.remove('text-purple-600');
+                iconNormal.forEach(i => { i.classList.add('text-primary-600'); i.classList.remove('text-slate-400'); });
+                iconSpecial.forEach(i => { i.classList.add('text-slate-400'); i.classList.remove('text-primary-600'); });
                 
                 console.log("Modalità Normale Attivata");
             }
+             // Sync checkboxes
+             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = isSpecialMode);
         }
 
         // --- HELPER FUNCTIONS ---
