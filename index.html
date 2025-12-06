@@ -181,7 +181,8 @@
                 vicinoATorino: false,
                 preferito: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // IMMAGINI ORIGINALI CARICATE
+                // TUE FOTO: Ho rimosso il "paracadute" (onerror) qui, così siamo sicuri che carichi queste.
+                // Assicurati che su GitHub la cartella sia "images" e il file si chiami ESATTAMENTE così.
                 image: "./images/Col1 - dimensioni medie.jpeg", 
                 heroImage: "./images/Col1 - dimensioni medie.jpeg",
                 description: "Una splendida passeggiata a piedi nel Pian di Spagna, la riserva naturale dove il fiume Adda incontra il Lago di Como. Un percorso facile e rilassante lungo sentieri panoramici, ammirando il lago e le montagne circostanti immersi nella natura.",
@@ -309,8 +310,9 @@
                 duration: "1 Ora",
                 vicinoATorino: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                image: "https://images.unsplash.com/photo-1533658514930-07755b6c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                heroImage: "https://images.unsplash.com/photo-1533658514930-07755b6c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+                // AGGIUNTA FOTO "Lan1"
+                image: "./images/Lan1 - dimensioni medie.jpeg",
+                heroImage: "./images/Lan1 - dimensioni medie.jpeg",
                 description: "Cavalca attraverso i paesaggi Patrimonio UNESCO delle Langhe. Un'esperienza unica tra infiniti filari di vigne e colline ondulate, respirando l'aria della tradizione piemontese.",
                 highlights: [
                     "Panorama UNESCO delle Langhe",
@@ -320,6 +322,8 @@
                     "Attrezzatura completa fornita"
                 ],
                 gallery: [
+                    // Aggiunta la tua foto anche qui
+                    "./images/Lan1 - dimensioni medie.jpeg",
                     "https://images.unsplash.com/photo-1543306877-2e1d713a2967?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1589139265275-f55925e07080?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1598287515091-c91795325c34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -375,7 +379,7 @@
                             src="${trip.image}" 
                             alt="${trip.title}" 
                             class="w-full h-full object-cover"
-                            onerror="this.onerror=null;this.src='${fallbackImage}';"
+                            ${trip.image.startsWith('./') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}
                         >
                         
                         <!-- Badge Preferito di Edo (Top Right) -->
@@ -492,7 +496,7 @@
                     <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-2 no-scrollbar scroll-smooth">
                         ${trip.gallery.map(img => `
                             <div class="flex-shrink-0 w-80 md:w-96 snap-center">
-                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none" ${img.startsWith('./') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
                             </div>
                         `).join('')}
                     </div>
@@ -517,7 +521,7 @@
                 <div class="fade-in">
                     <!-- Detail Hero -->
                     <div class="relative h-[60vh] min-h-[400px]">
-                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('./') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
                         <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
                         
                         <!-- Back Button -->
