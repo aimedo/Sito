@@ -8,8 +8,8 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter (Font pulito e moderno) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -22,22 +22,26 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'], // Unico font per tutto il sito
                     },
                     colors: {
-                        brand: {
-                            50: '#fbf7f0',
-                            100: '#f5efe0',
-                            500: '#b48c5e',
-                            600: '#967045',
-                            900: '#4a3421',
+                        // Verde Natura (Primary)
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669', // Smeraldo base
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b', // Smeraldo scuro
                         },
-                        green: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
+                        // Arancio Terra/Sole (Accent)
+                        accent: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b', // Ambra
+                            600: '#d97706',
+                            700: '#b45309',
                         }
                     }
                 }
@@ -46,78 +50,87 @@
     </script>
 
     <style>
-        /* Custom Scrollbar Global */
+        /* Custom Scrollbar Global - Ora Grigia e Pulita */
         ::-webkit-scrollbar {
             width: 8px;
-            height: 8px; /* Height for horizontal scrollbar */
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #f1f5f9; /* Grigio chiarissimo */
         }
         ::-webkit-scrollbar-thumb {
-            background: #d6ccc2;
+            background: #cbd5e1; /* Grigio neutro */
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #a89f91;
+            background: #94a3b8; /* Grigio più scuro all'hover */
         }
 
-        /* Hide scrollbar for gallery but keep functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        /* Fade Animation */
         .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.6s ease-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Image hover zoom effect container */
         .img-zoom-container {
             overflow: hidden;
         }
         .img-zoom-container img {
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .img-zoom-container:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
+        }
+        
+        /* Pattern di sfondo sottile */
+        .bg-pattern {
+            background-image: radial-gradient(#059669 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.05;
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
+<body class="bg-orange-50/50 text-slate-800 font-sans antialiased flex flex-col min-h-screen relative">
+    
+    <!-- Background Pattern Layer -->
+    <div class="fixed inset-0 bg-pattern pointer-events-none z-[-1]"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary-100 shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="router('home')">
-                    <i class="fa-solid fa-horse-head text-2xl text-brand-600 mr-2"></i>
-                    <span class="font-bold text-xl tracking-tight text-stone-900">EdoViaggy</span>
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="router('home')">
+                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-primary-600 transition-colors duration-300">
+                        <i class="fa-solid fa-horse-head text-xl text-primary-700 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-primary-900">EdoViaggy</span>
                 </div>
 
                 <!-- Central Menu (Desktop) -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#" onclick="router('home')" class="text-stone-600 hover:text-brand-600 font-medium transition-colors text-sm uppercase tracking-wide">Home</a>
-                    <a href="#" onclick="router('about')" class="text-stone-600 hover:text-brand-600 font-medium transition-colors text-sm uppercase tracking-wide">Chi Siamo</a>
+                    <a href="#" onclick="router('home')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Home</a>
+                    <a href="#" onclick="router('about')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Chi Siamo</a>
                 </div>
 
                 <!-- Right Side (Booking Button) -->
                 <div class="flex items-center gap-4">
-                    <!-- Mobile Menu Button -->
-                    <button onclick="router('about')" class="md:hidden text-stone-600 hover:text-brand-600">
-                        <span class="text-sm font-medium mr-1">Chi Siamo</span>
+                    <button onclick="router('about')" class="md:hidden text-slate-600 hover:text-primary-600 font-medium">
+                        Chi Siamo
                     </button>
 
-                    <button onclick="router('booking')" class="bg-brand-900 text-white px-5 py-2 rounded-full font-medium hover:bg-brand-800 transition-colors shadow-lg shadow-stone-200/50 text-sm md:text-base">
+                    <button onclick="router('booking')" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex items-center shadow-md">
+                        <i data-lucide="calendar-heart" class="w-4 h-4 mr-2"></i>
                         Prenota Ora
                     </button>
                 </div>
@@ -126,42 +139,56 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main id="app" class="flex-grow pt-16">
+    <main id="app" class="flex-grow pt-20">
         <!-- Content will be injected here by JavaScript -->
     </main>
 
     <!-- Footer -->
-    <footer class="bg-stone-900 text-white py-12 border-t border-stone-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-primary-900 text-white py-16 mt-auto relative overflow-hidden">
+        <!-- Decorative Circle -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-800 opacity-20 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center mb-4">
-                        <i class="fa-solid fa-horse-head text-xl text-brand-500 mr-2"></i>
-                        <span class="font-bold text-lg">EdoViaggy</span>
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3"></i>
+                        <span class="font-bold text-2xl">EdoViaggy</span>
                     </div>
-                    <p class="text-stone-400 text-sm leading-relaxed max-w-sm">
+                    <!-- TESTO CAUBOI -->
+                    <p class="text-primary-100 text-base leading-relaxed max-w-sm mb-6">
                         Scopri la libertà di cavalcare immerso nella natura. Esperienze autentiche per ogni CAUBOI.
                     </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-stone-300 mb-4">Link Utili</h3>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        <li><a href="#" onclick="router('home')" class="hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#" onclick="router('about')" class="hover:text-white transition-colors">Chi Siamo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contatti</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <h3 class="text-lg font-bold text-accent-400 mb-6">Navigazione</h3>
+                    <ul class="space-y-3 text-primary-100">
+                        <li><a href="#" onclick="router('home')" class="hover:text-accent-400 hover:pl-2 transition-all">Home</a></li>
+                        <li><a href="#" onclick="router('about')" class="hover:text-accent-400 hover:pl-2 transition-all">Chi Siamo</a></li>
+                        <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Le Nostre Guide</a></li>
                     </ul>
                 </div>
                 <div>
-                    <!-- Empty column for spacing or future use -->
+                    <h3 class="text-lg font-bold text-accent-400 mb-6">Note Legali</h3>
+                    <ul class="space-y-3 text-primary-100">
+                        <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Termini & Condizioni</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-stone-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-stone-500">
+            <div class="border-t border-primary-800 mt-12 pt-8 text-center text-primary-300 text-sm">
                 <p>&copy; 2025 EdoViaggy. Tutti i diritti riservati.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <i data-lucide="instagram" class="h-5 w-5 hover:text-white cursor-pointer transition-colors"></i>
-                    <i data-lucide="facebook" class="h-5 w-5 hover:text-white cursor-pointer transition-colors"></i>
-                </div>
             </div>
         </div>
     </footer>
@@ -181,7 +208,6 @@
                 vicinoATorino: false,
                 preferito: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // MODIFICA CRUCIALE: Gli spazi sono sostituiti da %20
                 image: "Col1%20-%20dimensioni%20medie.jpeg", 
                 heroImage: "Col1%20-%20dimensioni%20medie.jpeg",
                 description: "Una splendida passeggiata a piedi nel Pian di Spagna, la riserva naturale dove il fiume Adda incontra il Lago di Como. Un percorso facile e rilassante lungo sentieri panoramici, ammirando il lago e le montagne circostanti immersi nella natura.",
@@ -309,7 +335,6 @@
                 duration: "1 Ora",
                 vicinoATorino: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // AGGIUNTA FOTO "Lan1" con spazi codificati
                 image: "Lan1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Lan1%20-%20dimensioni%20medie.jpeg",
                 description: "Cavalca attraverso i paesaggi Patrimonio UNESCO delle Langhe. Un'esperienza unica tra infiniti filari di vigne e colline ondulate, respirando l'aria della tradizione piemontese.",
@@ -321,7 +346,6 @@
                     "Attrezzatura completa fornita"
                 ],
                 gallery: [
-                    // Aggiunta la tua foto anche qui
                     "Lan1%20-%20dimensioni%20medie.jpeg",
                     "https://images.unsplash.com/photo-1543306877-2e1d713a2967?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1589139265275-f55925e07080?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -336,22 +360,19 @@
         let currentFilter = 'all'; // 'all' or 'torino'
 
         // --- HELPER FUNCTIONS ---
-        // Funzione globale per lo scorrimento del carosello con loop
         window.scrollGallery = function(direction) {
             const container = document.getElementById('gallery-container');
             if(container) {
-                const scrollAmount = 320; // card width (approx)
+                const scrollAmount = 320; 
                 const maxScroll = container.scrollWidth - container.clientWidth;
                 
                 if (direction === 'left') {
-                    // Se siamo all'inizio (o quasi), vai alla fine
                     if (container.scrollLeft <= 5) {
                          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
                     } else {
                         container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
                     }
                 } else {
-                    // Se siamo alla fine (o quasi), torna all'inizio
                     if (container.scrollLeft >= maxScroll - 5) {
                         container.scrollTo({ left: 0, behavior: 'smooth' });
                     } else {
@@ -370,50 +391,54 @@
                 : trips.filter(t => t.vicinoATorino);
 
             let cardsHTML = filteredTrips.map(trip => `
-                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-stone-100 flex flex-col h-full">
+                <div class="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-orange-100 flex flex-col h-full hover:border-accent-300 relative">
                     
                     <!-- Image Area -->
-                    <div class="relative h-64 img-zoom-container cursor-pointer" onclick="router('detail', ${trip.id})">
+                    <div class="relative h-72 img-zoom-container cursor-pointer" onclick="router('detail', ${trip.id})">
                         <img 
                             src="${trip.image}" 
                             alt="${trip.title}" 
                             class="w-full h-full object-cover"
-                            onerror="this.onerror=null;this.src='${fallbackImage}';"
+                            ${trip.image.startsWith('./') || trip.image.startsWith('Col') || trip.image.startsWith('Lan') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}
                         >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
                         
-                        <!-- Badge Preferito di Edo (Top Right) -->
+                        <!-- Badge Preferito di Edo -->
                         ${trip.preferito ? `
                         <div class="absolute top-4 right-4 z-20">
-                            <span class="bg-brand-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md flex items-center">
-                                <i data-lucide="heart" class="w-3.5 h-3.5 mr-1.5 fill-current"></i> Preferito di Edo
+                            <span class="bg-gradient-to-r from-accent-500 to-accent-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center border border-white/20">
+                                <i data-lucide="heart" class="w-3.5 h-3.5 mr-1.5 fill-current"></i> Preferita da Edo
                             </span>
                         </div>
                         ` : ''}
 
-                        <!-- Badge Cancellazione (Bottom Left) -->
+                        <!-- Badge Cancellazione -->
                         <div class="absolute bottom-4 left-4 z-20">
-                             <span class="bg-white/90 backdrop-blur-sm text-green-700 px-2 py-1 rounded text-[11px] font-semibold shadow-sm flex items-center border border-green-100">
-                                <i data-lucide="shield-check" class="w-3 h-3 mr-1"></i> ${trip.cancellazione}
+                             <span class="bg-white/95 backdrop-blur-md text-primary-700 px-3 py-1.5 rounded-lg text-[11px] font-bold shadow-md flex items-center border border-primary-100">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-accent-600"></i> ${trip.cancellazione}
                             </span>
                         </div>
                     </div>
 
                     <!-- Content Area -->
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-2">
-                            <div class="flex items-center text-stone-500 text-sm mb-1">
-                                <i data-lucide="map-pin" class="w-3 h-3 mr-1"></i>
+                    <div class="p-7 flex flex-col flex-grow bg-white">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center text-primary-600 text-xs font-bold uppercase tracking-wider mb-1 bg-primary-50 px-2 py-1 rounded-md">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1.5"></i>
                                 ${trip.location}
                             </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-brand-600 transition-colors">${trip.title}</h3>
-                        <p class="text-stone-500 text-sm line-clamp-2 mb-4">${trip.description}</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary-700 transition-colors leading-tight">${trip.title}</h3>
+                        <p class="text-slate-500 text-sm line-clamp-3 mb-6 leading-relaxed">${trip.description}</p>
                         
-                        <div class="mt-auto flex items-center justify-end pt-4 border-t border-stone-100">
-                            <button onclick="router('detail', ${trip.id})" class="bg-stone-50 text-stone-900 border border-stone-200 hover:bg-stone-900 hover:text-white hover:border-stone-900 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center group/btn">
-                                Scopri di più
-                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1 transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        <!-- Footer Card -->
+                        <div class="mt-auto flex items-center justify-end pt-5 border-t border-slate-100">
+                            <button onclick="router('detail', ${trip.id})" class="text-primary-700 font-bold text-sm flex items-center group/btn hover:text-accent-600 transition-colors">
+                                Scopri
+                                <div class="bg-primary-100 rounded-full p-1.5 ml-2 group-hover/btn:bg-accent-100 transition-colors">
+                                    <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -422,50 +447,62 @@
 
             // Empty state msg
             if (filteredTrips.length === 0) {
-                cardsHTML = `<div class="col-span-3 text-center py-20 text-stone-500">Nessuna escursione trovata con questo filtro.</div>`;
+                cardsHTML = `<div class="col-span-3 text-center py-20 text-slate-400 italic text-lg">Nessuna escursione trovata con questo filtro.</div>`;
             }
 
             // Filter Buttons Styles
-            const btnBase = "px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors";
-            const btnActive = "bg-stone-900 text-white";
-            const btnInactive = "bg-stone-50 text-stone-600 hover:bg-stone-100";
+            const btnBase = "px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 shadow-sm border";
+            const btnActive = "bg-primary-800 text-white border-primary-800 shadow-primary-200";
+            const btnInactive = "bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-600";
 
             app.innerHTML = `
                 <!-- Hero Section -->
-                <section class="relative h-[500px] flex items-center justify-center fade-in">
+                <section class="relative h-[600px] flex items-center justify-center fade-in overflow-hidden">
                     <div class="absolute inset-0 z-0">
-                        <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Hero Horses" class="w-full h-full object-cover object-center">
-                        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-stone-50"></div>
+                        <img 
+                            src="home.jpg" 
+                            alt="Passeggiata a cavallo nella natura" 
+                            class="w-full h-full object-cover object-center transform scale-105"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1472396961693-142e6e594e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';"
+                        >
+                        <!-- Gradient Overlay più elaborato -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-900/40 via-transparent to-orange-50"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary-900/60 to-transparent"></div>
                     </div>
-                    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-                        <span class="text-brand-100 uppercase tracking-[0.2em] text-sm font-bold mb-4 block">EdoViaggy Experience</span>
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-                            Vivi la Natura<br>in Sella a un Cavallo
-                        </h1>
-                        <p class="text-lg md:text-xl text-stone-200 mb-8 max-w-2xl mx-auto">
-                            Dalle passeggiate tranquille alle passeggiate tranquille (non siamo capaci di andare a cavallo).
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-center gap-4">
-                            <button onclick="document.getElementById('trips-grid').scrollIntoView({behavior: 'smooth'})" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-lg shadow-brand-500/30 flex items-center justify-center">
-                                Inizia a Cavalcare
-                            </button>
+                    
+                    <div class="relative z-10 text-left px-4 max-w-7xl mx-auto w-full mt-20">
+                        <div class="max-w-2xl">
+                            <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500/20 backdrop-blur-md border border-accent-400/30 text-accent-100 uppercase tracking-[0.2em] text-xs font-bold mb-6 animate-pulse">
+                                EdoViaggy Experience
+                            </span>
+                            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                                Riscopri la <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">Natura</span> <br>in sella.
+                            </h1>
+                            <p class="text-xl text-primary-50 mb-10 leading-relaxed font-light drop-shadow-md">
+                                Dalle passeggiate tranquille alle passeggiate tranquille (non siamo capaci di andare a cavallo).
+                            </p>
+                            <!-- TASTI RIMOSSI -->
                         </div>
                     </div>
                 </section>
 
                 <!-- Filter Bar -->
-                <div class="max-w-7xl mx-auto px-4 -mt-8 relative z-20 mb-12">
-                    <div class="bg-white rounded-xl shadow-xl p-4 flex flex-wrap gap-4 items-center justify-center md:justify-start border border-stone-100">
-                        <div class="flex gap-2 w-full md:w-auto overflow-x-auto no-scrollbar justify-center md:justify-start">
-                            <button onclick="setFilter('all')" class="${btnBase} ${currentFilter === 'all' ? btnActive : btnInactive}">Tutte</button>
-                            <button onclick="setFilter('torino')" class="${btnBase} ${currentFilter === 'torino' ? btnActive : btnInactive}">Vicino a Torino</button>
+                <div class="max-w-7xl mx-auto px-4 -mt-10 relative z-20 mb-16">
+                    <div class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-3 flex flex-wrap gap-4 items-center justify-center md:justify-start border border-white/50">
+                        <div class="flex gap-2 w-full md:w-auto overflow-x-auto no-scrollbar justify-center md:justify-start p-1">
+                            <button onclick="setFilter('all')" class="${currentFilter === 'all' ? btnActive : btnInactive} ${btnBase}">Tutte le Esperienze</button>
+                            <button onclick="setFilter('torino')" class="${currentFilter === 'torino' ? btnActive : btnInactive} ${btnBase}">Vicino a Torino</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trips Grid -->
-                <section id="trips-grid" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <section id="trips-grid" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+                    <div class="flex items-center mb-10">
+                        <h2 class="text-3xl font-bold text-primary-900">Le Nostre Proposte</h2>
+                        <div class="h-px bg-primary-200 flex-grow ml-6"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         ${cardsHTML}
                     </div>
                 </section>
@@ -486,85 +523,103 @@
             // CAROUSEL GENERATION
             const carouselHTML = `
                 <div class="relative group">
-                    <!-- Arrow Left -->
-                    <button onclick="scrollGallery('left')" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-stone-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <button onclick="scrollGallery('left')" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
 
-                    <!-- Scroll Container -->
-                    <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-2 no-scrollbar scroll-smooth">
+                    <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-8 pt-2 px-2 no-scrollbar scroll-smooth">
                         ${trip.gallery.map(img => `
                             <div class="flex-shrink-0 w-80 md:w-96 snap-center">
-                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none border-2 border-white" ${img.startsWith('Col') || img.startsWith('Lan') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
                             </div>
                         `).join('')}
                     </div>
 
-                    <!-- Arrow Right -->
-                    <button onclick="scrollGallery('right')" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-stone-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <button onclick="scrollGallery('right')" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
             `;
 
             const highlightsHTML = trip.highlights.map(item => `
-                <li class="flex items-start text-stone-600 mb-3">
-                    <div class="mt-1 mr-3 bg-brand-100 p-1 rounded-full text-brand-600">
-                        <i data-lucide="check" class="w-3 h-3"></i>
+                <li class="flex items-start text-slate-700 mb-4 bg-white p-3 rounded-xl border border-primary-50 shadow-sm">
+                    <div class="mt-0.5 mr-3 bg-primary-100 p-1.5 rounded-full text-primary-600">
+                        <i data-lucide="check" class="w-4 h-4"></i>
                     </div>
-                    <span>${item}</span>
+                    <span class="font-medium">${item}</span>
                 </li>
             `).join('');
 
             app.innerHTML = `
                 <div class="fade-in">
                     <!-- Detail Hero -->
-                    <div class="relative h-[60vh] min-h-[400px]">
-                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='${fallbackImage}';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="relative h-[65vh] min-h-[400px]">
+                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('Col') || trip.image.startsWith('Lan') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/40 to-transparent"></div>
                         
                         <!-- Back Button -->
-                        <button onclick="router('home')" class="absolute top-8 left-4 md:left-8 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center transition-all border border-white/30">
-                            <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Indietro
+                        <button onclick="router('home')" class="absolute top-8 left-4 md:left-8 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center transition-all border border-white/30 font-medium">
+                            <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Torna alla Home
                         </button>
 
-                        <div class="absolute bottom-0 left-0 w-full p-6 md:p-12 max-w-7xl mx-auto">
-                            <h1 class="text-4xl md:text-6xl font-bold text-white mb-2">${trip.title}</h1>
-                            <div class="flex flex-wrap items-center gap-6 text-white/90 text-sm md:text-base font-medium">
-                                <span class="flex items-center"><i data-lucide="map-pin" class="w-5 h-5 mr-2 text-brand-400"></i> ${trip.location}</span>
-                                <span class="flex items-center"><i data-lucide="clock" class="w-5 h-5 mr-2 text-brand-400"></i> ${trip.duration}</span>
-                                <span class="flex items-center text-white/90 bg-white/10 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded text-sm"><i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> ${trip.cancellazione}</span>
+                        <div class="absolute bottom-0 left-0 w-full p-6 md:p-16 max-w-7xl mx-auto">
+                            <div class="inline-flex items-center bg-accent-500/90 text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-4 shadow-lg backdrop-blur-sm">
+                                ${trip.location.split(',')[0]}
+                            </div>
+                            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 shadow-sm leading-tight">${trip.title}</h1>
+                            
+                            <div class="flex flex-wrap items-center gap-4 text-white/90 text-sm md:text-base font-medium">
+                                <span class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"><i data-lucide="map-pin" class="w-5 h-5 mr-2 text-accent-400"></i> ${trip.location}</span>
+                                <span class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"><i data-lucide="clock" class="w-5 h-5 mr-2 text-accent-400"></i> ${trip.duration}</span>
+                                <span class="flex items-center bg-primary-600/80 backdrop-blur-md px-4 py-2 rounded-full border border-primary-500 text-white"><i data-lucide="shield-check" class="w-5 h-5 mr-2 text-emerald-300"></i> ${trip.cancellazione}</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Main Content -->
-                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                        <!-- Info Content (Full Width) -->
-                        <div class="space-y-12">
-                            <section>
-                                <h2 class="text-2xl font-bold text-stone-900 mb-4">L'Esperienza</h2>
-                                <p class="text-stone-600 leading-relaxed text-lg">${trip.description}</p>
+                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                        <div class="space-y-16">
+                            
+                            <!-- Description -->
+                            <section class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-primary-100 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-accent-50 rounded-bl-full z-0 opacity-50"></div>
+                                <h2 class="text-3xl font-bold text-primary-900 mb-6 relative z-10">L'Esperienza</h2>
+                                <p class="text-slate-600 leading-relaxed text-lg relative z-10 font-light">${trip.description}</p>
                             </section>
 
+                            <!-- Highlights -->
                             <section>
-                                <h2 class="text-2xl font-bold text-stone-900 mb-6">Cosa è incluso</h2>
+                                <h2 class="text-3xl font-bold text-primary-900 mb-8 flex items-center">
+                                    <span class="bg-accent-100 p-2 rounded-lg mr-3"><i data-lucide="star" class="w-6 h-6 text-accent-600"></i></span>
+                                    Cosa è incluso
+                                </h2>
                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     ${highlightsHTML}
                                     ${trip.vicinoATorino ? `
-                                    <li class="flex items-start text-stone-600 mb-3">
-                                        <div class="mt-1 mr-3 bg-brand-100 p-1 rounded-full text-brand-600">
-                                            <i data-lucide="map" class="w-3 h-3"></i>
+                                    <li class="flex items-start text-slate-700 mb-4 bg-white p-3 rounded-xl border border-primary-50 shadow-sm">
+                                        <div class="mt-0.5 mr-3 bg-primary-100 p-1.5 rounded-full text-primary-600">
+                                            <i data-lucide="map" class="w-4 h-4"></i>
                                         </div>
-                                        <span>Vicino a Torino</span>
+                                        <span class="font-medium">Vicino a Torino</span>
                                     </li>` : ''}
                                 </ul>
                             </section>
 
+                            <!-- Gallery -->
                             <section>
-                                <h2 class="text-2xl font-bold text-stone-900 mb-6">Galleria Fotografica</h2>
+                                <h2 class="text-3xl font-bold text-primary-900 mb-8">Galleria Fotografica</h2>
                                 ${carouselHTML}
                             </section>
+
+                            <!-- Bottom CTA -->
+                            <div class="bg-gradient-to-r from-primary-800 to-primary-900 rounded-3xl p-10 text-center text-white shadow-2xl relative overflow-hidden">
+                                <div class="absolute inset-0 bg-pattern opacity-10"></div>
+                                <h3 class="text-3xl font-bold mb-4 relative z-10">Ti piace questo percorso?</h3>
+                                <p class="text-primary-100 mb-8 max-w-xl mx-auto relative z-10">Contattaci subito per verificare la disponibilità e prenotare la tua sella.</p>
+                                <button onclick="router('booking')" class="bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-accent-500/40 transition-all transform hover:-translate-y-1 relative z-10">
+                                    Richiedi Disponibilità
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -574,95 +629,195 @@
             window.scrollTo(0,0);
         }
 
+        function renderAbout() {
+            app.innerHTML = `
+                <div class="fade-in">
+                    <!-- About Hero -->
+                    <div class="relative h-[500px] flex items-center justify-center bg-primary-900">
+                        <img src="https://images.unsplash.com/photo-1470075801209-17f9ec0cade6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="About EdoViaggy" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
+                        <div class="relative z-10 text-center px-4">
+                            <span class="text-accent-400 uppercase tracking-widest font-bold text-sm mb-4 block">La Nostra Storia</span>
+                            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Passione Pura</h1>
+                            <p class="text-xl text-primary-100 max-w-2xl mx-auto font-light">
+                                Connettere le persone alla natura attraverso l'antico legame con i cavalli.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Content Section -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                            
+                            <!-- Text Content -->
+                            <div>
+                                <h2 class="text-4xl font-bold text-primary-900 mb-8 relative">
+                                    Chi è EdoViaggy
+                                    <span class="absolute -bottom-2 left-0 w-20 h-1.5 bg-accent-500 rounded-full"></span>
+                                </h2>
+                                <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
+                                    EdoViaggy nasce dall'amore profondo per l'equitazione e per i paesaggi italiani. Fondata nel 2025, la nostra missione è rendere l'equitazione accessibile a tutti, dai principianti assoluti ai cavalieri esperti.
+                                </p>
+                                <p class="text-slate-600 mb-10 leading-relaxed text-lg font-light">
+                                    Crediamo che non ci sia modo migliore di esplorare il territorio che in sella a un cavallo. I nostri partner sono selezionati con cura per garantire il benessere degli animali e la sicurezza dei nostri ospiti.
+                                </p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Passione & Cura</h4>
+                                            <p class="text-sm text-slate-500">Il benessere dei cavalli viene prima di tutto.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="shield" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Sicurezza Totale</h4>
+                                            <p class="text-sm text-slate-500">Guide certificate e percorsi verificati.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="leaf" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Natura Incontaminata</h4>
+                                            <p class="text-sm text-slate-500">Esploriamo solo le aree più belle.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="users" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Per Tutti</h4>
+                                            <p class="text-sm text-slate-500">Esperienze su misura per ogni livello.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Image Grid -->
+                            <div class="grid grid-cols-2 gap-4 relative">
+                                <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-100 rounded-full blur-3xl z-0"></div>
+                                <img src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team EdoViaggy" class="rounded-3xl shadow-xl w-full h-80 object-cover transform translate-y-12 z-10 border-4 border-white">
+                                <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Horses in nature" class="rounded-3xl shadow-xl w-full h-80 object-cover z-10 border-4 border-white">
+                            </div>
+                        </div>
+
+                        <!-- CTA Section -->
+                        <div class="mt-24 bg-primary-50 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-300 via-accent-400 to-primary-300"></div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-primary-900 mb-6">Pronto per la tua avventura?</h3>
+                            <p class="text-slate-600 mb-10 max-w-2xl mx-auto text-lg">
+                                Scegli tra le nostre esperienze selezionate e preparati a vivere un'emozione indimenticabile.
+                            </p>
+                            <button onclick="router('home')" class="bg-primary-700 hover:bg-primary-800 text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                                Esplora le Escursioni
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            lucide.createIcons();
+            window.scrollTo(0, 0);
+        }
+
         // NUOVA FUNZIONE PER LA PAGINA DI PRENOTAZIONE
         function renderBooking() {
             app.innerHTML = `
-                <div class="fade-in min-h-[calc(100vh-64px)] flex flex-col bg-stone-50">
+                <div class="fade-in min-h-[calc(100vh-80px)] flex flex-col">
                     <!-- Booking Hero -->
-                    <div class="bg-brand-900 text-white py-16 md:py-24 text-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 pattern-dots"></div> <!-- Decorative pattern placeholder -->
+                    <div class="bg-primary-900 text-white py-24 text-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-pattern opacity-20"></div>
+                        <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-accent-600/20 rounded-full blur-3xl"></div>
                         <div class="relative z-10 px-4">
-                            <h1 class="text-3xl md:text-5xl font-bold mb-4">Come Prenotare</h1>
-                            <p class="text-brand-100 text-lg md:text-xl max-w-xl mx-auto">
+                            <h1 class="text-4xl md:text-6xl font-bold mb-6">Come Prenotare</h1>
+                            <p class="text-primary-100 text-lg md:text-xl max-w-xl mx-auto font-light">
                                 Segui questi semplici passaggi per assicurarti la tua esperienza a cavallo.
                             </p>
                         </div>
                     </div>
 
                     <!-- Steps Container -->
-                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-10 relative z-20">
-                        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-stone-100">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-16 relative z-20">
+                        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-16 border border-primary-50">
                             
-                            <div class="space-y-12 relative">
+                            <div class="space-y-16 relative">
                                 <!-- Vertical Line -->
-                                <div class="absolute left-[27px] top-4 bottom-4 w-0.5 bg-stone-200 hidden md:block"></div>
+                                <div class="absolute left-[27px] top-4 bottom-4 w-0.5 bg-primary-100 hidden md:block"></div>
 
                                 <!-- Step 1 -->
-                                <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-                                    <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">
+                                <div class="relative flex flex-col md:flex-row gap-8 items-start group">
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-accent-500 z-10 group-hover:scale-110 transition-transform duration-300">
                                         1
                                     </div>
-                                    <div class="flex-grow">
-                                        <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">
-                                            <i data-lucide="search" class="w-5 h-5 mr-2 text-brand-500"></i> Scegli l'Esperienza
+                                    <div class="flex-grow pt-2">
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Scegli l'Esperienza
                                         </h3>
-                                        <p class="text-stone-600 leading-relaxed">
+                                        <p class="text-slate-600 leading-relaxed mb-4">
                                             Naviga nella nostra Home page ed esplora le diverse escursioni disponibili. Leggi i dettagli, controlla la durata e il luogo, e scegli quella perfetta per te.
                                         </p>
-                                        <button onclick="router('home')" class="mt-3 text-sm font-semibold text-brand-600 hover:text-brand-800 flex items-center">
-                                            Vai alle esperienze <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                                        <button onclick="router('home')" class="text-sm font-bold text-accent-600 hover:text-accent-700 flex items-center bg-accent-50 px-4 py-2 rounded-lg inline-block transition-colors">
+                                            Vai alle esperienze <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                                         </button>
                                     </div>
                                 </div>
 
                                 <!-- Step 2 -->
-                                <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-                                    <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">
+                                <div class="relative flex flex-col md:flex-row gap-8 items-start group">
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">
                                         2
                                     </div>
-                                    <div class="flex-grow">
-                                        <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">
-                                            <i data-lucide="message-circle" class="w-5 h-5 mr-2 text-brand-500"></i> Inviaci una Richiesta
+                                    <div class="flex-grow pt-2">
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Inviaci una Richiesta
                                         </h3>
-                                        <p class="text-stone-600 leading-relaxed">
+                                        <p class="text-slate-600 leading-relaxed mb-6">
                                             Contattaci indicando il nome dell'esperienza, la data preferita e il numero di partecipanti. Puoi farlo comodamente tramite WhatsApp o Email.
                                         </p>
-                                        <div class="mt-4 flex flex-wrap gap-3">
-                                            <a href="#" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition shadow-sm font-medium text-sm">
-                                                <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Scrivici su WhatsApp
+                                        <div class="flex flex-wrap gap-4">
+                                            <a href="#" class="inline-flex items-center px-6 py-3 bg-[#25D366] text-white rounded-full hover:bg-[#20bd5a] transition shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-bold text-sm">
+                                                <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> WhatsApp
                                             </a>
-                                            <a href="#" class="inline-flex items-center px-4 py-2 bg-stone-100 text-stone-700 rounded-lg hover:bg-stone-200 transition font-medium text-sm">
-                                                <i data-lucide="mail" class="w-4 h-4 mr-2"></i> Invia Email
+                                            <a href="#" class="inline-flex items-center px-6 py-3 bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition font-bold text-sm border border-slate-200">
+                                                <i data-lucide="mail" class="w-4 h-4 mr-2"></i> Email
                                             </a>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Step 3 -->
-                                <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-                                    <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">
+                                <div class="relative flex flex-col md:flex-row gap-8 items-start group">
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">
                                         3
                                     </div>
-                                    <div class="flex-grow">
-                                        <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">
-                                            <i data-lucide="calendar-check" class="w-5 h-5 mr-2 text-brand-500"></i> Conferma Disponibilità
+                                    <div class="flex-grow pt-2">
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Conferma Disponibilità
                                         </h3>
-                                        <p class="text-stone-600 leading-relaxed">
+                                        <p class="text-slate-600 leading-relaxed">
                                             Il nostro team verificherà la disponibilità dei cavalli e delle guide per la data richiesta. Ti risponderemo nel più breve tempo possibile con la conferma o con date alternative.
                                         </p>
                                     </div>
                                 </div>
 
                                 <!-- Step 4 -->
-                                <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-                                    <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">
+                                <div class="relative flex flex-col md:flex-row gap-8 items-start group">
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">
                                         4
                                     </div>
-                                    <div class="flex-grow">
-                                        <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">
-                                            <i data-lucide="credit-card" class="w-5 h-5 mr-2 text-brand-500"></i> Prenotazione
+                                    <div class="flex-grow pt-2">
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Prenotazione
                                         </h3>
-                                        <p class="text-stone-600 leading-relaxed">
+                                        <p class="text-slate-600 leading-relaxed">
                                             Per bloccare definitivamente la tua avventura, ti verranno forniti i dettagli per il pagamento. Una volta ricevuto, la tua prenotazione sarà confermata e riceverai un voucher riepilogativo.
                                         </p>
                                     </div>
@@ -670,10 +825,13 @@
                             </div>
 
                             <!-- FAQ Teaser -->
-                            <div class="mt-16 pt-8 border-t border-stone-100 text-center">
-                                <h4 class="font-bold text-stone-900 mb-2">Hai altre domande?</h4>
-                                <p class="text-stone-500 text-sm mb-4">Siamo qui per aiutarti a organizzare l'esperienza perfetta.</p>
-                                <button class="text-brand-600 font-medium hover:underline text-sm">Leggi le FAQ o Contattaci</button>
+                            <div class="mt-20 pt-10 border-t border-slate-100 text-center">
+                                <div class="inline-block p-4 rounded-full bg-primary-50 text-primary-600 mb-4">
+                                    <i data-lucide="help-circle" class="w-8 h-8"></i>
+                                </div>
+                                <h4 class="font-bold text-xl text-primary-900 mb-2">Hai altre domande?</h4>
+                                <p class="text-slate-500 mb-6">Siamo qui per aiutarti a organizzare l'esperienza perfetta.</p>
+                                <button class="text-accent-600 font-bold hover:text-accent-700 underline decoration-2 underline-offset-4">Leggi le FAQ o Contattaci</button>
                             </div>
 
                         </div>
