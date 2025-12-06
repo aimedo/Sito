@@ -81,7 +81,8 @@
             --bg-image: radial-gradient(#059669 0.5px, transparent 0.5px);
             --bg-size: 20px 20px;
             --bg-position: 0 0;
-            --bg-opacity: 0.05;
+            --bg-repeat: repeat;
+            --layer-opacity: 0.05;
         }
 
         /* TEMA SPECIALE (Porsche Miami Blue + Gatti PNG Utente) */
@@ -104,9 +105,7 @@
 
             --page-bg: #e0f9ff; 
 
-            /* SFONDO GATTI PNG CARICATI DALL'UTENTE (Senza SVG!)
-               Uso i nomi file esatti. Lo spazio in '3 s.png' è codificato come %20.
-            */
+            /* SFONDO GATTI PNG CARICATI DALL'UTENTE */
             --bg-image: 
                 url('Cat-Icon-PNG-Pic.png'),
                 url('pusheen.png'),
@@ -117,24 +116,24 @@
                 url('cats-icon-17.jpg.png');
             
             /* POSIZIONAMENTO SPARSO (Scatter)
-               Coordinate diverse per ogni immagine per evitare sovrapposizioni e creare il pattern.
-               I valori sono sfalsati per coprire bene lo spazio.
+               Coordinate diverse per ogni immagine per "mischiare" il pattern.
             */
             --bg-position: 
-                20px 20px,      /* Cat-Icon */
-                250px 50px,     /* pusheen */
-                450px 20px,     /* 3 s */
-                80px 250px,     /* cat */
-                300px 300px,    /* 983... */
-                500px 220px,    /* Pusheen_the_Cat */
-                150px 450px;    /* cats-icon-17 */
+                5% 5%,
+                20% 25%,
+                40% 10%,
+                60% 40%,
+                80% 15%,
+                10% 60%,
+                90% 80%;
 
-            /* RIDIMENSIONAMENTO UNIFORME
-               Tutti a 80px di larghezza per renderli visibili ma non giganti.
-            */
-            --bg-size: 80px auto, 80px auto, 80px auto, 80px auto, 80px auto, 80px auto, 80px auto; 
+            /* RIDIMENSIONAMENTO UNIFORME (40px = Dimezzato rispetto a prima) */
+            --bg-size: 40px auto, 40px auto, 40px auto, 40px auto, 40px auto, 40px auto, 40px auto; 
             
-            --bg-opacity: 0.3; /* Opacità per vedere bene lo sfondo azzurrino */
+            /* USARE 'SPACE' PER DISTANZIARE */
+            --bg-repeat: space; 
+            
+            --layer-opacity: 0.15; /* Leggermente visibili */
         }
 
         /* Gestione visibilità Gatti Extra */
@@ -205,8 +204,8 @@
             background-image: var(--bg-image);
             background-size: var(--bg-size);
             background-position: var(--bg-position);
-            background-repeat: repeat; /* Le immagini si ripetono creando la carta da parati */
-            opacity: var(--bg-opacity);
+            background-repeat: var(--bg-repeat); 
+            opacity: var(--layer-opacity);
             transition: all 0.5s ease;
             width: 100%;
             height: 100%;
@@ -732,8 +731,8 @@
                     
                     <!-- Contenitore centrale aggiornato per centrare e formattare meglio il testo -->
                     <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-4 max-w-4xl mx-auto mt-0">
-                        <!-- BOX BIANCO AGGIORNATO (bg-white/90 + text-dark) -->
-                        <div class="bg-white/95 backdrop-blur-sm p-8 rounded-3xl border border-white/20 shadow-2xl">
+                        <!-- BOX BIANCO AGGIORNATO (bg-white) -->
+                        <div class="bg-white p-8 rounded-3xl border border-white/20 shadow-2xl">
                             <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">
                                 EdoViaggy Experience
                             </span>
