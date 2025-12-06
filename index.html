@@ -181,9 +181,9 @@
                 vicinoATorino: false,
                 preferito: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // PERCORSI AGGIORNATI: Rimosso "images/" dato che sono nella root
-                image: "./Col1 - dimensioni medie.jpeg", 
-                heroImage: "./Col1 - dimensioni medie.jpeg",
+                // MODIFICA CRUCIALE: Gli spazi sono sostituiti da %20
+                image: "Col1%20-%20dimensioni%20medie.jpeg", 
+                heroImage: "Col1%20-%20dimensioni%20medie.jpeg",
                 description: "Una splendida passeggiata a piedi nel Pian di Spagna, la riserva naturale dove il fiume Adda incontra il Lago di Como. Un percorso facile e rilassante lungo sentieri panoramici, ammirando il lago e le montagne circostanti immersi nella natura.",
                 highlights: [
                     "Passeggiata naturalistica nel Pian di Spagna",
@@ -193,16 +193,16 @@
                     "Ideale per famiglie e amanti del trekking leggero"
                 ],
                 gallery: [
-                    "./Col1 - dimensioni medie.jpeg",
-                    "./Col2 - dimensioni medie.jpeg",
-                    "./Col3 - dimensioni medie.jpeg",
-                    "./Col4 - dimensioni medie.jpeg",
-                    "./Col5 - dimensioni medie.jpeg",
-                    "./Col6 - dimensioni medie.jpeg",
-                    "./Col7 - dimensioni medie.jpeg",
-                    "./Col8 - dimensioni medie.jpeg",
-                    "./Col9 - dimensioni medie.jpeg",
-                    "./Col10 - dimensioni medie.jpeg"
+                    "Col1%20-%20dimensioni%20medie.jpeg",
+                    "Col2%20-%20dimensioni%20medie.jpeg",
+                    "Col3%20-%20dimensioni%20medie.jpeg",
+                    "Col4%20-%20dimensioni%20medie.jpeg",
+                    "Col5%20-%20dimensioni%20medie.jpeg",
+                    "Col6%20-%20dimensioni%20medie.jpeg",
+                    "Col7%20-%20dimensioni%20medie.jpeg",
+                    "Col8%20-%20dimensioni%20medie.jpeg",
+                    "Col9%20-%20dimensioni%20medie.jpeg",
+                    "Col10%20-%20dimensioni%20medie.jpeg"
                 ]
             },
             {
@@ -309,9 +309,9 @@
                 duration: "1 Ora",
                 vicinoATorino: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // PERCORSO AGGIORNATO (Root folder)
-                image: "./Lan1 - dimensioni medie.jpeg",
-                heroImage: "./Lan1 - dimensioni medie.jpeg",
+                // AGGIUNTA FOTO "Lan1" con spazi codificati
+                image: "Lan1%20-%20dimensioni%20medie.jpeg",
+                heroImage: "Lan1%20-%20dimensioni%20medie.jpeg",
                 description: "Cavalca attraverso i paesaggi Patrimonio UNESCO delle Langhe. Un'esperienza unica tra infiniti filari di vigne e colline ondulate, respirando l'aria della tradizione piemontese.",
                 highlights: [
                     "Panorama UNESCO delle Langhe",
@@ -321,8 +321,8 @@
                     "Attrezzatura completa fornita"
                 ],
                 gallery: [
-                    // PERCORSO AGGIORNATO (Root folder)
-                    "./Lan1 - dimensioni medie.jpeg",
+                    // Aggiunta la tua foto anche qui
+                    "Lan1%20-%20dimensioni%20medie.jpeg",
                     "https://images.unsplash.com/photo-1543306877-2e1d713a2967?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1589139265275-f55925e07080?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1598287515091-c91795325c34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -378,7 +378,7 @@
                             src="${trip.image}" 
                             alt="${trip.title}" 
                             class="w-full h-full object-cover"
-                            ${trip.image.startsWith('./') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}
+                            onerror="this.onerror=null;this.src='${fallbackImage}';"
                         >
                         
                         <!-- Badge Preferito di Edo (Top Right) -->
@@ -495,7 +495,7 @@
                     <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-2 no-scrollbar scroll-smooth">
                         ${trip.gallery.map(img => `
                             <div class="flex-shrink-0 w-80 md:w-96 snap-center">
-                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none" ${img.startsWith('./') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none" onerror="this.onerror=null;this.src='${fallbackImage}';">
                             </div>
                         `).join('')}
                     </div>
@@ -520,7 +520,7 @@
                 <div class="fade-in">
                     <!-- Detail Hero -->
                     <div class="relative h-[60vh] min-h-[400px]">
-                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('./') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='${fallbackImage}';">
                         <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
                         
                         <!-- Back Button -->
