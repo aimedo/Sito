@@ -71,7 +71,7 @@
             --accent-600: #d97706;
             --accent-700: #b45309;
 
-            --bg-color: #ffffff; /* Bianco Puro */
+            --bg-color: #fff7ed; /* Bianco Puro */
         }
 
         /* TEMA SPECIALE (Porsche Miami Blue) */
@@ -91,15 +91,30 @@
             --accent-700: #9d004c;
 
             --bg-color: #e0f9ff; /* Sfondo Miami Blue */
+
+            /* TILES SVG GENERATA CON IMMAGINI PNG */
+            --bg-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cimage href='Cat-Icon-PNG-Pic.png' x='10' y='10' width='40' height='40' /%3E%3Cimage href='pusheen.png' x='250' y='10' width='40' height='40' /%3E%3Cimage href='3%20s.png' x='10' y='250' width='40' height='40' /%3E%3Cimage href='cat.png' x='250' y='250' width='40' height='40' /%3E%3Cimage href='Pusheen_the_Cat.png' x='130' y='130' width='40' height='40' /%3E%3C/svg%3E");
+            
+            --bg-size: 300px 300px; 
+            --bg-opacity: 0.25; 
         }
 
+        /* Gestione visibilità Gatti Extra */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { 
+            display: inline-block; 
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        
         /* Transizioni fluide */
         body, div, nav, button, span, i, h1, h2, h3, p, a {
             transition-property: color, background-color, border-color, fill, stroke;
             transition-duration: 500ms;
         }
 
-        /* --- BACKGROUND LAYERS --- */
+        /* --- BACKGROUND LAYERS FISSI --- */
         #bg-color-layer {
             position: fixed;
             inset: 0;
@@ -107,73 +122,40 @@
             background-color: var(--bg-color);
             transition: background-color 0.5s ease;
         }
-
-        /* Container per la griglia di gatti */
-        #bg-cats-grid {
+        
+        #bg-pattern-layer {
             position: fixed;
             inset: 0;
             z-index: -1;
-            opacity: 0; /* Invisibile di default */
+            background-image: var(--bg-image);
+            background-size: var(--bg-size);
+            background-repeat: repeat;
+            opacity: var(--bg-opacity);
             pointer-events: none;
-            transition: opacity 0.5s ease;
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
+            transition: all 0.5s ease;
         }
 
-        /* Visibile solo in special mode */
-        body.special-mode #bg-cats-grid {
-            opacity: 0.2; /* Opacità icone */
-        }
-
-        /* La singola "Mattonella" (Tile) da 200px */
-        .cat-tile {
-            width: 200px;
-            height: 200px;
-            position: relative;
-            flex-shrink: 0;
-            /* border: 1px dashed rgba(0,0,0,0.1); Debug: decommenta per vedere la griglia */
-        }
-
-        /* Stile icone dentro la tile */
-        .cat-icon {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-
-        /* Posizioni Fisse nella Tile (con padding per evitare sovrapposizioni coi vicini) */
-        .pos-tl { top: 15px; left: 15px; }      /* Top Left */
-        .pos-tr { top: 15px; right: 15px; }     /* Top Right */
-        .pos-bl { bottom: 15px; left: 15px; }   /* Bottom Left */
-        .pos-br { bottom: 15px; right: 15px; }  /* Bottom Right */
-        .pos-c  { top: 50%; left: 50%; transform: translate(-50%, -50%); } /* Center */
-
-        /* Gatto che salta nel tasto */
-        .special-cat-icon { display: none; }
-        body.special-mode .special-cat-icon { 
-            display: inline-block; 
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        
-        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
-
-        /* Zoom Immagini Card */
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
     </style>
 </head>
 <body class="text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
     
     <!-- BACKGROUND SYSTEM -->
     <div id="bg-color-layer"></div>
-    <!-- Griglia generata via JS -->
-    <div id="bg-cats-grid"></div>
+    <div id="bg-pattern-layer"></div>
 
     <!-- === LOGIN SCREEN === -->
     <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
@@ -290,13 +272,16 @@
                             <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3 transition-colors duration-500"></i>
                             <span class="font-bold text-2xl">EdoViaggy</span>
                         </div>
+                        <!-- TESTO CAUBOI -->
                         <p class="text-primary-100 text-base leading-relaxed max-w-sm mb-6">
                             Scopri la libertà di cavalcare immerso nella natura. Esperienze autentiche per ogni CAUBOI.
                         </p>
                         <div class="flex space-x-4">
+                            <!-- Instagram (Link Aggiornato) -->
                             <a href="https://www.instagram.com/aim_edo?igsh=em52MjF3dzZvYXh5&utm_source=qr" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
                                 <i class="fa-brands fa-instagram text-xl"></i>
                             </a>
+                            <!-- YouTube (Nuovo Link) -->
                             <a href="https://www.youtube.com/shorts/SXHMnicI6Pg" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
                                 <i class="fa-brands fa-youtube text-xl"></i>
                             </a>
@@ -513,7 +498,6 @@
                 document.getElementById('site-content').classList.remove('hidden');
                 document.getElementById('site-content').classList.add('flex');
                 document.body.classList.remove('overflow-hidden');
-                
                 // INIZIALIZZA LA GRIGLIA DI GATTI APPENA SI ENTRA
                 generateCatsGrid();
                 // RENDERING INIZIALE IMPORTANTE
@@ -540,14 +524,17 @@
         }
 
         // --- BACKGROUND GENERATOR (TILES) ---
-        // Genera una griglia di tiles 200x200px con i gatti posizionati
+        // Genera una griglia di tiles con i gatti posizionati
         function generateCatsGrid() {
             const container = document.getElementById('bg-cats-grid');
             container.innerHTML = ''; // Pulisci
             
+            // MODIFICA: Dimensione tile responsive (170px su mobile, 200px su desktop)
+            const tileSize = window.innerWidth < 768 ? 170 : 200;
+
             // Calcola quante tiles servono per coprire lo schermo
-            const cols = Math.ceil(window.innerWidth / 200) + 1;
-            const rows = Math.ceil(window.innerHeight / 200) + 1;
+            const cols = Math.ceil(window.innerWidth / tileSize) + 1;
+            const rows = Math.ceil(window.innerHeight / tileSize) + 1;
             const totalTiles = cols * rows;
 
             // Lista immagini (spazi codificati per src html)
@@ -564,7 +551,7 @@
             // Genera le tiles
             for(let i=0; i<totalTiles; i++) {
                 html += `
-                <div class="cat-tile">
+                <div class="cat-tile" style="width: ${tileSize}px; height: ${tileSize}px;">
                     <img src="${catImages[0]}" class="cat-icon pos-tl" alt="">
                     <img src="${catImages[1]}" class="cat-icon pos-tr" alt="">
                     <img src="${catImages[2]}" class="cat-icon pos-bl" alt="">
@@ -748,8 +735,8 @@
                     
                     <!-- Contenitore centrale aggiornato per centrare e formattare meglio il testo -->
                     <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-4 max-w-4xl mx-auto mt-0">
-                        <!-- BOX BIANCO AGGIORNATO (bg-white) -->
-                        <div class="bg-white p-8 rounded-3xl border border-white/20 shadow-2xl">
+                        <!-- BOX BIANCO AGGIORNATO (bg-white/95 + text-dark) -->
+                        <div class="bg-white/95 backdrop-blur-sm p-8 rounded-3xl border border-white/20 shadow-2xl">
                             <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">
                                 EdoViaggy Experience
                             </span>
@@ -927,12 +914,12 @@
 
                     <!-- Content Section -->
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                             
-                            <!-- Text Content -->
-                            <div>
+                            <!-- Text Content (Left Column on Desktop) -->
+                            <!-- CARD BIANCA PER LEGGIBILITÀ SU SFONDO GATTI -->
+                            <div class="bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-3xl shadow-xl border border-primary-50 relative z-10 flex flex-col justify-center h-full">
                                 <h2 class="text-4xl font-bold text-primary-900 mb-8 relative flex items-center">
-                                    <i class="fa-solid fa-user-tie text-accent-500 mr-4 text-3xl"></i>
                                     Il "Team" (Sono io, Edo)
                                     <span class="absolute -bottom-2 left-0 w-20 h-1.5 bg-accent-500 rounded-full"></span>
                                 </h2>
@@ -951,26 +938,23 @@
                                     Quando non si gode il suo esteso parco di supercar (sul simulatore di guida, che per la gente normale è un banale videogioco) gestisce una intraprendente agenzia <strong>(di indubbia legittimità e somma osservanza delle legge tributarie)</strong> viaggi specializzata in gite a cavallo.
                                 </p>
                                 <p class="text-slate-600 mb-10 leading-relaxed text-lg font-light flex items-center gap-2">
-                                    <!-- RIMOSSA ICONA TRIANGOLO -->
                                     Non preoccuparti se non sei un cavaliere esperto: non lo sono nemmeno io, speriamo di non perderci nel bosco o cadere dal cavallo.
                                 </p>
 
-                                <!-- PUNTI REINVENTATI: SUPERCAR, IMPRENDITORIA, FISCO, FILANTROPIA -->
+                                <!-- PUNTI REINVENTATI -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    
                                     <!-- 1. Collezione Supercar -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="gamepad-2" class="w-6 h-6"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-primary-900 mb-1">Garage da Sogno</h4>
-                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo. Su Gran Turismo 7 sono imbattibile.</p>
+                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo.</p>
                                         </div>
                                     </div>
-
                                     <!-- 2. Imprenditoria -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="briefcase" class="w-6 h-6"></i>
                                         </div>
@@ -979,9 +963,8 @@
                                             <p class="text-sm text-slate-500">Specialista nel lanciare startup che startano e basta.</p>
                                         </div>
                                     </div>
-
                                     <!-- 3. Creatività Fiscale -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="file-spread-sheet" class="w-6 h-6"></i>
                                         </div>
@@ -990,9 +973,8 @@
                                             <p class="text-sm text-slate-500">Per me l'F24 è il tasto per aggiornare la pagina, non un modello da pagare.</p>
                                         </div>
                                     </div>
-
                                     <!-- 4. Filantropia -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="heart-handshake" class="w-6 h-6"></i>
                                         </div>
@@ -1004,18 +986,25 @@
                                 </div>
                             </div>
 
-                            <!-- Image Grid -->
-                            <div class="grid grid-cols-2 gap-4 relative">
-                                <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-100 rounded-full blur-3xl z-0"></div>
-                                <!-- Immagine 1: Un cavallo simpatico o Edo (uso un placeholder di cavallo per ora) -->
-                                <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Edo a cavallo" class="rounded-3xl shadow-xl w-full h-80 object-cover transform translate-y-12 z-10 border-4 border-white">
-                                <!-- Immagine 2: Paesaggio o dettaglio sella -->
-                                <img src="https://images.unsplash.com/photo-1598556868222-6e9389bd6f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dettaglio natura" class="rounded-3xl shadow-xl w-full h-80 object-cover z-10 border-4 border-white">
+                            <!-- Image Cards (Right Column on Desktop) -->
+                            <div class="flex flex-col gap-4 h-full relative z-10">
+                                <!-- Card Immagine 1 -->
+                                <div class="lg:h-1/2 w-full rounded-3xl shadow-xl border border-white/20 overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Edo a cavallo" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
+                                </div>
+                                <!-- Card Immagine 2 -->
+                                <div class="lg:h-1/2 w-full rounded-3xl shadow-xl border border-white/20 overflow-hidden relative">
+                                     <img src="https://images.unsplash.com/photo-1598556868222-6e9389bd6f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dettaglio natura" class="w-full h-full object-cover">
+                                     <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
+                                </div>
+                                <!-- Decorative Blur (hidden on mobile to avoid overflow issues) -->
+                                <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-100 rounded-full blur-3xl z-0 hidden lg:block"></div>
                             </div>
                         </div>
 
-                        <!-- CTA Section -->
-                        <div class="mt-24 bg-primary-50 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+                        <!-- CTA Section (WHITE CARD) -->
+                        <div class="mt-24 bg-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-xl border border-primary-50">
                             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-300 via-accent-400 to-primary-300"></div>
                             <h3 class="text-3xl md:text-4xl font-bold text-primary-900 mb-6">Vuoi conoscere Edo (e i cavalli)?</h3>
                             <p class="text-slate-600 mb-10 max-w-2xl mx-auto text-lg">
@@ -1051,6 +1040,7 @@
 
                     <!-- Steps Container -->
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-16 relative z-20">
+                        <!-- WHITE CARD CONTAINER FOR STEPS -->
                         <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-16 border border-primary-50">
                             
                             <div class="space-y-16 relative">
