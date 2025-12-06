@@ -84,7 +84,7 @@
             --bg-opacity: 0.05;
         }
 
-        /* TEMA SPECIALE (Porsche Miami Blue + Gatti Spaziati) */
+        /* TEMA SPECIALE (Porsche Miami Blue + Gatti PNG Utente) */
         body.special-mode {
             /* Miami Blue Palette (#00A9E0 approx) */
             --primary-50: #e0f9ff;
@@ -102,16 +102,38 @@
             --accent-600: #db006a;
             --accent-700: #9d004c;
 
-            --page-bg: #e0f9ff; /* Azzurrino Miami */
+            --page-bg: #e0f9ff; 
 
-            /* SFONDO GATTI & ZAMPE (Ridimensionati e Spaziati)
-               - Scale ridotto a 0.045 (era 0.06) -> circa 80% della taglia precedente
-               - bg-size aumentato a 240px per distanziare i moduli
+            /* SFONDO GATTI PNG CARICATI DALL'UTENTE 
+               Uso i nomi file esatti. Lo spazio in '3 s.png' è codificato come %20.
             */
-            --bg-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23004D6E' fill-opacity='0.08'%3E%3C!-- Gatto Seduto (Top Left) - Scalato --%3E%3Cpath transform='translate(30,30) scale(0.045)' d='M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V24c0 35.3-28.7 64-64 64H112V384c0 35.3 28.7 64 64 64l96 0 128 0c35.3 0 64-28.7 64-64V125.3c0-30.4-13.6-58.8-37.2-77.8l-13.1-10.5c-15.8-12.6-38.3-13.7-55.2-2.7L326.6 63.1c-2.3 1.5-4.5 3.1-6.6 4.9V32z' /%3E%3C!-- Zampa (Bottom Right) - Scalata --%3E%3Cpath transform='translate(150,150) scale(0.045)' d='M256 224c-79.5 0-144 64.5-144 144s64.5 144 144 144s144-64.5 144-144s-64.5-144-144-144zm0 240c-52.9 0-96-43.1-96-96s43.1-96 96-96s96 43.1 96 96s-43.1 96-96 96zm-166.4-169.6c29.3 14.6 65-2.2 79.6-31.5s-2.2-65-31.5-79.6s-65 2.2-79.6 31.5s2.2 65 31.5 79.6zM89.6 156.8c31.5 7.9 63.6-11.4 71.5-42.9s-11.4-63.6-42.9-71.5s-63.6 11.4-71.5 42.9s11.4 63.6 42.9 71.5zm332.8 97.6c29.3-14.6 41.2-50.3 26.6-79.6s-50.3-41.2-79.6-26.6s-41.2 50.3-26.6 79.6s50.3 41.2 79.6 26.6zm-59.2-111.4c31.5-7.9 51-39.7 43.1-71.3s-39.7-51-71.3-43.1s-51 39.7-43.1 71.3s39.7 51 71.3 43.1z' /%3E%3C/g%3E%3C/svg%3E");
+            --bg-image: 
+                url('Cat-Icon-PNG-Pic.png'),
+                url('pusheen.png'),
+                url('3%20s.png'),
+                url('cat.png'),
+                url('983-9833291_pusheen-cat.png'),
+                url('Pusheen_the_Cat.png'),
+                url('cats-icon-17.jpg.png');
             
-            --bg-size: 240px 240px; /* Grandezza del modulo aumentata per spaziare */
-            --bg-opacity: 1; 
+            /* POSIZIONAMENTO SPARSO (Scatter)
+               Coordinate diverse per ogni immagine per evitare sovrapposizioni e creare il pattern.
+            */
+            --bg-position: 
+                10px 10px,      /* Cat-Icon */
+                150px 30px,     /* pusheen */
+                280px 10px,     /* 3 s */
+                40px 150px,     /* cat */
+                200px 180px,    /* 983... */
+                320px 140px,    /* Pusheen_the_Cat */
+                100px 280px;    /* cats-icon-17 */
+
+            /* RIDIMENSIONAMENTO UNIFORME
+               Tutti a 60px di larghezza.
+            */
+            --bg-size: 60px auto; 
+            
+            --bg-opacity: 0.2; /* Opacità per non disturbare la lettura */
         }
 
         /* Gestione visibilità Gatti Extra */
@@ -185,6 +207,8 @@
             background-repeat: repeat; 
             opacity: var(--bg-opacity);
             transition: all 0.5s ease;
+            width: 100%;
+            height: 100%;
         }
 
         /* Animazione shake per errore login */
