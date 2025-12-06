@@ -1,0 +1,826 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red70\green137\blue204;\red23\green24\blue24;\red140\green211\blue254;
+\red202\green202\blue202;\red109\green109\blue109;\red194\green126\blue101;\red109\green115\blue120;\red212\green212\blue212;
+\red113\green192\blue131;\red246\green124\blue48;\red167\green197\blue152;\red183\green111\blue247;}
+{\*\expandedcolortbl;;\cssrgb\c33725\c61176\c83922;\cssrgb\c11765\c12157\c12549;\cssrgb\c61176\c86275\c99608;
+\cssrgb\c83137\c83137\c83137;\cssrgb\c50196\c50196\c50196;\cssrgb\c80784\c56863\c47059;\cssrgb\c50196\c52549\c54510;\cssrgb\c86275\c86275\c86275;
+\cssrgb\c50588\c78824\c58431;\cssrgb\c98039\c56471\c24314;\cssrgb\c70980\c80784\c65882;\cssrgb\c77255\c54118\c97647;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww50660\viewh26400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <!DOCTYPE\cf4 \strokec4  html\cf2 \strokec2 >\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb3 \strokec6 <\cf2 \strokec2 html\cf5 \strokec5  \cf4 \strokec4 lang\cf6 \strokec6 =\cf7 \strokec7 "it"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 <\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 charset\cf6 \strokec6 =\cf7 \strokec7 "UTF-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 name\cf6 \strokec6 =\cf7 \strokec7 "viewport"\cf5 \strokec5  \cf4 \strokec4 content\cf6 \strokec6 =\cf7 \strokec7 "width=device-width, initial-scale=1.0"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \strokec5 EdoViaggy | Escursioni a Cavallo\cf6 \strokec6 </\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cb1 \
+\cb3     \cf8 \strokec8 <!-- Tailwind CSS -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://cdn.tailwindcss.com"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cb1 \
+\cb3     \cf8 \strokec8 <!-- Google Fonts: Inter -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "stylesheet"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cb1 \
+\cb3     \cf8 \strokec8 <!-- Lucide Icons -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://unpkg.com/lucide@latest"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf8 \strokec8 <!-- FontAwesome -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "stylesheet"\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         tailwind\cf9 \strokec9 .\cf5 \strokec5 config \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             theme\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 extend\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     fontFamily\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         sans\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf10 \strokec10 'Inter'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 'sans-serif'\cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3                     colors\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         brand\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 50\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#fbf7f0'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 100\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#f5efe0'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 500\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#b48c5e'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 600\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#967045'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 900\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#4a3421'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                         \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3                         green\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 50\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#f0fdf4'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 100\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#dcfce7'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 600\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#16a34a'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 700\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#15803d'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                             \cf11 \strokec11 800\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 '#166534'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 /* Custom Scrollbar Global */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 ::-webkit-scrollbar\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 width:\cf5 \strokec5  \cf12 \strokec12 8px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 height:\cf5 \strokec5  \cf12 \strokec12 8px\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* Height for horizontal scrollbar */\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 ::-webkit-scrollbar-track\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 background:\cf5 \strokec5  #f1f1f1\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 ::-webkit-scrollbar-thumb\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 background:\cf5 \strokec5  #d6ccc2\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 border-radius:\cf5 \strokec5  \cf12 \strokec12 4px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 ::-webkit-scrollbar-thumb:hover\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 background:\cf5 \strokec5  #a89f91\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 /* Hide scrollbar for gallery but keep functionality */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .no-scrollbar::-webkit-scrollbar\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 display:\cf5 \strokec5  \cf7 \strokec7 none\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .no-scrollbar\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 -ms-overflow-style:\cf5 \strokec5  \cf7 \strokec7 none\cf9 \strokec9 ;\cf5 \strokec5   \cf8 \strokec8 /* IE and Edge */\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 scrollbar-width:\cf5 \strokec5  \cf7 \strokec7 none\cf9 \strokec9 ;\cf5 \strokec5   \cf8 \strokec8 /* Firefox */\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 /* Fade Animation */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .fade-in\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 animation:\cf5 \strokec5  \cf7 \strokec7 fadeIn\cf5 \strokec5  \cf12 \strokec12 0.5s\cf5 \strokec5  \cf7 \strokec7 ease-in-out\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf13 \strokec13 @keyframes\cf5 \strokec5  \cf7 \strokec7 fadeIn\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf7 \strokec7 from\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf4 \strokec4 opacity:\cf5 \strokec5  \cf12 \strokec12 0\cf9 \strokec9 ;\cf5 \strokec5  \cf4 \strokec4 transform:\cf5 \strokec5  \cf7 \strokec7 translateY(\cf12 \strokec12 10px\cf7 \strokec7 )\cf9 \strokec9 ;\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf7 \strokec7 to\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf4 \strokec4 opacity:\cf5 \strokec5  \cf12 \strokec12 1\cf9 \strokec9 ;\cf5 \strokec5  \cf4 \strokec4 transform:\cf5 \strokec5  \cf7 \strokec7 translateY(\cf12 \strokec12 0\cf7 \strokec7 )\cf9 \strokec9 ;\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 /* Image hover zoom effect container */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .img-zoom-container\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 overflow:\cf5 \strokec5  \cf7 \strokec7 hidden\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .img-zoom-container\cf5 \strokec5  \cf2 \strokec2 img\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 transition:\cf5 \strokec5  \cf7 \strokec7 transform\cf5 \strokec5  \cf12 \strokec12 0.5s\cf5 \strokec5  \cf7 \strokec7 ease\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .img-zoom-container:hover\cf5 \strokec5  \cf2 \strokec2 img\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 transform:\cf5 \strokec5  \cf7 \strokec7 scale(\cf12 \strokec12 1.05\cf7 \strokec7 )\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb3 \strokec6 </\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 <\cf2 \strokec2 body\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3     \cf8 \strokec8 <!-- Navigation -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 nav\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 transition-all duration-300"\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "navbar"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex justify-between items-center h-16"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 <!-- Logo -->\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex-shrink-0 flex items-center cursor-pointer"\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('home')"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 i\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "fa-solid fa-horse-head text-2xl text-brand-600 mr-2"\cf6 \strokec6 ></\cf2 \strokec2 i\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 span\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-bold text-xl tracking-tight text-stone-900"\cf6 \strokec6 >\cf5 \strokec5 EdoViaggy\cf6 \strokec6 </\cf2 \strokec2 span\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3                 \cf8 \strokec8 <!-- Central Menu (Desktop) -->\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hidden md:flex space-x-8 items-center"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#"\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('home')"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-stone-600 hover:text-brand-600 font-medium transition-colors text-sm uppercase tracking-wide"\cf6 \strokec6 >\cf5 \strokec5 Home\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#"\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('about')"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-stone-600 hover:text-brand-600 font-medium transition-colors text-sm uppercase tracking-wide"\cf6 \strokec6 >\cf5 \strokec5 Chi Siamo\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3                 \cf8 \strokec8 <!-- Right Side (Booking Button) -->\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex items-center gap-4"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf8 \strokec8 <!-- Mobile Menu Button -->\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('about')"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "md:hidden text-stone-600 hover:text-brand-600"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 span\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-sm font-medium mr-1"\cf6 \strokec6 >\cf5 \strokec5 Chi Siamo\cf6 \strokec6 </\cf2 \strokec2 span\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3                     \cf8 \strokec8 <!-- AGGIORNATO: onclick="router('booking')" -->\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('booking')"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-brand-900 text-white px-5 py-2 rounded-full font-medium hover:bg-brand-800 transition-colors shadow-lg shadow-stone-200/50 text-sm md:text-base"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         Prenota Ora\cb1 \
+\cb3                     \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 nav\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf8 \strokec8 <!-- Main Content Area -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 main\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "app"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex-grow pt-16"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 <!-- Content will be injected here by JavaScript -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 main\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf8 \strokec8 <!-- Footer -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 footer\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-stone-900 text-white py-12 border-t border-stone-800 mt-auto"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "grid grid-cols-1 md:grid-cols-4 gap-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "col-span-1 md:col-span-2"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex items-center mb-4"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 i\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "fa-solid fa-horse-head text-xl text-brand-500 mr-2"\cf6 \strokec6 ></\cf2 \strokec2 i\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 span\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "font-bold text-lg"\cf6 \strokec6 >\cf5 \strokec5 EdoViaggy\cf6 \strokec6 </\cf2 \strokec2 span\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-stone-400 text-sm leading-relaxed max-w-sm"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         Scopri la libert\'e0 di cavalcare immerso nella natura. Esperienze autentiche per ogni cavaliere.\cb1 \
+\cb3                     \cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-sm font-semibold uppercase tracking-wider text-stone-300 mb-4"\cf6 \strokec6 >\cf5 \strokec5 Link Utili\cf6 \strokec6 </\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 ul\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "space-y-2 text-sm text-stone-400"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 li\cf6 \strokec6 ><\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#"\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('home')"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hover:text-white transition-colors"\cf6 \strokec6 >\cf5 \strokec5 Home\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 ></\cf2 \strokec2 li\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 li\cf6 \strokec6 ><\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#"\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "router('about')"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hover:text-white transition-colors"\cf6 \strokec6 >\cf5 \strokec5 Chi Siamo\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 ></\cf2 \strokec2 li\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 li\cf6 \strokec6 ><\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hover:text-white transition-colors"\cf6 \strokec6 >\cf5 \strokec5 Contatti\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 ></\cf2 \strokec2 li\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 li\cf6 \strokec6 ><\cf2 \strokec2 a\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "#"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hover:text-white transition-colors"\cf6 \strokec6 >\cf5 \strokec5 Privacy Policy\cf6 \strokec6 </\cf2 \strokec2 a\cf6 \strokec6 ></\cf2 \strokec2 li\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 </\cf2 \strokec2 ul\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf8 \strokec8 <!-- Empty column for spacing or future use -->\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "border-t border-stone-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-stone-500"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \strokec5 &copy; 2025 EdoViaggy. Tutti i diritti riservati.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex space-x-6 mt-4 md:mt-0"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 i\cf5 \strokec5  \cf4 \strokec4 data-lucide\cf6 \strokec6 =\cf7 \strokec7 "instagram"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "h-5 w-5 hover:text-white cursor-pointer transition-colors"\cf6 \strokec6 ></\cf2 \strokec2 i\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 i\cf5 \strokec5  \cf4 \strokec4 data-lucide\cf6 \strokec6 =\cf7 \strokec7 "facebook"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "h-5 w-5 hover:text-white cursor-pointer transition-colors"\cf6 \strokec6 ></\cf2 \strokec2 i\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 footer\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf8 \strokec8 <!-- JavaScript Data & Logic -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // --- DATA ---\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // Esperienze aggiornate e riordinate\cf5 \cb1 \strokec5 \
+\cb3         \cf13 \strokec13 const\cf5 \strokec5  trips \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 2\cf9 \strokec9 ,\cf5 \strokec5  \cf8 \strokec8 // SPOSTATO PER PRIMO\cf5 \cb1 \strokec5 \
+\cb3                 title\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Percorso Panoramico sul Lago di Como"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 location\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Colico, Lecco"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 duration\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "1 Ora"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 vicinoATorino\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 false\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 preferito\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 true\cf9 \strokec9 ,\cf5 \strokec5  \cf8 \strokec8 // AGGIUNTO BADGE PREFERITO\cf5 \cb1 \strokec5 \
+\cb3                 cancellazione\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cancellazione gratuita fino a 48h"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 // AGGIORNATE LE IMMAGINI PER COLICO\cf5 \cb1 \strokec5 \
+\cb3                 image\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "./images/Col1 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 heroImage\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "./images/Col1 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Una splendida passeggiata a piedi nel Pian di Spagna, la riserva naturale dove il fiume Adda incontra il Lago di Como. Un percorso facile e rilassante lungo sentieri panoramici, ammirando il lago e le montagne circostanti immersi nella natura."\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 highlights\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Passeggiata naturalistica nel Pian di Spagna"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Vista mozzafiato sul Lago di Como e le montagne"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Percorso facile e adatto a tutti"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Immersione totale nella natura"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Ideale per famiglie e amanti del trekking leggero"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                 gallery\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col1 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col2 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col3 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col4 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col5 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col6 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col7 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col8 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col9 - dimensioni medie.jpeg"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "./images/Col10 - dimensioni medie.jpeg"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 1\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 title\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Passeggiata lungo il Fiume Serio"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 location\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Ghisalba, Bergamo"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 duration\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "1 Ora"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 vicinoATorino\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 false\cf9 \strokec9 ,\cf5 \strokec5  \cb1 \
+\cb3                 cancellazione\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cancellazione gratuita fino a 48h"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 image\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1598556868222-6e9389bd6f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 heroImage\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1598556868222-6e9389bd6f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Vivi l'emozione della tua prima volta a cavallo nel Parco del Serio. Un'esperienza rilassante immersi nella natura, accompagnati da istruttori esperti che vi guideranno passo dopo passo in questa avventura lungo le rive del fiume."\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 highlights\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Briefing iniziale e avvicinamento al cavallo"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Guida equestre certificata ENGEA"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Assicurazione giornaliera inclusa"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Noleggio cap (casco) di protezione"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Passeggiata nel Parco del Serio"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                 gallery\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1551884831-bbf3ddd77535?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1528437812957-695027581691?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1629822398555-d1434c4f3468?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1598556868222-6e9389bd6f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1534442080068-07e112d7fc3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 3\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 title\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Passeggiata nel Parco Adda"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 location\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Parco Adda Nord"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 duration\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "1 Ora"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 vicinoATorino\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 false\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 cancellazione\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cancellazione gratuita fino a 24h"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 image\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1448316738980-b79ad5f22e71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 heroImage\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1448316738980-b79ad5f22e71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Goditi un'ora di totale immersione nella natura lungo le rive del fiume Adda. Un percorso suggestivo attraverso boschi e sentieri fluviali, perfetto per staccare dalla routine quotidiana."\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 highlights\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Percorso naturalistico lungo l'Adda"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Briefing di sicurezza iniziale"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Assicurazione inclusa"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Guida equestre certificata"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Casco di protezione fornito"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                 gallery\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1596205739023-42e5668b3687?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1549608276-5786777e6587?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1472396961693-142e6e594e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1448316738980-b79ad5f22e71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 4\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 title\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Trekking Montagne Lecchesi"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 location\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Valsassina, Lecco"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 duration\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "1 Ora"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 vicinoATorino\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 false\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 cancellazione\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cancellazione gratuita fino a 48h"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 image\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1556805822-385c721b0689?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 heroImage\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1556805822-385c721b0689?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Esplora i sentieri della Valsassina con una passeggiata rigenerante. Cavalca attraverso boschi di faggi e betulle ammirando le Grigne. Un'esperienza autentica di montagna."\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 highlights\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Itinerario panoramico in Valsassina"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Accompagnatore esperto del territorio"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Noleggio cavallo e attrezzatura"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Briefing tecnico pre-partenza"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Possibilit\'e0 di avvistare fauna locale"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                 gallery\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1534442080068-07e112d7fc3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1588097281366-608b49520556?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1535295972055-1c762f4483e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1556805822-385c721b0689?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 5\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 title\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Alla scoperta del Canavese"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 location\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Canavese, Torino"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 duration\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "1 Ora"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 vicinoATorino\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 true\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 cancellazione\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cancellazione gratuita fino a 48h"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 image\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 heroImage\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Una passeggiata rilassante tra i boschi e le colline del Canavese, a due passi da Torino. Scopri la bellezza della natura piemontese in sella a cavalli docili e ben addestrati."\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 highlights\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Immersione nei boschi del Canavese"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Guida equestre qualificata"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Assicurazione base inclusa"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Utilizzo del cap di protezione"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Vicino a Torino"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                 gallery\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1563299796-b729d0af54a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1516562770513-39d7494df945?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1533658514930-07755b6c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 6\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 title\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Tra i Vigneti delle Langhe"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 location\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Langhe, Piemonte"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 duration\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "1 Ora"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 vicinoATorino\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 true\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 cancellazione\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cancellazione gratuita fino a 48h"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 image\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1533658514930-07755b6c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 heroImage\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "https://images.unsplash.com/photo-1533658514930-07755b6c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Cavalca attraverso i paesaggi Patrimonio UNESCO delle Langhe. Un'esperienza unica tra infiniti filari di vigne e colline ondulate, respirando l'aria della tradizione piemontese."\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 highlights\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Panorama UNESCO delle Langhe"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Passeggiata tra i vigneti"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Guida esperta del territorio"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Assicurazione inclusa"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "Attrezzatura completa fornita"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ],\cf5 \cb1 \strokec5 \
+\cb3                 gallery\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1543306877-2e1d713a2967?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1589139265275-f55925e07080?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1598287515091-c91795325c34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     \cf10 \strokec10 "https://images.unsplash.com/photo-1620668987087-4402621cb356?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 ]\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 ];\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- APP STATE ---\cf5 \cb1 \strokec5 \
+\cb3         \cf13 \strokec13 const\cf5 \strokec5  app \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'app'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf13 \strokec13 let\cf5 \strokec5  currentFilter \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'all'\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // 'all' or 'torino'\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- HELPER FUNCTIONS ---\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // Funzione globale per lo scorrimento del carosello con loop\cf5 \cb1 \strokec5 \
+\cb3         window\cf9 \strokec9 .\cf5 \strokec5 scrollGallery \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 function\cf9 \strokec9 (\cf5 \strokec5 direction\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  container \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'gallery-container'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 if\cf9 \strokec9 (\cf5 \strokec5 container\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf13 \strokec13 const\cf5 \strokec5  scrollAmount \cf9 \strokec9 =\cf5 \strokec5  \cf11 \strokec11 320\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // card width (approx)\cf5 \cb1 \strokec5 \
+\cb3                 \cf13 \strokec13 const\cf5 \strokec5  maxScroll \cf9 \strokec9 =\cf5 \strokec5  container\cf9 \strokec9 .\cf5 \strokec5 scrollWidth \cf9 \strokec9 -\cf5 \strokec5  container\cf9 \strokec9 .\cf5 \strokec5 clientWidth\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cb1 \
+\cb3                 \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 direction \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'left'\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     \cf8 \strokec8 // Se siamo all'inizio (o quasi), vai alla fine\cf5 \cb1 \strokec5 \
+\cb3                     \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 container\cf9 \strokec9 .\cf5 \strokec5 scrollLeft \cf9 \strokec9 <=\cf5 \strokec5  \cf11 \strokec11 5\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                          container\cf9 \strokec9 .\cf5 \strokec5 scrollTo\cf9 \strokec9 (\{\cf5 \strokec5  left\cf9 \strokec9 :\cf5 \strokec5  maxScroll\cf9 \strokec9 ,\cf5 \strokec5  behavior\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'smooth'\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \strokec5  \cf13 \strokec13 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         container\cf9 \strokec9 .\cf5 \strokec5 scrollBy\cf9 \strokec9 (\{\cf5 \strokec5  left\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 -\cf5 \strokec5 scrollAmount\cf9 \strokec9 ,\cf5 \strokec5  behavior\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'smooth'\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf13 \strokec13 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     \cf8 \strokec8 // Se siamo alla fine (o quasi), torna all'inizio\cf5 \cb1 \strokec5 \
+\cb3                     \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 container\cf9 \strokec9 .\cf5 \strokec5 scrollLeft \cf9 \strokec9 >=\cf5 \strokec5  maxScroll \cf9 \strokec9 -\cf5 \strokec5  \cf11 \strokec11 5\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         container\cf9 \strokec9 .\cf5 \strokec5 scrollTo\cf9 \strokec9 (\{\cf5 \strokec5  left\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  behavior\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'smooth'\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \strokec5  \cf13 \strokec13 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         container\cf9 \strokec9 .\cf5 \strokec5 scrollBy\cf9 \strokec9 (\{\cf5 \strokec5  left\cf9 \strokec9 :\cf5 \strokec5  scrollAmount\cf9 \strokec9 ,\cf5 \strokec5  behavior\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'smooth'\cf5 \strokec5  \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- RENDER FUNCTIONS ---\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf13 \strokec13 function\cf5 \strokec5  renderHome\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf8 \strokec8 // Filter Logic\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  filteredTrips \cf9 \strokec9 =\cf5 \strokec5  currentFilter \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'all'\cf5 \strokec5  \cb1 \
+\cb3                 \cf9 \strokec9 ?\cf5 \strokec5  trips \cb1 \
+\cb3                 \cf9 \strokec9 :\cf5 \strokec5  trips\cf9 \strokec9 .\cf5 \strokec5 filter\cf9 \strokec9 (\cf5 \strokec5 t \cf9 \strokec9 =>\cf5 \strokec5  t\cf9 \strokec9 .\cf5 \strokec5 vicinoATorino\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf13 \strokec13 let\cf5 \strokec5  cardsHTML \cf9 \strokec9 =\cf5 \strokec5  filteredTrips\cf9 \strokec9 .\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 trip \cf9 \strokec9 =>\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-stone-100 flex flex-col h-full">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <!-- Image Area -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="relative h-64 img-zoom-container cursor-pointer" onclick="router('detail', \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 id\cf9 \strokec9 \}\cf10 \strokec10 )">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <img src="\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 image\cf9 \strokec9 \}\cf10 \strokec10 " alt="\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 title\cf9 \strokec9 \}\cf10 \strokec10 " class="w-full h-full object-cover">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <!-- Badge Preferito di Edo (Top Right) -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 preferito \cf9 \strokec9 ?\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="absolute top-4 right-4 z-20">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <span class="bg-brand-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md flex items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <i data-lucide="heart" class="w-3.5 h-3.5 mr-1.5 fill-current"></i> Preferito di Edo\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         `\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                         <!-- Badge Cancellazione (Bottom Left) -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="absolute bottom-4 left-4 z-20">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                              <span class="bg-white/90 backdrop-blur-sm text-green-700 px-2 py-1 rounded text-[11px] font-semibold shadow-sm flex items-center border border-green-100">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <i data-lucide="shield-check" class="w-3 h-3 mr-1"></i> \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 cancellazione\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                     <!-- Content Area -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="p-6 flex flex-col flex-grow">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="flex justify-between items-start mb-2">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div class="flex items-center text-stone-500 text-sm mb-1">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <i data-lucide="map-pin" class="w-3 h-3 mr-1"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 location\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-brand-600 transition-colors">\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 title\cf9 \strokec9 \}\cf10 \strokec10 </h3>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <p class="text-stone-500 text-sm line-clamp-2 mb-4">\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 description\cf9 \strokec9 \}\cf10 \strokec10 </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="mt-auto flex items-center justify-end pt-4 border-t border-stone-100">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <button onclick="router('detail', \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 id\cf9 \strokec9 \}\cf10 \strokec10 )" class="bg-stone-50 text-stone-900 border border-stone-200 hover:bg-stone-900 hover:text-white hover:border-stone-900 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center group/btn">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 Scopri di pi\'f9\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <i data-lucide="arrow-right" class="w-4 h-4 ml-1 transform group-hover/btn:translate-x-1 transition-transform"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ).\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 ''\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             \cf8 \strokec8 // Empty state msg\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 filteredTrips\cf9 \strokec9 .\cf5 \strokec5 length \cf9 \strokec9 ===\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 cardsHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `<div class="col-span-3 text-center py-20 text-stone-500">Nessuna escursione trovata con questo filtro.</div>`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf8 \strokec8 // Filter Buttons Styles\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  btnBase \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  btnActive \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "bg-stone-900 text-white"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  btnInactive \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "bg-stone-50 text-stone-600 hover:bg-stone-100"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\cb3             app\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <!-- Hero Section -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 <section class="relative h-[500px] flex items-center justify-center fade-in">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="absolute inset-0 z-0">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Hero Horses" class="w-full h-full object-cover object-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-stone-50"></div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <span class="text-brand-100 uppercase tracking-[0.2em] text-sm font-bold mb-4 block">EdoViaggy Experience</span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             Vivi la Natura<br>in Sella a un Cavallo\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </h1>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <p class="text-lg md:text-xl text-stone-200 mb-8 max-w-2xl mx-auto">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             Dalle passeggiate tranquille ai trekking avventurosi.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="flex flex-col sm:flex-row justify-center gap-4">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <button onclick="document.getElementById('trips-grid').scrollIntoView(\{behavior: 'smooth'\})" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-lg shadow-brand-500/30 flex items-center justify-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 Inizia a Cavalcare\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </section>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                 <!-- Filter Bar -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 <div class="max-w-7xl mx-auto px-4 -mt-8 relative z-20 mb-12">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="bg-white rounded-xl shadow-xl p-4 flex flex-wrap gap-4 items-center justify-center md:justify-start border border-stone-100">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="flex gap-2 w-full md:w-auto overflow-x-auto no-scrollbar justify-center md:justify-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <button onclick="setFilter('all')" class="\cf9 \strokec9 $\{\cf5 \strokec5 btnBase\cf9 \strokec9 \}\cf10 \strokec10  \cf9 \strokec9 $\{\cf5 \strokec5 currentFilter \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'all'\cf5 \strokec5  \cf9 \strokec9 ?\cf5 \strokec5  btnActive \cf9 \strokec9 :\cf5 \strokec5  btnInactive\cf9 \strokec9 \}\cf10 \strokec10 ">Tutte</button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <button onclick="setFilter('torino')" class="\cf9 \strokec9 $\{\cf5 \strokec5 btnBase\cf9 \strokec9 \}\cf10 \strokec10  \cf9 \strokec9 $\{\cf5 \strokec5 currentFilter \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'torino'\cf5 \strokec5  \cf9 \strokec9 ?\cf5 \strokec5  btnActive \cf9 \strokec9 :\cf5 \strokec5  btnInactive\cf9 \strokec9 \}\cf10 \strokec10 ">Vicino a Torino</button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                 <!-- Trips Grid -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 <section id="trips-grid" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf9 \strokec9 $\{\cf5 \strokec5 cardsHTML\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </section>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             \cb1 \
+\cb3             lucide\cf9 \strokec9 .\cf5 \strokec5 createIcons\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 if\cf9 \strokec9 (\cf5 \strokec5 window\cf9 \strokec9 .\cf5 \strokec5 scrollY \cf9 \strokec9 >\cf5 \strokec5  \cf11 \strokec11 500\cf9 \strokec9 )\cf5 \strokec5  window\cf9 \strokec9 .\cf5 \strokec5 scrollTo\cf9 \strokec9 (\{\cf5 \strokec5 top\cf9 \strokec9 :\cf5 \strokec5  \cf11 \strokec11 500\cf9 \strokec9 ,\cf5 \strokec5  behavior\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'smooth'\cf9 \strokec9 \});\cf5 \strokec5  \cb1 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf13 \strokec13 function\cf5 \strokec5  renderDetail\cf9 \strokec9 (\cf5 \strokec5 id\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  trip \cf9 \strokec9 =\cf5 \strokec5  trips\cf9 \strokec9 .\cf5 \strokec5 find\cf9 \strokec9 (\cf5 \strokec5 t \cf9 \strokec9 =>\cf5 \strokec5  t\cf9 \strokec9 .\cf5 \strokec5 id \cf9 \strokec9 ===\cf5 \strokec5  id\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cb1 \
+\cb3             \cf13 \strokec13 if\cf9 \strokec9 (!\cf5 \strokec5 trip\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 renderHome\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3                 \cf13 \strokec13 return\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf8 \strokec8 // CAROUSEL GENERATION\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 const\cf5 \strokec5  carouselHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <div class="relative group">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <!-- Arrow Left -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <button onclick="scrollGallery('left')" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-stone-800 focus:outline-none focus:ring-2 focus:ring-brand-500">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <i data-lucide="chevron-left" class="w-6 h-6"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </button>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                     <!-- Scroll Container -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-2 no-scrollbar scroll-smooth">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 gallery\cf9 \strokec9 .\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 img \cf9 \strokec9 =>\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div class="flex-shrink-0 w-80 md:w-96 snap-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <img src="\cf9 \strokec9 $\{\cf5 \strokec5 img\cf9 \strokec9 \}\cf10 \strokec10 " class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         `\cf9 \strokec9 ).\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 ''\cf9 \strokec9 )\}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                     <!-- Arrow Right -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <button onclick="scrollGallery('right')" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-stone-800 focus:outline-none focus:ring-2 focus:ring-brand-500">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <i data-lucide="chevron-right" class="w-6 h-6"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             \cf13 \strokec13 const\cf5 \strokec5  highlightsHTML \cf9 \strokec9 =\cf5 \strokec5  trip\cf9 \strokec9 .\cf5 \strokec5 highlights\cf9 \strokec9 .\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 item \cf9 \strokec9 =>\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <li class="flex items-start text-stone-600 mb-3">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="mt-1 mr-3 bg-brand-100 p-1 rounded-full text-brand-600">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <i data-lucide="check" class="w-3 h-3"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <span>\cf9 \strokec9 $\{\cf5 \strokec5 item\cf9 \strokec9 \}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </li>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ).\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 ''\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             app\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <div class="fade-in">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <!-- Detail Hero -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="relative h-[60vh] min-h-[400px]">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <img src="\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 heroImage\cf9 \strokec9 \}\cf10 \strokec10 " alt="\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 title\cf9 \strokec9 \}\cf10 \strokec10 " class="w-full h-full object-cover">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <!-- Back Button -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <button onclick="router('home')" class="absolute top-8 left-4 md:left-8 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center transition-all border border-white/30">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Indietro\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </button>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                         <div class="absolute bottom-0 left-0 w-full p-6 md:p-12 max-w-7xl mx-auto">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <h1 class="text-4xl md:text-6xl font-bold text-white mb-2">\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 title\cf9 \strokec9 \}\cf10 \strokec10 </h1>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div class="flex flex-wrap items-center gap-6 text-white/90 text-sm md:text-base font-medium">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <span class="flex items-center"><i data-lucide="map-pin" class="w-5 h-5 mr-2 text-brand-400"></i> \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 location\cf9 \strokec9 \}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <span class="flex items-center"><i data-lucide="clock" class="w-5 h-5 mr-2 text-brand-400"></i> \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 duration\cf9 \strokec9 \}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <span class="flex items-center text-white/90 bg-white/10 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded text-sm"><i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 cancellazione\cf9 \strokec9 \}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                     <!-- Main Content -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <!-- Info Content (Full Width) -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="space-y-12">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <section>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <h2 class="text-2xl font-bold text-stone-900 mb-4">L'Esperienza</h2>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <p class="text-stone-600 leading-relaxed text-lg">\cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 description\cf9 \strokec9 \}\cf10 \strokec10 </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </section>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                             <section>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <h2 class="text-2xl font-bold text-stone-900 mb-6">Cosa \'e8 incluso</h2>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     \cf9 \strokec9 $\{\cf5 \strokec5 highlightsHTML\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     \cf9 \strokec9 $\{\cf5 \strokec5 trip\cf9 \strokec9 .\cf5 \strokec5 vicinoATorino \cf9 \strokec9 ?\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <li class="flex items-start text-stone-600 mb-3">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div class="mt-1 mr-3 bg-brand-100 p-1 rounded-full text-brand-600">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="map" class="w-3 h-3"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <span>Vicino a Torino</span>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </li>`\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </ul>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </section>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                             <section>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <h2 class="text-2xl font-bold text-stone-900 mb-6">Galleria Fotografica</h2>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 \cf9 \strokec9 $\{\cf5 \strokec5 carouselHTML\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </section>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             \cb1 \
+\cb3             lucide\cf9 \strokec9 .\cf5 \strokec5 createIcons\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             window\cf9 \strokec9 .\cf5 \strokec5 scrollTo\cf9 \strokec9 (\cf11 \strokec11 0\cf9 \strokec9 ,\cf11 \strokec11 0\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf13 \strokec13 function\cf5 \strokec5  renderAbout\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             app\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <div class="fade-in">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <!-- About Hero -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="relative h-[400px] flex items-center justify-center bg-stone-900">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <img src="https://images.unsplash.com/photo-1470075801209-17f9ec0cade6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="About EdoViaggy" class="absolute inset-0 w-full h-full object-cover opacity-60">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="relative z-10 text-center px-4">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">La Nostra Passione</h1>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <p class="text-lg md:text-xl text-stone-200 max-w-2xl mx-auto">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 Connettere le persone alla natura attraverso l'antico legame con i cavalli.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                     <!-- Content Section -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <!-- Text Content -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <h2 class="text-3xl font-bold text-stone-900 mb-6">Chi \'e8 EdoViaggy</h2>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <p class="text-stone-600 mb-6 leading-relaxed text-lg">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     EdoViaggy nasce dall'amore profondo per l'equitazione e per i paesaggi italiani. Fondata nel 2025, la nostra missione \'e8 rendere l'equitazione accessibile a tutti, dai principianti assoluti ai cavalieri esperti.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <p class="text-stone-600 mb-8 leading-relaxed text-lg">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     Crediamo che non ci sia modo migliore di esplorare il territorio che in sella a un cavallo. I nostri partner sono selezionati con cura per garantire il benessere degli animali e la sicurezza dei nostri ospiti. Ogni passeggiata \'e8 un'opportunit\'e0 per rallentare, respirare e riscoprire la bellezza della natura.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </p>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="heart-handshake" class="w-6 h-6"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <h4 class="font-bold text-stone-900 mb-1">Passione & Cura</h4>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <p class="text-sm text-stone-500">Il benessere dei cavalli viene prima di tutto.</p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="shield" class="w-6 h-6"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <h4 class="font-bold text-stone-900 mb-1">Sicurezza Totale</h4>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <p class="text-sm text-stone-500">Guide certificate e percorsi verificati.</p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="leaf" class="w-6 h-6"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <h4 class="font-bold text-stone-900 mb-1">Natura Incontaminata</h4>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <p class="text-sm text-stone-500">Esploriamo solo le aree pi\'f9 belle e protette.</p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="users" class="w-6 h-6"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <h4 class="font-bold text-stone-900 mb-1">Per Tutti</h4>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <p class="text-sm text-stone-500">Esperienze su misura per ogni livello.</p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                             <!-- Image Grid -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div class="grid grid-cols-2 gap-4">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <img src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team EdoViaggy" class="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Horses in nature" class="rounded-2xl shadow-lg w-full h-64 object-cover">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                         <!-- CTA Section -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="mt-20 bg-stone-100 rounded-3xl p-8 md:p-12 text-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mb-4">Pronto per la tua avventura?</h3>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <p class="text-stone-600 mb-8 max-w-2xl mx-auto">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 Scegli tra le nostre esperienze selezionate e preparati a vivere un'emozione indimenticabile.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <button onclick="router('home')" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 Esplora le Escursioni\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             \cb1 \
+\cb3             lucide\cf9 \strokec9 .\cf5 \strokec5 createIcons\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             window\cf9 \strokec9 .\cf5 \strokec5 scrollTo\cf9 \strokec9 (\cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // NUOVA FUNZIONE PER LA PAGINA DI PRENOTAZIONE\cf5 \cb1 \strokec5 \
+\cb3         \cf13 \strokec13 function\cf5 \strokec5  renderBooking\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             app\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf10 \cb3 \strokec10                 <div class="fade-in min-h-[calc(100vh-64px)] flex flex-col bg-stone-50">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <!-- Booking Hero -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="bg-brand-900 text-white py-16 md:py-24 text-center relative overflow-hidden">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="absolute inset-0 opacity-10 pattern-dots"></div> <!-- Decorative pattern placeholder -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="relative z-10 px-4">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <h1 class="text-3xl md:text-5xl font-bold mb-4">Come Prenotare</h1>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <p class="text-brand-100 text-lg md:text-xl max-w-xl mx-auto">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 Segui questi semplici passaggi per assicurarti la tua esperienza a cavallo.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                     <!-- Steps Container -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-10 relative z-20">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                         <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-stone-100">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             \cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div class="space-y-12 relative">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <!-- Vertical Line -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <div class="absolute left-[27px] top-4 bottom-4 w-0.5 bg-stone-200 hidden md:block"></div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                                 <!-- Step 1 -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         1\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-grow">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="search" class="w-5 h-5 mr-2 text-brand-500"></i> Scegli l'Esperienza\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </h3>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <p class="text-stone-600 leading-relaxed">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             Naviga nella nostra Home page ed esplora le diverse escursioni disponibili. Leggi i dettagli, controlla la durata e il luogo, e scegli quella perfetta per te.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <button onclick="router('home')" class="mt-3 text-sm font-semibold text-brand-600 hover:text-brand-800 flex items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             Vai alle esperienze <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                                 <!-- Step 2 -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         2\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-grow">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="message-circle" class="w-5 h-5 mr-2 text-brand-500"></i> Inviaci una Richiesta\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </h3>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <p class="text-stone-600 leading-relaxed">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             Contattaci indicando il nome dell'esperienza, la data preferita e il numero di partecipanti. Puoi farlo comodamente tramite WhatsApp o Email.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <div class="mt-4 flex flex-wrap gap-3">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <a href="#" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition shadow-sm font-medium text-sm">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                                 <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Scrivici su WhatsApp\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             </a>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <a href="#" class="inline-flex items-center px-4 py-2 bg-stone-100 text-stone-700 rounded-lg hover:bg-stone-200 transition font-medium text-sm">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                                 <i data-lucide="mail" class="w-4 h-4 mr-2"></i> Invia Email\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             </a>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                                 <!-- Step 3 -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         3\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-grow">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="calendar-check" class="w-5 h-5 mr-2 text-brand-500"></i> Conferma Disponibilit\'e0\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </h3>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <p class="text-stone-600 leading-relaxed">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             Il nostro team verificher\'e0 la disponibilit\'e0 dei cavalli e delle guide per la data richiesta. Ti risponderemo nel pi\'f9 breve tempo possibile con la conferma o con date alternative.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                                 <!-- Step 4 -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <div class="relative flex flex-col md:flex-row gap-6 md:gap-8 items-start">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-shrink-0 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-200 z-10">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         4\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     <div class="flex-grow">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <h3 class="text-xl font-bold text-stone-900 mb-2 flex items-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             <i data-lucide="credit-card" class="w-5 h-5 mr-2 text-brand-500"></i> Prenotazione\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </h3>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         <p class="text-stone-600 leading-relaxed">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                             Per bloccare definitivamente la tua avventura, ti verranno forniti i dettagli per il pagamento. Una volta ricevuto, la tua prenotazione sar\'e0 confermata e riceverai un voucher riepilogativo.\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                         </p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                             <!-- FAQ Teaser -->\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             <div class="mt-16 pt-8 border-t border-stone-100 text-center">\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <h4 class="font-bold text-stone-900 mb-2">Hai altre domande?</h4>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <p class="text-stone-500 text-sm mb-4">Siamo qui per aiutarti a organizzare l'esperienza perfetta.</p>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                                 <button class="text-brand-600 font-medium hover:underline text-sm">Leggi le FAQ o Contattaci</button>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
+\
+\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                     </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10                 </div>\cf5 \cb1 \strokec5 \
+\cf10 \cb3 \strokec10             `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3             lucide\cf9 \strokec9 .\cf5 \strokec5 createIcons\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             window\cf9 \strokec9 .\cf5 \strokec5 scrollTo\cf9 \strokec9 (\cf11 \strokec11 0\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- NAVIGATION LOGIC ---\cf5 \cb1 \strokec5 \
+\cb3         \cf13 \strokec13 function\cf5 \strokec5  setFilter\cf9 \strokec9 (\cf5 \strokec5 filterType\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             currentFilter \cf9 \strokec9 =\cf5 \strokec5  filterType\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             renderHome\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf13 \strokec13 function\cf5 \strokec5  router\cf9 \strokec9 (\cf5 \strokec5 route\cf9 \strokec9 ,\cf5 \strokec5  param \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 null\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 route \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'home'\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 renderHome\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \strokec5  \cf13 \strokec13 else\cf5 \strokec5  \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 route \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'detail'\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 renderDetail\cf9 \strokec9 (\cf5 \strokec5 param\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \strokec5  \cf13 \strokec13 else\cf5 \strokec5  \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 route \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'about'\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 renderAbout\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \strokec5  \cf13 \strokec13 else\cf5 \strokec5  \cf13 \strokec13 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 route \cf9 \strokec9 ===\cf5 \strokec5  \cf10 \strokec10 'booking'\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 renderBooking\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- INITIALIZATION ---\cf5 \cb1 \strokec5 \
+\cb3         renderHome\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb3 \strokec6 </\cf2 \strokec2 body\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 </\cf2 \strokec2 html\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+}
