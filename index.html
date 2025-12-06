@@ -57,7 +57,7 @@
     <style>
         /* --- DEFINIZIONE COLORI (THEMING) --- */
         :root {
-            /* TEMA NORMALE (Natura: Verde Smeraldo + Arancio Terra) */
+            /* TEMA NORMALE: Sfondo BIANCO PURO */
             --primary-50: #ecfdf5;
             --primary-100: #d1fae5;
             --primary-500: #10b981;
@@ -72,50 +72,61 @@
             --accent-600: #d97706;
             --accent-700: #b45309;
 
-            --bg-color: #fff7ed; /* Arancino chiarissimo */
+            --bg-color: #ffffff; /* BIANCO PURO RICHIESTO */
             
-            /* Pattern Puntinato Normale */
-            --bg-image: radial-gradient(#059669 0.5px, transparent 0.5px);
-            --bg-size: 20px 20px;
+            /* Nessun pattern in modalità normale */
+            --bg-image: none;
+            --bg-size: auto;
             --bg-position: 0 0;
-            --bg-repeat: repeat;
-            --layer-opacity: 0.05;
+            --bg-repeat: no-repeat;
+            --layer-opacity: 0;
         }
 
         /* TEMA SPECIALE (Porsche Miami Blue + Gatti PNG Utente) */
         body.special-mode {
-            /* Miami Blue Palette (#00A9E0 approx) */
+            /* Miami Blue Palette */
             --primary-50: #e0f9ff;
             --primary-100: #b3ecff;
-            --primary-500: #00A9E0; /* Porsche Miami Blue */
+            --primary-500: #00A9E0; 
             --primary-600: #008AC5;
             --primary-700: #006B99;
             --primary-800: #004D6E;
             --primary-900: #00334A;
 
-            /* Accent Rosa/Fucsia per contrasto */
+            /* Accent Rosa per contrasto */
             --accent-50: #f0fdf4;
             --accent-100: #dcfce7;
             --accent-500: #FF007F; 
             --accent-600: #db006a;
             --accent-700: #9d004c;
 
-            --bg-color: #e0f9ff; /* Azzurrino Miami */
+            --bg-color: #c7f3ff; /* Un Miami Blue chiaro per lo sfondo pagina */
 
-            /* TILES SVG GENERATA CON IMMAGINI PNG
-               Dimensioni Tile: 300x300 (Grande spaziatura)
-               Dimensioni Img: 40px
-               Posizioni:
-               - Top-Left: Cat-Icon
-               - Top-Right: pusheen
-               - Bottom-Left: 3 s
-               - Bottom-Right: cat
-               - Center: Pusheen_the_Cat
+            /* SFONDO GATTI PNG CARICATI DALL'UTENTE 
+               5 Immagini per i 5 lati (4 angoli + centro)
             */
-            --bg-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cimage href='Cat-Icon-PNG-Pic.png' x='10' y='10' width='40' height='40' /%3E%3Cimage href='pusheen.png' x='250' y='10' width='40' height='40' /%3E%3Cimage href='3%20s.png' x='10' y='250' width='40' height='40' /%3E%3Cimage href='cat.png' x='250' y='250' width='40' height='40' /%3E%3Cimage href='Pusheen_the_Cat.png' x='130' y='130' width='40' height='40' /%3E%3C/svg%3E");
+            --bg-image: 
+                url('Cat-Icon-PNG-Pic.png'),  /* Top Left */
+                url('pusheen.png'),           /* Top Right */
+                url('3%20s.png'),             /* Bottom Left */
+                url('cat.png'),               /* Bottom Right */
+                url('Pusheen_the_Cat.png');   /* Center */
             
-            --bg-size: 300px 300px; /* Dimensione della ripetizione */
-            --bg-opacity: 0.25; /* Visibilità */
+            /* POSIZIONI: Ai 5 "lati" (angoli + centro) */
+            --bg-position: 
+                0% 0%,       /* Top Left */
+                100% 0%,     /* Top Right */
+                0% 100%,     /* Bottom Left */
+                100% 100%,   /* Bottom Right */
+                50% 50%;     /* Center */
+
+            /* TAGLIA: 30px come richiesto */
+            --bg-size: 30px 30px, 30px 30px, 30px 30px, 30px 30px, 30px 30px;
+            
+            /* SPACE: Distribuisce le icone evitando sovrapposizioni e creando la "tile" larga */
+            --bg-repeat: space; 
+            
+            --layer-opacity: 0.3; 
         }
 
         /* Gestione visibilità Gatti Extra */
@@ -151,8 +162,9 @@
             z-index: -1;
             background-image: var(--bg-image);
             background-size: var(--bg-size);
-            background-repeat: repeat;
-            opacity: var(--bg-opacity);
+            background-position: var(--bg-position);
+            background-repeat: var(--bg-repeat);
+            opacity: var(--layer-opacity);
             pointer-events: none;
             transition: all 0.5s ease;
         }
@@ -193,6 +205,7 @@
             
             <div class="text-left mb-6">
                 <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Domanda di Sicurezza</label>
+                <!-- FIX ALLINEAMENTO -->
                 <div class="bg-primary-50/50 p-4 rounded-xl border border-primary-100 mb-4 text-slate-700 font-medium flex items-center justify-center">
                     <span>Come si chiama il GOOOFO per eccellenza?</span>
                 </div>
