@@ -310,7 +310,7 @@
                 location: "Ghisalba, Bergamo",
                 duration: "1 Ora",
                 vicinoATorino: false, 
-                cancellazione: "Cancellazione gratuita fino a 48h",
+                // RIMOSSO CANCELLAZIONE
                 image: "Ser1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Ser1%20-%20dimensioni%20medie.jpeg",
                 description: "Vivi l'emozione della tua prima volta a cavallo nel Parco del Serio. Un'esperienza rilassante immersi nella natura, accompagnati da istruttori esperti che vi guideranno passo dopo passo in questa avventura lungo le rive del fiume.",
@@ -569,11 +569,13 @@
                         ` : ''}
 
                         <!-- Badge Cancellazione -->
+                        ${trip.cancellazione ? `
                         <div class="absolute bottom-4 left-4 z-20">
                              <span class="bg-white/95 backdrop-blur-md text-primary-700 px-3 py-1.5 rounded-lg text-[11px] font-bold shadow-md flex items-center border border-primary-100">
                                 <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-accent-600"></i> ${trip.cancellazione}
                             </span>
                         </div>
+                        ` : ''}
                     </div>
 
                     <!-- Content Area -->
@@ -728,7 +730,7 @@
                             <div class="flex flex-wrap items-center gap-4 text-white/90 text-sm md:text-base font-medium">
                                 <span class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"><i data-lucide="map-pin" class="w-5 h-5 mr-2 text-accent-400"></i> ${trip.location}</span>
                                 <span class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"><i data-lucide="clock" class="w-5 h-5 mr-2 text-accent-400"></i> ${trip.duration}</span>
-                                <span class="flex items-center bg-primary-600/80 backdrop-blur-md px-4 py-2 rounded-full border border-primary-500 text-white"><i data-lucide="shield-check" class="w-5 h-5 mr-2 text-emerald-300"></i> ${trip.cancellazione}</span>
+                                ${trip.cancellazione ? `<span class="flex items-center bg-primary-600/80 backdrop-blur-md px-4 py-2 rounded-full border border-primary-500 text-white"><i data-lucide="shield-check" class="w-5 h-5 mr-2 text-emerald-300"></i> ${trip.cancellazione}</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -807,59 +809,74 @@
                             
                             <!-- Text Content -->
                             <div>
-                                <h2 class="text-4xl font-bold text-primary-900 mb-8 relative">
+                                <h2 class="text-4xl font-bold text-primary-900 mb-8 relative flex items-center">
+                                    <i class="fa-solid fa-user-tie text-accent-500 mr-4 text-3xl"></i>
                                     Il "Team" (Sono io, Edo)
                                     <span class="absolute -bottom-2 left-0 w-20 h-1.5 bg-accent-500 rounded-full"></span>
                                 </h2>
-                                <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
-                                    Ciao! Sono Edoardo, fondatore, guida, CFO e Strategic Advisor di <strong>EdoViaggy</strong>. ps. ho scritto "chi siamo" al plurarle così sembra una roba più seria
-                                </p>
+                                <div class="text-slate-600 mb-6 leading-relaxed text-lg font-light flex gap-3">
+                                    <i class="fa-solid fa-quote-left text-primary-200 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        Ciao! Sono Edoardo, fondatore, guida, CFO e Strategic Advisor di <strong>EdoViaggy</strong>.
+                                        <br>
+                                        <span class="text-sm text-slate-400 italic mt-1 block">PS. ho scritto "chi siamo" al plurale così sembra una roba più seria.</span>
+                                    </div>
+                                </div>
                                 <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
                                     Il fondatore, famoso imprenditore e filantropo, dopo le numerose iniziative imprenditoriali di successo (un'azienda fallita e l'altra che fattura come una macchinetta delle merendine) ha deciso di ritirarsi ad una vita più tranquilla e a contatto con la natura.
                                 </p>
                                 <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
                                     Quando non si gode il suo esteso parco di supercar (sul simulatore di guida, che per la gente normale è un banale videogioco) gestisce una intraprendente agenzia <strong>(di indubbia legittimità e somma osservanza delle legge tributarie)</strong> viaggi specializzata in gite a cavallo.
                                 </p>
-                                <p class="text-slate-600 mb-10 leading-relaxed text-lg font-light">
+                                <p class="text-slate-600 mb-10 leading-relaxed text-lg font-light flex items-center gap-2">
+                                    <!-- RIMOSSA ICONA TRIANGOLO -->
                                     Non preoccuparti se non sei un cavaliere esperto: non lo sono nemmeno io, speriamo di non perderci nel bosco o cadere dal cavallo.
                                 </p>
 
-                                <!-- PUNTI REINVENTATI IN CHIAVE IRONICA -->
+                                <!-- PUNTI REINVENTATI: SUPERCAR, IMPRENDITORIA, FISCO, FILANTROPIA -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
-                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
-                                            <i data-lucide="utensils" class="w-6 h-6"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-primary-900 mb-1">Atleta (a Tavola)</h4>
-                                            <p class="text-sm text-slate-500">Campione olimpico di pausa pranzo.</p>
-                                        </div>
-                                    </div>
+                                    
+                                    <!-- 1. Collezione Supercar -->
                                     <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="gamepad-2" class="w-6 h-6"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-primary-900 mb-1">Pilota (Simulato)</h4>
-                                            <p class="text-sm text-slate-500">Guida meglio alla Play che nella realtà.</p>
+                                            <h4 class="font-bold text-primary-900 mb-1">Garage da Sogno</h4>
+                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo.</p>
                                         </div>
                                     </div>
+
+                                    <!-- 2. Imprenditoria -->
                                     <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
-                                            <i class="fa-solid fa-horse-head w-6 h-6"></i>
+                                            <i data-lucide="briefcase" class="w-6 h-6"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-primary-900 mb-1">Esperto Ippico</h4>
-                                            <p class="text-sm text-slate-500">Sa distinguere la testa dalla coda (forse).</p>
+                                            <h4 class="font-bold text-primary-900 mb-1">Serial Founder</h4>
+                                            <p class="text-sm text-slate-500">Specialista nel lanciare startup che startano e basta.</p>
                                         </div>
                                     </div>
+
+                                    <!-- 3. Creatività Fiscale -->
                                     <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="file-spread-sheet" class="w-6 h-6"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-primary-900 mb-1">Fiscale Creativo</h4>
-                                            <p class="text-sm text-slate-500">Le tasse sono solo un suggerimento.</p>
+                                            <h4 class="font-bold text-primary-900 mb-1">Genio Fiscale</h4>
+                                            <p class="text-sm text-slate-500">Per me l'F24 è il tasto per aggiornare la pagina, non un modello da pagare.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. Filantropia -->
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Grande Filantropo</h4>
+                                            <p class="text-sm text-slate-500">Dono regolarmente... fastidio ai miei amici con idee strampalate.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -880,7 +897,7 @@
                             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-300 via-accent-400 to-primary-300"></div>
                             <h3 class="text-3xl md:text-4xl font-bold text-primary-900 mb-6">Vuoi conoscere Edo (e i cavalli)?</h3>
                             <p class="text-slate-600 mb-10 max-w-2xl mx-auto text-lg">
-                                Prenota un'uscita. Prometto che sarò puntuale (nemmeno lontanamente).
+                                Prenota un'uscita. Prometto che sarò puntuale.
                             </p>
                             <button onclick="router('booking')" class="bg-primary-700 hover:bg-primary-800 text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
                                 Organizziamo!
