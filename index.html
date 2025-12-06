@@ -104,7 +104,7 @@
 
             --page-bg: #e0f9ff; 
 
-            /* SFONDO GATTI PNG CARICATI DALL'UTENTE 
+            /* SFONDO GATTI PNG CARICATI DALL'UTENTE (Senza SVG!)
                Uso i nomi file esatti. Lo spazio in '3 s.png' è codificato come %20.
             */
             --bg-image: 
@@ -118,22 +118,23 @@
             
             /* POSIZIONAMENTO SPARSO (Scatter)
                Coordinate diverse per ogni immagine per evitare sovrapposizioni e creare il pattern.
+               I valori sono sfalsati per coprire bene lo spazio.
             */
             --bg-position: 
-                10px 10px,      /* Cat-Icon */
-                150px 30px,     /* pusheen */
-                280px 10px,     /* 3 s */
-                40px 150px,     /* cat */
-                200px 180px,    /* 983... */
-                320px 140px,    /* Pusheen_the_Cat */
-                100px 280px;    /* cats-icon-17 */
+                20px 20px,      /* Cat-Icon */
+                250px 50px,     /* pusheen */
+                450px 20px,     /* 3 s */
+                80px 250px,     /* cat */
+                300px 300px,    /* 983... */
+                500px 220px,    /* Pusheen_the_Cat */
+                150px 450px;    /* cats-icon-17 */
 
             /* RIDIMENSIONAMENTO UNIFORME
-               Tutti a 60px di larghezza.
+               Tutti a 80px di larghezza per renderli visibili ma non giganti.
             */
-            --bg-size: 60px auto; 
+            --bg-size: 80px auto, 80px auto, 80px auto, 80px auto, 80px auto, 80px auto, 80px auto; 
             
-            --bg-opacity: 0.2; /* Opacità per non disturbare la lettura */
+            --bg-opacity: 0.3; /* Opacità per vedere bene lo sfondo azzurrino */
         }
 
         /* Gestione visibilità Gatti Extra */
@@ -204,7 +205,7 @@
             background-image: var(--bg-image);
             background-size: var(--bg-size);
             background-position: var(--bg-position);
-            background-repeat: repeat; 
+            background-repeat: repeat; /* Le immagini si ripetono creando la carta da parati */
             opacity: var(--bg-opacity);
             transition: all 0.5s ease;
             width: 100%;
