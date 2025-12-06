@@ -169,6 +169,9 @@
     <!-- JavaScript Data & Logic -->
     <script>
         // --- DATA ---
+        // Backup image URL from Unsplash
+        const fallbackImage = "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+
         const trips = [
             {
                 id: 2, 
@@ -178,9 +181,9 @@
                 vicinoATorino: false,
                 preferito: true,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // IMMAGINI RINOMINATE (assicurati di rinominarle anche nella cartella!)
-                image: "./images/lago1.jpg", 
-                heroImage: "./images/lago1.jpg",
+                // IMMAGINI ORIGINALI CARICATE
+                image: "./images/Col1 - dimensioni medie.jpeg", 
+                heroImage: "./images/Col1 - dimensioni medie.jpeg",
                 description: "Una splendida passeggiata a piedi nel Pian di Spagna, la riserva naturale dove il fiume Adda incontra il Lago di Como. Un percorso facile e rilassante lungo sentieri panoramici, ammirando il lago e le montagne circostanti immersi nella natura.",
                 highlights: [
                     "Passeggiata naturalistica nel Pian di Spagna",
@@ -190,16 +193,16 @@
                     "Ideale per famiglie e amanti del trekking leggero"
                 ],
                 gallery: [
-                    "./images/lago1.jpg",
-                    "./images/lago2.jpg",
-                    "./images/lago3.jpg",
-                    "./images/lago4.jpg",
-                    "./images/lago5.jpg",
-                    "./images/lago6.jpg",
-                    "./images/lago7.jpg",
-                    "./images/lago8.jpg",
-                    "./images/lago9.jpg",
-                    "./images/lago10.jpg"
+                    "./images/Col1 - dimensioni medie.jpeg",
+                    "./images/Col2 - dimensioni medie.jpeg",
+                    "./images/Col3 - dimensioni medie.jpeg",
+                    "./images/Col4 - dimensioni medie.jpeg",
+                    "./images/Col5 - dimensioni medie.jpeg",
+                    "./images/Col6 - dimensioni medie.jpeg",
+                    "./images/Col7 - dimensioni medie.jpeg",
+                    "./images/Col8 - dimensioni medie.jpeg",
+                    "./images/Col9 - dimensioni medie.jpeg",
+                    "./images/Col10 - dimensioni medie.jpeg"
                 ]
             },
             {
@@ -368,7 +371,12 @@
                     
                     <!-- Image Area -->
                     <div class="relative h-64 img-zoom-container cursor-pointer" onclick="router('detail', ${trip.id})">
-                        <img src="${trip.image}" alt="${trip.title}" class="w-full h-full object-cover">
+                        <img 
+                            src="${trip.image}" 
+                            alt="${trip.title}" 
+                            class="w-full h-full object-cover"
+                            onerror="this.onerror=null;this.src='${fallbackImage}';"
+                        >
                         
                         <!-- Badge Preferito di Edo (Top Right) -->
                         ${trip.preferito ? `
@@ -484,7 +492,7 @@
                     <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-2 no-scrollbar scroll-smooth">
                         ${trip.gallery.map(img => `
                             <div class="flex-shrink-0 w-80 md:w-96 snap-center">
-                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none">
+                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none" onerror="this.onerror=null;this.src='${fallbackImage}';">
                             </div>
                         `).join('')}
                     </div>
@@ -509,7 +517,7 @@
                 <div class="fade-in">
                     <!-- Detail Hero -->
                     <div class="relative h-[60vh] min-h-[400px]">
-                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover">
+                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='${fallbackImage}';">
                         <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
                         
                         <!-- Back Button -->
@@ -561,99 +569,6 @@
             
             lucide.createIcons();
             window.scrollTo(0,0);
-        }
-
-        function renderAbout() {
-            app.innerHTML = `
-                <div class="fade-in">
-                    <!-- About Hero -->
-                    <div class="relative h-[400px] flex items-center justify-center bg-stone-900">
-                        <img src="https://images.unsplash.com/photo-1470075801209-17f9ec0cade6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="About EdoViaggy" class="absolute inset-0 w-full h-full object-cover opacity-60">
-                        <div class="relative z-10 text-center px-4">
-                            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">La Nostra Passione</h1>
-                            <p class="text-lg md:text-xl text-stone-200 max-w-2xl mx-auto">
-                                Connettere le persone alla natura attraverso l'antico legame con i cavalli.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Content Section -->
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            
-                            <!-- Text Content -->
-                            <div>
-                                <h2 class="text-3xl font-bold text-stone-900 mb-6">Chi è EdoViaggy</h2>
-                                <p class="text-stone-600 mb-6 leading-relaxed text-lg">
-                                    EdoViaggy nasce dall'amore profondo per l'equitazione e per i paesaggi italiani. Fondata nel 2025, la nostra missione è rendere l'equitazione accessibile a tutti, dai principianti assoluti ai cavalieri esperti.
-                                </p>
-                                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
-                                    Crediamo che non ci sia modo migliore di esplorare il territorio che in sella a un cavallo. I nostri partner sono selezionati con cura per garantire il benessere degli animali e la sicurezza dei nostri ospiti. Ogni passeggiata è un'opportunità per rallentare, respirare e riscoprire la bellezza della natura.
-                                </p>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="flex items-start">
-                                        <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">
-                                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-stone-900 mb-1">Passione & Cura</h4>
-                                            <p class="text-sm text-stone-500">Il benessere dei cavalli viene prima di tutto.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">
-                                            <i data-lucide="shield" class="w-6 h-6"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-stone-900 mb-1">Sicurezza Totale</h4>
-                                            <p class="text-sm text-stone-500">Guide certificate e percorsi verificati.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">
-                                            <i data-lucide="leaf" class="w-6 h-6"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-stone-900 mb-1">Natura Incontaminata</h4>
-                                            <p class="text-sm text-stone-500">Esploriamo solo le aree più belle e protette.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="bg-brand-100 p-3 rounded-lg mr-4 text-brand-600">
-                                            <i data-lucide="users" class="w-6 h-6"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-stone-900 mb-1">Per Tutti</h4>
-                                            <p class="text-sm text-stone-500">Esperienze su misura per ogni livello.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Image Grid -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <img src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team EdoViaggy" class="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8">
-                                <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Horses in nature" class="rounded-2xl shadow-lg w-full h-64 object-cover">
-                            </div>
-                        </div>
-
-                        <!-- CTA Section -->
-                        <div class="mt-20 bg-stone-100 rounded-3xl p-8 md:p-12 text-center">
-                            <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mb-4">Pronto per la tua avventura?</h3>
-                            <p class="text-stone-600 mb-8 max-w-2xl mx-auto">
-                                Scegli tra le nostre esperienze selezionate e preparati a vivere un'emozione indimenticabile.
-                            </p>
-                            <button onclick="router('home')" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg">
-                                Esplora le Escursioni
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            lucide.createIcons();
-            window.scrollTo(0, 0);
         }
 
         // NUOVA FUNZIONE PER LA PAGINA DI PRENOTAZIONE
