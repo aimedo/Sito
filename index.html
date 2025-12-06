@@ -22,33 +22,35 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Configurazione Tailwind con CSS Variables per il cambio tema -->
     <script>
         tailwind.config = {
-            darkMode: 'class', // Abilita dark mode manuale per la modalità speciale
+            darkMode: 'class', 
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        // Verde Natura (Primary)
+                        // Definiamo i colori tramite variabili CSS per poterli cambiare dinamicamente
                         primary: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b',
+                            50: 'var(--primary-50)',
+                            100: 'var(--primary-100)',
+                            500: 'var(--primary-500)',
+                            600: 'var(--primary-600)',
+                            700: 'var(--primary-700)',
+                            800: 'var(--primary-800)',
+                            900: 'var(--primary-900)',
                         },
-                        // Arancio Terra/Sole (Accent)
                         accent: {
-                            50: '#fffbeb',
-                            100: '#fef3c7',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
-                        }
+                            50: 'var(--accent-50)',
+                            100: 'var(--accent-100)',
+                            500: 'var(--accent-500)',
+                            600: 'var(--accent-600)',
+                            700: 'var(--accent-700)',
+                        },
+                        // Colore di sfondo pagina
+                        pagebg: 'var(--page-bg)',
                     }
                 }
             }
@@ -56,6 +58,107 @@
     </script>
 
     <style>
+        /* --- DEFINIZIONE COLORI (THEMING) --- */
+        :root {
+            /* TEMA NORMALE (Natura: Verde Smeraldo + Arancio Terra) */
+            --primary-50: #ecfdf5;
+            --primary-100: #d1fae5;
+            --primary-500: #10b981;
+            --primary-600: #059669;
+            --primary-700: #047857;
+            --primary-800: #065f46;
+            --primary-900: #064e3b;
+
+            --accent-50: #fffbeb;
+            --accent-100: #fef3c7;
+            --accent-500: #f59e0b; /* Ambra */
+            --accent-600: #d97706;
+            --accent-700: #b45309;
+
+            --page-bg: #fff7ed; /* Arancino chiarissimo */
+            
+            /* Pattern Puntinato Normale */
+            --bg-image: radial-gradient(#059669 0.5px, transparent 0.5px);
+            --bg-size: 20px 20px;
+            --bg-position: 0 0;
+            --bg-opacity: 0.05;
+        }
+
+        /* TEMA SPECIALE (Porsche Miami Blue + Gatti Veri) */
+        body.special-mode {
+            /* Miami Blue Palette (#00A9E0 approx) */
+            --primary-50: #e0f9ff;
+            --primary-100: #b3ecff;
+            --primary-500: #00A9E0; /* Porsche Miami Blue */
+            --primary-600: #008AC5;
+            --primary-700: #006B99;
+            --primary-800: #004D6E;
+            --primary-900: #00334A;
+
+            /* Accent Rosa/Fucsia per contrasto "Miami" */
+            --accent-50: #f0fdf4;
+            --accent-100: #dcfce7;
+            --accent-500: #FF007F; 
+            --accent-600: #db006a;
+            --accent-700: #9d004c;
+
+            --page-bg: #e0f9ff; 
+
+            /* SFONDO GATTI CARICATI (Pattern Misto) 
+               Uso i nomi file esatti forniti. Lo spazio in '3 s.png' è codificato come %20.
+            */
+            --bg-image: 
+                url('Cat-Icon-PNG-Pic.png'),
+                url('pusheen.png'),
+                url('3%20s.png'),
+                url('cat.png'),
+                url('983-9833291_pusheen-cat.png'),
+                url('Pusheen_the_Cat.png'),
+                url('cats-icon-17.jpg.png');
+            
+            /* POSIZIONAMENTO SPARSO (Scatter)
+               Definisco coordinate diverse per ogni immagine per evitare che si sovrappongano troppo 
+               e creare un effetto "pioggia di gatti".
+            */
+            --bg-position: 
+                10px 10px,      /* Cat-Icon */
+                150px 30px,     /* pusheen */
+                280px 10px,     /* 3 s */
+                40px 150px,     /* cat */
+                200px 180px,    /* 983... */
+                320px 140px,    /* Pusheen_the_Cat */
+                100px 280px;    /* cats-icon-17 */
+
+            /* RIDIMENSIONAMENTO UNIFORME
+               Imposto tutti a 60px di larghezza (auto per l'altezza) così sono tutti uguali.
+            */
+            --bg-size: 60px auto; 
+            
+            --bg-opacity: 0.2; /* Leggermente trasparenti per non disturbare il testo */
+        }
+
+        /* Gestione visibilità Gatti Extra */
+        .special-cat-icon {
+            display: none; /* Nascosto di default */
+        }
+        
+        body.special-mode .special-cat-icon {
+            display: inline-block; /* Visibile in special mode */
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* Transizioni fluide per il cambio colore */
+        body, div, nav, button, span, i, h1, h2, h3, p, a {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-duration: 500ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         /* Custom Scrollbar Global */
         ::-webkit-scrollbar {
             width: 8px;
@@ -98,18 +201,17 @@
             transform: scale(1.1);
         }
         
-        .bg-pattern {
-            background-image: radial-gradient(#059669 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
-            opacity: 0.05;
+        .bg-pattern-layer {
+            background-image: var(--bg-image);
+            background-size: var(--bg-size);
+            background-position: var(--bg-position); /* Usa le coordinate sparse */
+            background-repeat: repeat; 
+            opacity: var(--bg-opacity);
+            transition: all 0.5s ease;
+            width: 100%;
+            height: 100%;
         }
 
-        /* --- STILI MODALITÀ SPECIALE (Placeholder) --- */
-        body.special-mode {
-            /* Qui inseriremo i dettagli grafici dopo */
-            transition: all 0.5s ease;
-        }
-        
         /* Animazione shake per errore login */
         .shake {
             animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
@@ -122,12 +224,12 @@
         }
     </style>
 </head>
-<body class="bg-orange-50/50 text-slate-800 font-sans antialiased flex flex-col min-h-screen relative transition-colors duration-500 overflow-hidden">
+<body class="bg-pagebg text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-hidden">
     
     <!-- === LOGIN SCREEN === -->
-    <div id="login-screen" class="fixed inset-0 z-[100] bg-orange-50 flex items-center justify-center p-4">
+    <div id="login-screen" class="fixed inset-0 z-[100] bg-pagebg flex items-center justify-center p-4 transition-colors duration-500">
         <!-- Background decorativo login -->
-        <div class="absolute inset-0 bg-pattern pointer-events-none opacity-20"></div>
+        <div class="absolute inset-0 bg-pattern-layer pointer-events-none"></div>
         
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-primary-100 relative z-10 fade-in">
             <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-primary-100">
@@ -138,8 +240,7 @@
             
             <div class="text-left mb-6">
                 <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Domanda di Sicurezza</label>
-                <!-- FIX ALLINEAMENTO: Aggiunto flex items-center per allineare icona e testo -->
-                <!-- RIMOSSA ICONA PUNTO DI DOMANDA -->
+                <!-- FIX ALLINEAMENTO -->
                 <div class="bg-primary-50/50 p-4 rounded-xl border border-primary-100 mb-4 text-slate-700 font-medium flex items-center justify-center">
                     <span>Come si chiama il GOOOFO per eccellenza?</span>
                 </div>
@@ -159,9 +260,9 @@
     </div>
 
     <!-- === MAIN SITE CONTENT (Initially Hidden) === -->
-    <div id="site-content" class="hidden flex-col min-h-screen w-full">
+    <div id="site-content" class="hidden flex-col min-h-screen w-full transition-colors duration-500">
         <!-- Background Pattern Layer -->
-        <div class="fixed inset-0 bg-pattern pointer-events-none z-[-1]"></div>
+        <div class="fixed inset-0 bg-pattern-layer pointer-events-none z-[-1]"></div>
 
         <!-- Navigation -->
         <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary-100 shadow-sm transition-all duration-300" id="navbar">
@@ -191,7 +292,7 @@
                             
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="mode-toggle" onchange="toggleSpecialMode()">
-                                <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purple-600"></div>
+                                <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-600"></div>
                             </label>
                             
                             <!-- Icona Speciale (Bacchetta) - Disattiva di default -->
@@ -217,15 +318,15 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-primary-900 text-white py-16 mt-auto relative overflow-hidden">
+        <footer class="bg-primary-900 text-white py-16 mt-auto relative overflow-hidden transition-colors duration-500">
             <!-- Decorative Circle -->
-            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-800 opacity-20 pointer-events-none"></div>
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-800 opacity-20 pointer-events-none transition-colors duration-500"></div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div class="col-span-1 md:col-span-2">
                         <div class="flex items-center mb-6">
-                            <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3"></i>
+                            <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3 transition-colors duration-500"></i>
                             <span class="font-bold text-2xl">EdoViaggy</span>
                         </div>
                         <!-- TESTO CAUBOI -->
@@ -244,7 +345,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-accent-400 mb-6">Navigazione</h3>
+                        <h3 class="text-lg font-bold text-accent-400 mb-6 transition-colors duration-500">Navigazione</h3>
                         <ul class="space-y-3 text-primary-100">
                             <li><a href="#" onclick="router('home')" class="hover:text-accent-400 hover:pl-2 transition-all">Home</a></li>
                             <li><a href="#" onclick="router('about')" class="hover:text-accent-400 hover:pl-2 transition-all">Chi Siamo</a></li>
@@ -253,14 +354,14 @@
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-accent-400 mb-6">Note Legali</h3>
+                        <h3 class="text-lg font-bold text-accent-400 mb-6 transition-colors duration-500">Note Legali</h3>
                         <ul class="space-y-3 text-primary-100">
                             <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Privacy Policy</a></li>
                             <li><a href="#" class="hover:text-accent-400 hover:pl-2 transition-all">Termini & Condizioni</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="border-t border-primary-800 mt-12 pt-8 text-center text-primary-300 text-sm">
+                <div class="border-t border-primary-800 mt-12 pt-8 text-center text-primary-300 text-sm transition-colors duration-500">
                     <p>&copy; 2025 EdoViaggy. Tutti i diritti riservati.</p>
                 </div>
             </div>
@@ -497,7 +598,7 @@
                 iconNormal.classList.add('text-slate-400');
                 
                 iconSpecial.classList.remove('text-slate-400');
-                iconSpecial.classList.add('text-purple-600'); // Colore magico
+                iconSpecial.classList.add('text-primary-600'); // Colore attivo (che sarà blu in special mode)
                 
                 console.log("Modalità Speciale Attivata");
             } else {
@@ -598,6 +699,8 @@
                                     <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i>
                                 </div>
                             </button>
+                            <!-- ICONA GATTO EXTRA PER MODALITÀ SPECIALE -->
+                            <span class="ml-2 hidden special-cat-icon text-accent-500"><i class="fa-solid fa-cat text-lg"></i></span>
                         </div>
                     </div>
                 </div>
@@ -624,23 +727,25 @@
                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1472396961693-142e6e594e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';"
                         >
                         <!-- Gradient Overlay più elaborato -->
-                        <div class="absolute inset-0 bg-gradient-to-b from-primary-900/40 via-transparent to-orange-50"></div>
-                        <div class="absolute inset-0 bg-gradient-to-r from-primary-900/60 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-900/60 via-primary-900/20 to-orange-50"></div>
                     </div>
                     
-                    <div class="relative z-10 text-left px-4 max-w-7xl mx-auto w-full mt-20">
-                        <div class="max-w-2xl">
-                            <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500/20 backdrop-blur-md border border-accent-400/30 text-accent-100 uppercase tracking-[0.2em] text-xs font-bold mb-6 animate-pulse">
+                    <!-- Contenitore centrale aggiornato per centrare e formattare meglio il testo -->
+                    <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-4 max-w-4xl mx-auto mt-0">
+                        <div class="bg-black/10 backdrop-blur-sm p-6 rounded-3xl border border-white/10 shadow-2xl">
+                            <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">
                                 EdoViaggy Experience
                             </span>
-                            <!-- TITOLO AGGIORNATO -->
-                            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                                Magia in sella a <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">un cavallo.</span>
+                            <!-- TITOLO AGGIORNATO E CENTRATO -->
+                            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-xl">
+                                Magia in sella a <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-200 to-accent-400">un cavallo.</span>
                             </h1>
-                            <p class="text-xl text-primary-50 mb-10 leading-relaxed font-light drop-shadow-md">
-                                Solo passeggiate tranquille (non siamo capaci).
+                            <p class="text-xl md:text-2xl text-primary-50 mb-2 font-medium drop-shadow-md max-w-2xl mx-auto">
+                                Solo passeggiate tranquille
                             </p>
-                            <!-- TASTI RIMOSSI -->
+                            <p class="text-sm md:text-base text-primary-200 font-light italic">
+                                (non siamo capaci di andare a cavallo).
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -843,7 +948,7 @@
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-primary-900 mb-1">Garage da Sogno</h4>
-                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo.</p>
+                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo. Su Gran Turismo 7 sono imbattibile.</p>
                                         </div>
                                     </div>
 
