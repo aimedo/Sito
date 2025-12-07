@@ -92,7 +92,34 @@
             --accent-700: #9d004c;
 
             --bg-color: #e0f9ff; /* Sfondo Miami Blue */
+
+            /* TILES SVG GENERATA CON IMMAGINI PNG
+               Dimensioni Tile: 300x300 (Grande spaziatura)
+               Dimensioni Img: 40px
+               Posizioni:
+               - Top-Left: Cat-Icon
+               - Top-Right: pusheen
+               - Bottom-Left: 3 s
+               - Bottom-Right: cat
+               - Center: Pusheen_the_Cat
+            */
+            --bg-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cimage href='Cat-Icon-PNG-Pic.png' x='10' y='10' width='40' height='40' /%3E%3Cimage href='pusheen.png' x='250' y='10' width='40' height='40' /%3E%3Cimage href='3%20s.png' x='10' y='250' width='40' height='40' /%3E%3Cimage href='cat.png' x='250' y='250' width='40' height='40' /%3E%3Cimage href='Pusheen_the_Cat.png' x='130' y='130' width='40' height='40' /%3E%3C/svg%3E");
+            
+            --bg-size: 300px 300px; /* Dimensione della ripetizione */
+            --bg-opacity: 0.25; /* Visibilità */
         }
+
+        /* Gestione visibilità Gatti Extra */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { 
+            display: inline-block; 
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
         /* Transizioni fluide */
         body, div, nav, button, span, i, h1, h2, h3, p, a {
@@ -100,7 +127,7 @@
             transition-duration: 500ms;
         }
 
-        /* --- BACKGROUND LAYERS --- */
+        /* --- BACKGROUND LAYERS FISSI --- */
         #bg-color-layer {
             position: fixed;
             inset: 0;
@@ -108,60 +135,28 @@
             background-color: var(--bg-color);
             transition: background-color 0.5s ease;
         }
-
-        /* Container per la griglia di gatti (Generata via JS per controllo totale) */
-        #bg-cats-grid {
+        
+        #bg-pattern-layer {
             position: fixed;
             inset: 0;
             z-index: -1;
-            opacity: 0; /* Invisibile di default */
+            background-image: var(--bg-image);
+            background-size: var(--bg-size);
+            background-repeat: repeat;
+            opacity: var(--bg-opacity);
             pointer-events: none;
-            transition: opacity 0.5s ease;
-            overflow: hidden;
-            /* Flex wrap per creare la griglia fluida */
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
+            transition: all 0.5s ease;
         }
 
-        /* Visibile solo in special mode */
-        body.special-mode #bg-cats-grid {
-            opacity: 0.25; 
-        }
-
-        /* La singola "Mattonella" (Tile) */
-        .cat-tile {
-            position: relative;
-            flex-shrink: 0;
-            /* border: 1px solid rgba(0,0,0,0.1); Decommenta per debug griglia */
-        }
-
-        /* Stile icone dentro la tile */
-        .cat-icon {
-            position: absolute;
-            width: 30px; /* Dimensione richiesta: 30px */
-            height: 30px;
-            object-fit: contain;
-        }
-
-        /* 5 Posizioni Fisse nella Tile (4 angoli + centro) - Nessuna sovrapposizione */
-        .pos-tl { top: 15px; left: 15px; }      /* Top Left */
-        .pos-tr { top: 15px; right: 15px; }     /* Top Right */
-        .pos-bl { bottom: 15px; left: 15px; }   /* Bottom Left */
-        .pos-br { bottom: 15px; right: 15px; }  /* Bottom Right */
-        .pos-c  { top: 50%; left: 50%; transform: translate(-50%, -50%); } /* Center */
-
-        /* Gatto che salta nel tasto */
-        .special-cat-icon { display: none; }
-        body.special-mode .special-cat-icon { 
-            display: inline-block; 
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        
-        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
-
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
@@ -175,6 +170,9 @@
 
     <!-- === LOGIN SCREEN === -->
     <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
+        <!-- Pattern anche nel login -->
+        <div class="absolute inset-0 pointer-events-none" style="background-image: var(--bg-image); background-size: var(--bg-size); background-repeat: repeat; opacity: var(--bg-opacity);"></div>
+        
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-primary-100 relative z-10 fade-in">
             <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-primary-100">
                 <i class="fa-solid fa-lock text-3xl text-primary-600"></i>
@@ -184,6 +182,7 @@
             
             <div class="text-left mb-6">
                 <label class="block text-xs font-bold text-primary-700 uppercase tracking-wider mb-2 ml-1">Domanda di Sicurezza</label>
+                <!-- FIX ALLINEAMENTO -->
                 <div class="bg-primary-50/50 p-4 rounded-xl border border-primary-100 mb-4 text-slate-700 font-medium flex items-center justify-center">
                     <span>Come si chiama il GOOOFO per eccellenza?</span>
                 </div>
@@ -509,13 +508,13 @@
                 // IMMAGINI AGGIORNATE PER VAL SERIANA (con %20 per gli spazi)
                 image: "Oro1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Oro1%20-%20dimensioni%20medie.jpeg",
-                description: "Vuoi passare una giornata diversa dal solito, magari a stretto contatto con la natura per rigenerarti? Noi ti offriamo l'opportunità di effettuare una passeggiata a cavallo della durata di 1 ora alla scoperta della Val Seriana e delle Prealpi Orobiche. Questa valle, si trova in provincia di Bergamo e segue tutto il corso del fiume Serio, per un totale di 60 km. Si tratta del luogo ideale per attività all'aria aperta, grazie alla natura incontaminata del Parco delle Orobie bergamasche. Oltre all'aspetto naturalistico, lungo il percorso potrai incontrare anche borghi storici della zona, importanti dal punto di vista folkloristico e culinario. Noi vi aspettiamo presso il nostro maneggio, dove vi accoglierà una guida equestre. Si incaricherà di esporvi, tramite briefing, il percorso che effettuerete, le norme di comportamento da adottare in sella per la tua sicurezza e quella del cavallo. Successivamente, la teoria verrà messa in pratica per spiegarvi alcune tecniche e darvi alcune dritte su come cavalcare. Da questo momento in poi sarete pronti per iniziare la passeggiata alla scoperta di una delle vallate più belle del Nord Italia, tra boschi, ruscelli e natura incontaminata, per poter prendere una bella boccata d'aria fresca lontani dalla caoticità della città. Al termine della passeggiata, farete ritorno al maneggio. Cosa aspetti? Non vediamo l'ora di fare questa cavalcata con voi nella Val Seriana.",
+                description: "Regalati un’ora a cavallo nella splendida Val Seriana, tra le Prealpi Orobiche in provincia di Bergamo. Il percorso segue il corso del fiume Serio, attraversando boschi, ruscelli e borghi ricchi di storia e tradizioni locali. Prima della passeggiata, una guida equestre ti fornirà istruzioni e consigli per un’esperienza sicura e piacevole. Un modo perfetto per staccare dalla città e immergersi nella natura incontaminata del Parco delle Orobie.",
                 highlights: [
-                    "Passeggiata di 1 ora alla scoperta della Val Seriana",
-                    "Percorso naturalistico nel Parco delle Prealpi Orobiche",
-                    "Briefing iniziale con guida equestre esperta",
-                    "Itinerario tra boschi e ruscelli lontano dal caos",
-                    "Adatto a chi cerca rigenerazione e contatto con la natura"
+                    "Passeggiata a cavallo di 1 ora nella Val Seriana e Parco delle Orobie",
+                    "Itinerario tra boschi, ruscelli e borghi storici della zona",
+                    "Briefing e supporto da guida equestre per principianti e non",
+                    "Immersione in natura incontaminata, lontano dal caos urbano",
+                    "Partenza e arrivo al maneggio con accoglienza professionale"
                 ],
                 gallery: [
                     "Oro1%20-%20dimensioni%20medie.jpeg",
@@ -626,8 +625,6 @@
                 iconSpecial.forEach(i => { i.classList.remove('text-slate-400'); i.classList.add('text-primary-600'); });
                 
                 console.log("Modalità Speciale Attivata");
-                // Rigenera griglia per assicurarsi che sia corretta
-                generateCatsGrid();
             } else {
                 body.classList.remove('special-mode');
                 
@@ -643,6 +640,7 @@
         }
 
         // --- MENU LOGIC ---
+        // Funzione modificata per gestire click esterni
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const btn = document.getElementById('mobile-menu-btn');
@@ -658,6 +656,20 @@
                 icon.classList.add('fa-bars');
             }
         }
+        
+        // AGGIUNTA GESTIONE CLICK ESTERNO PER CHIUDERE MENU
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('mobile-menu-btn');
+            const icon = btn.querySelector('i');
+            
+            // Se il menu è aperto E il click non è sul menu E non è sul bottone
+            if (!menu.classList.contains('hidden') && !menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
 
 
         // --- HELPER FUNCTIONS ---
@@ -702,7 +714,7 @@
                             src="${trip.image}" 
                             alt="${trip.title}" 
                             class="w-full h-full object-cover"
-                            ${trip.image.startsWith('./') || trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}
+                            ${trip.image.startsWith('./') || trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') || trip.image.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}
                         >
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
                         
@@ -778,8 +790,8 @@
                     
                     <!-- Contenitore centrale aggiornato per centrare e formattare meglio il testo -->
                     <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-4 max-w-4xl mx-auto mt-0">
-                        <!-- BOX BIANCO AGGIORNATO (bg-white) -->
-                        <div class="bg-white p-8 rounded-3xl border border-white/20 shadow-2xl">
+                        <!-- BOX BIANCO AGGIORNATO (bg-white/95 + text-dark) -->
+                        <div class="bg-white/95 backdrop-blur-sm p-8 rounded-3xl border border-white/20 shadow-2xl">
                             <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">
                                 EdoViaggy Experience
                             </span>
@@ -841,7 +853,7 @@
                     <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-8 pt-2 px-2 no-scrollbar scroll-smooth">
                         ${trip.gallery.map(img => `
                             <div class="flex-shrink-0 w-80 md:w-96 snap-center">
-                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none border-2 border-white" ${img.startsWith('Col') || img.startsWith('Lan') || img.startsWith('Ser') || img.startsWith('adda') || img.startsWith('Lec') || img.startsWith('Cana') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none border-2 border-white" ${img.startsWith('Col') || img.startsWith('Lan') || img.startsWith('Ser') || img.startsWith('adda') || img.startsWith('Lec') || img.startsWith('Cana') || img.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
                             </div>
                         `).join('')}
                     </div>
@@ -865,7 +877,7 @@
                 <div class="fade-in">
                     <!-- Detail Hero -->
                     <div class="relative h-[65vh] min-h-[400px]">
-                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                        <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') || trip.image.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
                         <div class="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/40 to-transparent"></div>
                         
                         <!-- Back Button -->
