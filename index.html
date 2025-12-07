@@ -92,7 +92,34 @@
             --accent-700: #9d004c;
 
             --bg-color: #e0f9ff; /* Sfondo Miami Blue */
+
+            /* TILES SVG GENERATA CON IMMAGINI PNG
+               Dimensioni Tile: 300x300 (Grande spaziatura)
+               Dimensioni Img: 40px
+               Posizioni:
+               - Top-Left: Cat-Icon
+               - Top-Right: pusheen
+               - Bottom-Left: 3 s
+               - Bottom-Right: cat
+               - Center: Pusheen_the_Cat
+            */
+            --bg-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cimage href='Cat-Icon-PNG-Pic.png' x='10' y='10' width='40' height='40' /%3E%3Cimage href='pusheen.png' x='250' y='10' width='40' height='40' /%3E%3Cimage href='3%20s.png' x='10' y='250' width='40' height='40' /%3E%3Cimage href='cat.png' x='250' y='250' width='40' height='40' /%3E%3Cimage href='Pusheen_the_Cat.png' x='130' y='130' width='40' height='40' /%3E%3C/svg%3E");
+            
+            --bg-size: 300px 300px; /* Dimensione della ripetizione */
+            --bg-opacity: 0.25; /* Visibilità */
         }
+
+        /* Gestione visibilità Gatti Extra */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { 
+            display: inline-block; 
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
         /* Transizioni fluide */
         body, div, nav, button, span, i, h1, h2, h3, p, a {
@@ -100,7 +127,7 @@
             transition-duration: 500ms;
         }
 
-        /* --- BACKGROUND LAYERS --- */
+        /* --- BACKGROUND LAYERS FISSI --- */
         #bg-color-layer {
             position: fixed;
             inset: 0;
@@ -108,80 +135,28 @@
             background-color: var(--bg-color);
             transition: background-color 0.5s ease;
         }
-
-        /* Container per la griglia di gatti (Generata via JS) */
-        #bg-cats-grid {
+        
+        #bg-pattern-layer {
             position: fixed;
-            top: 0;
-            left: -5vw; /* Spostato leggermente a sinistra */
-            width: 110vw; /* Più largo dello schermo per evitare buchi a destra */
-            height: 100vh;
+            inset: 0;
             z-index: -1;
-            opacity: 0; 
+            background-image: var(--bg-image);
+            background-size: var(--bg-size);
+            background-repeat: repeat;
+            opacity: var(--bg-opacity);
             pointer-events: none;
-            transition: opacity 0.5s ease;
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
+            transition: all 0.5s ease;
         }
 
-        /* Visibile solo in special mode */
-        body.special-mode #bg-cats-grid {
-            opacity: 0.25; 
-        }
-
-        /* La singola "Mattonella" (Tile) */
-        .cat-tile {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        /* Stile icone dentro la tile */
-        .cat-icon {
-            position: absolute;
-            width: 40px; 
-            height: 40px;
-            object-fit: contain;
-        }
-
-        /* 5 Posizioni Fisse nella Tile */
-        .pos-tl { top: 15px; left: 15px; }      /* Top Left */
-        .pos-tr { top: 15px; right: 15px; }     /* Top Right */
-        .pos-bl { bottom: 15px; left: 15px; }   /* Bottom Left */
-        .pos-br { bottom: 15px; right: 15px; }  /* Bottom Right */
-        .pos-c  { top: 50%; left: 50%; transform: translate(-50%, -50%); } /* Center */
-
-        /* --- GATTI SPECIALI NEI COMPONENTI --- */
-        /* Gatto nel pulsante Prenota */
-        .btn-cat-icon { display: none; width: 20px; height: 20px; object-fit: contain; margin-right: 8px; }
-        .btn-calendar-icon { display: inline-block; }
-        
-        body.special-mode .btn-cat-icon { display: inline-block; }
-        body.special-mode .btn-calendar-icon { display: none; }
-
-        /* Gatto nella Card (Footer Sinistra) */
-        .card-footer-cat { 
-            display: none; 
-            width: 35px; 
-            height: 35px; 
-            object-fit: contain; 
-            opacity: 0.8;
-        }
-        body.special-mode .card-footer-cat { 
-            display: block; 
-            animation: wiggly 3s infinite ease-in-out;
-        }
-
-        @keyframes wiggly {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
-        }
-        
-        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
-
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
@@ -244,12 +219,14 @@
                         
                         <!-- TOGGLE MODALITÀ (Desktop) -->
                         <div class="flex items-center gap-2 bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200" title="Cambia Modalità">
+                            <!-- ICONA NORMALE: CAVALLO -->
                             <i class="fa-solid fa-horse text-primary-600 text-sm transition-colors duration-300" id="icon-normal-desktop"></i>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="mode-toggle-desktop" onchange="toggleSpecialMode()">
                                 <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-600"></div>
                             </label>
-                            <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-sm transition-colors duration-300" id="icon-special-desktop"></i>
+                            <!-- ICONA SPECIALE: GATTO -->
+                            <i class="fa-solid fa-cat text-slate-400 text-sm transition-colors duration-300" id="icon-special-desktop"></i>
                         </div>
                     </div>
 
@@ -284,12 +261,14 @@
                     <!-- TOGGLE MODALITÀ (Mobile) -->
                     <div class="flex items-center gap-3 bg-slate-100 rounded-full px-4 py-2 border border-slate-200 mt-2" title="Cambia Modalità">
                         <span class="text-sm font-medium text-slate-500 mr-2">Modalità:</span>
+                        <!-- ICONA NORMALE: CAVALLO -->
                         <i class="fa-solid fa-horse text-primary-600 text-lg transition-colors duration-300" id="icon-normal-mobile"></i>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" id="mode-toggle-mobile" onchange="toggleSpecialMode()">
                             <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
                         </label>
-                        <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-lg transition-colors duration-300" id="icon-special-mobile"></i>
+                        <!-- ICONA SPECIALE: GATTO -->
+                        <i class="fa-solid fa-cat text-slate-400 text-lg transition-colors duration-300" id="icon-special-mobile"></i>
                     </div>
                 </div>
             </div>
@@ -529,6 +508,7 @@
                 duration: "1 Ora",
                 vicinoATorino: false,
                 cancellazione: "Cancellazione gratuita fino a 48h",
+                // IMMAGINI AGGIORNATE PER VAL SERIANA (con %20 per gli spazi)
                 image: "Oro1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Oro1%20-%20dimensioni%20medie.jpeg",
                 description: "Regalati un’ora a cavallo nella splendida Val Seriana, tra le Prealpi Orobiche in provincia di Bergamo. Il percorso segue il corso del fiume Serio, attraversando boschi, ruscelli e borghi ricchi di storia e tradizioni locali. Prima della passeggiata, una guida equestre ti fornirà istruzioni e consigli per un’esperienza sicura e piacevole. Un modo perfetto per staccare dalla città e immergersi nella natura incontaminata del Parco delle Orobie.",
@@ -786,6 +766,8 @@
                                     <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i>
                                 </div>
                             </button>
+                            <!-- ICONA GATTO EXTRA PER MODALITÀ SPECIALE -->
+                            <span class="ml-2 hidden special-cat-icon text-accent-500"><i class="fa-solid fa-cat text-lg"></i></span>
                         </div>
                     </div>
                 </div>
@@ -871,9 +853,10 @@
             }
 
             // CAROUSEL GENERATION
+            // MODIFICA: Aggiunto 'hidden md:block' ai bottoni per nasconderli su mobile
             const carouselHTML = `
                 <div class="relative group">
-                    <button onclick="scrollGallery('left')" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
+                    <button onclick="scrollGallery('left')" class="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
                     </button>
 
@@ -885,7 +868,7 @@
                         `).join('')}
                     </div>
 
-                    <button onclick="scrollGallery('right')" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
+                    <button onclick="scrollGallery('right')" class="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -1212,7 +1195,7 @@
                         <p class="text-slate-600 text-lg leading-relaxed mb-6 font-medium">
                             Speravo non cliccassi qua... <br>
                             Ti prego, non chiedermi nulla. Non ho alcuna voglia di lavorare oggi.
-                        </p>
+                        </p>x
                         
                         <div class="bg-primary-50 p-6 rounded-xl border border-primary-100 mb-6">
                             <label class="block text-left text-sm font-bold text-primary-700 mb-2">Scrivi qui la tua domanda (tanto non la leggo)</label>
