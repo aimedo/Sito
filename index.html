@@ -13,7 +13,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
@@ -22,6 +22,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Configurazione Tailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class', 
@@ -54,6 +55,7 @@
     </script>
 
     <style>
+        /* --- DEFINIZIONE COLORI (THEMING) --- */
         :root {
             /* TEMA NORMALE */
             --primary-50: #ecfdf5;
@@ -70,10 +72,10 @@
             --accent-600: #d97706;
             --accent-700: #b45309;
 
-            --bg-color: #ffffff; 
+            --bg-color: #ffffff; /* Bianco Puro */
         }
 
-        /* TEMA SPECIALE */
+        /* TEMA SPECIALE (Porsche Miami Blue) */
         body.special-mode {
             --primary-50: #e0f9ff;
             --primary-100: #b3ecff;
@@ -89,66 +91,80 @@
             --accent-600: #db006a;
             --accent-700: #9d004c;
 
-            --bg-color: #e0f9ff; 
-            
-            /* Sfondo PNG Gatti (URL) */
-            --bg-image: 
-                url('Cat-Icon-PNG-Pic.png'),
-                url('pusheen.png'),
-                url('3%20s.png'),
-                url('cat.png'),
-                url('Pusheen_the_Cat.png');
-            
-            --bg-position: 
-                0% 0%, 100% 0%, 0% 100%, 100% 100%, 50% 50%;
-
-            --bg-size: 40px auto, 40px auto, 40px auto, 40px auto, 40px auto; 
-            --bg-repeat: space; 
-            --layer-opacity: 0.2; 
+            --bg-color: #e0f9ff; /* Sfondo Miami Blue */
         }
 
-        /* Elementi Speciali */
-        .special-cat-icon, .btn-cat-icon, .card-footer-cat { display: none; }
-        .btn-calendar-icon { display: inline-block; }
+        /* Transizioni fluide */
+        body, div, nav, button, span, i, h1, h2, h3, p, a {
+            transition-property: color, background-color, border-color, fill, stroke;
+            transition-duration: 500ms;
+        }
 
-        body.special-mode .special-cat-icon { display: inline-block; animation: bounce 2s infinite; }
-        body.special-mode .btn-cat-icon { display: inline-block; width: 20px; height: 20px; object-fit: contain; margin-right: 8px; }
+        /* Visibilità griglia gatti: controllata da classe body */
+        #bg-cats-grid {
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        body.special-mode #bg-cats-grid {
+            opacity: 0.25;
+        }
+
+        /* La singola "Mattonella" (Tile) */
+        .cat-tile {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* Gatti Speciali nei componenti */
+        .btn-cat-icon { display: none; width: 20px; height: 20px; object-fit: contain; margin-right: 8px; }
+        .btn-calendar-icon { display: inline-block; }
+        
+        body.special-mode .btn-cat-icon { display: inline-block; }
         body.special-mode .btn-calendar-icon { display: none; }
+
+        .card-footer-cat { 
+            display: none; 
+            width: 35px; 
+            height: 35px; 
+            object-fit: contain; 
+            opacity: 0.8;
+        }
         body.special-mode .card-footer-cat { 
             display: block; 
-            width: 35px; height: 35px; object-fit: contain; opacity: 0.8;
             animation: wiggly 3s infinite ease-in-out;
         }
 
-        /* Animazioni */
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        @keyframes wiggly { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
+        @keyframes wiggly {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
         .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
         @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
-        body, div, nav, button, span, i, h1, h2, h3, p, a {
-            transition: color 0.5s, background-color 0.5s, border-color 0.5s;
-        }
-
-        /* ZOOM IMG */
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
+        
+        /* Gestione visibilità Gatti Extra nel Toggle */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { display: inline-block; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
     
-    <!-- BACKGROUND LAYERS -->
-    <div id="bg-color-layer" style="position: fixed; inset: 0; z-index: -2; background-color: var(--bg-color); transition: background-color 0.5s ease;"></div>
-    <div id="bg-cats-grid" style="position: fixed; top: 0; left: 0; width: 110vw; height: 110vh; z-index: -1; pointer-events: none; opacity: 0; transition: opacity 0.5s;"></div>
+    <!-- BACKGROUND SYSTEM (Stili Inline per sicurezza assoluta) -->
+    <!-- Colore Solido -->
+    <div id="bg-color-layer" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: var(--bg-color); transition: background-color 0.5s ease;"></div>
+    
+    <!-- Griglia Gatti (Generata via JS) - Posizionamento Forced -->
+    <div id="bg-cats-grid" style="position: fixed; top: 0; left: 0; width: 120vw; height: 120vh; z-index: -1; pointer-events: none; overflow: hidden; display: flex; flex-wrap: wrap; align-content: flex-start;"></div>
 
     <!-- === LOGIN SCREEN === -->
-    <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4" style="background-color: var(--bg-color); transition: background-color 0.5s;">
+    <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-primary-100 relative z-10 fade-in">
             <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-primary-100">
                 <i class="fa-solid fa-lock text-3xl text-primary-600"></i>
@@ -176,13 +192,14 @@
         </div>
     </div>
 
-    <!-- === MAIN SITE CONTENT === -->
-    <!-- Z-INDEX 1 e RELATIVE per assicurarsi che stia sopra i background -->
-    <div id="site-content" class="hidden flex-col min-h-screen w-full transition-colors duration-500" style="position: relative; z-index: 1;">
+    <!-- === MAIN SITE CONTENT (Initially Hidden) === -->
+    <div id="site-content" class="hidden flex-col min-h-screen w-full transition-colors duration-500">
         
+        <!-- Navigation -->
         <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary-100 shadow-sm transition-all duration-300" id="navbar">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="router('home')">
                         <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-primary-600 transition-colors duration-300">
                             <i class="fa-solid fa-horse-head text-xl text-primary-700 group-hover:text-white transition-colors"></i>
@@ -190,27 +207,39 @@
                         <span class="font-bold text-2xl tracking-tight text-primary-900">EdoViaggy</span>
                     </div>
 
+                    <!-- Desktop Menu (Links + Toggle) -->
                     <div class="hidden md:flex items-center gap-8">
                         <a href="#" onclick="router('home')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Home</a>
                         <a href="#" onclick="router('about')" class="text-slate-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-wider border-b-2 border-transparent hover:border-accent-500 pb-1">Chi Siamo</a>
                         
+                        <!-- TOGGLE MODALITÀ (Desktop) -->
                         <div class="flex items-center gap-2 bg-slate-100/50 rounded-full px-3 py-1 border border-slate-200" title="Cambia Modalità">
+                            <!-- ICONA NORMALE: CAVALLO -->
                             <i class="fa-solid fa-horse text-primary-600 text-sm transition-colors duration-300" id="icon-normal-desktop"></i>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="" class="sr-only peer" id="mode-toggle-desktop" onchange="toggleSpecialMode()">
                                 <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-600"></div>
                             </label>
+                            <!-- ICONA SPECIALE: GATTO -->
                             <i class="fa-solid fa-cat text-slate-400 text-sm transition-colors duration-300" id="icon-special-desktop"></i>
                         </div>
                     </div>
 
+                    <!-- Right Side Mobile -->
                     <div class="flex items-center gap-4">
+                        
+                        <!-- Prenota Ora Button -->
                         <button onclick="router('booking')" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex items-center shadow-md">
+                            <!-- ICONA STANDARD -->
                             <i data-lucide="calendar-heart" class="w-4 h-4 mr-2 btn-calendar-icon"></i>
+                            <!-- ICONA GATTO NEL TASTO (Speciale) -->
                             <img src="Cat-Icon-PNG-Pic.png" class="btn-cat-icon" alt="Gatto">
+                            
                             <span class="hidden md:inline">Prenota Ora</span>
                             <span class="md:hidden">Prenota</span>
                         </button>
+
+                        <!-- Hamburger Button -->
                         <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-slate-600 focus:outline-none p-2 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors">
                             <i class="fa-solid fa-bars text-xl"></i>
                         </button>
@@ -218,30 +247,38 @@
                 </div>
             </div>
 
+            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-primary-100 absolute w-full left-0 top-20 shadow-lg z-40 transition-all duration-300">
                 <div class="px-6 py-6 space-y-6 flex flex-col items-center">
                     <a href="#" onclick="router('home'); toggleMenu()" class="text-slate-700 hover:text-primary-600 font-bold text-lg">Home</a>
                     <a href="#" onclick="router('about'); toggleMenu()" class="text-slate-700 hover:text-primary-600 font-bold text-lg">Chi Siamo</a>
                     
+                    <!-- TOGGLE MODALITÀ (Mobile) -->
                     <div class="flex items-center gap-3 bg-slate-100 rounded-full px-4 py-2 border border-slate-200 mt-2" title="Cambia Modalità">
                         <span class="text-sm font-medium text-slate-500 mr-2">Modalità:</span>
+                        <!-- ICONA NORMALE: CAVALLO -->
                         <i class="fa-solid fa-horse text-primary-600 text-lg transition-colors duration-300" id="icon-normal-mobile"></i>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" value="" class="sr-only peer" id="mode-toggle-mobile" onchange="toggleSpecialMode()">
                             <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
                         </label>
+                        <!-- ICONA SPECIALE: GATTO -->
                         <i class="fa-solid fa-cat text-slate-400 text-lg transition-colors duration-300" id="icon-special-mobile"></i>
                     </div>
                 </div>
             </div>
         </nav>
 
+        <!-- Main Content Area -->
         <main id="app" class="flex-grow pt-20">
             <!-- Content will be injected here by JavaScript -->
         </main>
 
+        <!-- Footer -->
         <footer class="bg-primary-900 text-white py-16 mt-auto relative overflow-hidden transition-colors duration-500">
+            <!-- Decorative Circle -->
             <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-800 opacity-20 pointer-events-none transition-colors duration-500"></div>
+            
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div class="col-span-1 md:col-span-2">
@@ -249,13 +286,16 @@
                             <i class="fa-solid fa-horse-head text-3xl text-accent-500 mr-3 transition-colors duration-500"></i>
                             <span class="font-bold text-2xl">EdoViaggy</span>
                         </div>
+                        <!-- TESTO CAUBOI -->
                         <p class="text-primary-100 text-base leading-relaxed max-w-sm mb-6">
                             Scopri la libertà di cavalcare immerso nella natura. Esperienze autentiche per ogni CAUBOI.
                         </p>
                         <div class="flex space-x-4">
+                            <!-- Instagram (Link Aggiornato) -->
                             <a href="https://www.instagram.com/aim_edo?igsh=em52MjF3dzZvYXh5&utm_source=qr" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
                                 <i class="fa-brands fa-instagram text-xl"></i>
                             </a>
+                            <!-- YouTube (Nuovo Link) -->
                             <a href="https://www.youtube.com/shorts/SXHMnicI6Pg" target="_blank" class="w-10 h-10 rounded-full bg-primary-800 flex items-center justify-center hover:bg-accent-500 hover:text-white transition-all duration-300">
                                 <i class="fa-brands fa-youtube text-xl"></i>
                             </a>
@@ -287,10 +327,11 @@
 
     <!-- JavaScript Data & Logic -->
     <script>
+        // --- DATA ---
         const fallbackImage = "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
 
         const trips = [
-             {
+            {
                 id: 2, 
                 title: "Percorso Panoramico sul Lago di Como",
                 location: "Colico, Lecco",
@@ -308,7 +349,18 @@
                     "Uscite guidate alla scoperta di natura, fiumi e montagne",
                     "Rimborso o cambio data garantito in caso di maltempo"
                 ],
-                gallery: ["Col1%20-%20dimensioni%20medie.jpeg", "Col2%20-%20dimensioni%20medie.jpeg", "Col3%20-%20dimensioni%20medie.jpeg", "Col4%20-%20dimensioni%20medie.jpeg", "Col5%20-%20dimensioni%20medie.jpeg", "Col6%20-%20dimensioni%20medie.jpeg", "Col7%20-%20dimensioni%20medie.jpeg", "Col8%20-%20dimensioni%20medie.jpeg", "Col9%20-%20dimensioni%20medie.jpeg", "Col10%20-%20dimensioni%20medie.jpeg"]
+                gallery: [
+                    "Col1%20-%20dimensioni%20medie.jpeg",
+                    "Col2%20-%20dimensioni%20medie.jpeg",
+                    "Col3%20-%20dimensioni%20medie.jpeg",
+                    "Col4%20-%20dimensioni%20medie.jpeg",
+                    "Col5%20-%20dimensioni%20medie.jpeg",
+                    "Col6%20-%20dimensioni%20medie.jpeg",
+                    "Col7%20-%20dimensioni%20medie.jpeg",
+                    "Col8%20-%20dimensioni%20medie.jpeg",
+                    "Col9%20-%20dimensioni%20medie.jpeg",
+                    "Col10%20-%20dimensioni%20medie.jpeg"
+                ]
             },
             {
                 id: 1,
@@ -316,6 +368,7 @@
                 location: "Ghisalba, Bergamo",
                 duration: "1 Ora",
                 vicinoATorino: false, 
+                // RIMOSSO CANCELLAZIONE
                 image: "Ser1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Ser1%20-%20dimensioni%20medie.jpeg",
                 description: "Vivi una piacevole passeggiata a cavallo lungo il fiume Serio, all’interno del parco naturale che segna il confine tra le province di Bergamo e Cremona, con partenza da Romano di Lombardia. La guida ti accompagnerà tra ambienti protetti, ricchi di biodiversità e paesaggi incontaminati. Prima o dopo l’uscita puoi rilassarti nella club house del centro, gustare un aperitivo, pranzare o cenare, oppure soggiornare nel B&B immerso nella quiete del parco. Un’esperienza perfetta per coppie, famiglie e gruppi di amici in cerca di natura e tranquillità.",
@@ -326,7 +379,16 @@
                     "Location rilassante con club house e ambient music",
                     "Ideale per coppie, famiglie e gruppi in cerca di un momento di benessere"
                 ],
-                gallery: ["Ser1%20-%20dimensioni%20medie.jpeg", "Ser2%20-%20dimensioni%20medie.jpeg", "Ser3%20-%20dimensioni%20medie.jpeg", "Ser4%20-%20dimensioni%20medie.jpeg", "Ser5%20-%20dimensioni%20medie.jpeg", "Ser6%20-%20dimensioni%20medie.jpeg", "Ser7%20-%20dimensioni%20medie.jpeg", "Ser8%20-%20dimensioni%20medie.jpeg"]
+                gallery: [
+                    "Ser1%20-%20dimensioni%20medie.jpeg",
+                    "Ser2%20-%20dimensioni%20medie.jpeg",
+                    "Ser3%20-%20dimensioni%20medie.jpeg",
+                    "Ser4%20-%20dimensioni%20medie.jpeg",
+                    "Ser5%20-%20dimensioni%20medie.jpeg",
+                    "Ser6%20-%20dimensioni%20medie.jpeg",
+                    "Ser7%20-%20dimensioni%20medie.jpeg",
+                    "Ser8%20-%20dimensioni%20medie.jpeg"
+                ]
             },
             {
                 id: 3,
@@ -338,8 +400,22 @@
                 image: "adda1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "adda1%20-%20dimensioni%20medie.jpeg",
                 description: "Passeggiata a cavallo lungo il fiume Adda, dalla durata di una o due ore, attraverso i boschi circostanti è un'esperienza da non perdere. Le passeggiate a cavallo sono adatte anche a principianti, in quanto costituite da comodi e larghi sentieri situati all'interno del Parco dell’Adda. Grazie a questa gita avrete la possibilità di esplorare la natura che caratterizza questi luoghi, e di far abbeverare i cavalli all’interno del fiume. Durante il giro a cavallo, con partenza da Rivolta d'Adda, sarete accompagnati da due guide equestri, che vi conduranno per tutta la durata dell'escursione.",
-                highlights: ["Passeggiate di 1 o 2 ore nel Parco dell'Adda", "Percorsi comodi e larghi adatti anche ai principianti", "Possibilità di far abbeverare i cavalli nel fiume", "Partenza da Rivolta d'Adda", "Accompagnamento costante di due guide equestri"],
-                gallery: ["adda1%20-%20dimensioni%20medie.jpeg", "adda2%20-%20dimensioni%20medie.jpeg", "adda3%20-%20dimensioni%20medie.jpeg", "adda4%20-%20dimensioni%20medie.jpeg", "adda5%20-%20dimensioni%20medie.jpeg", "adda6%20-%20dimensioni%20medie.jpeg", "adda7%20-%20dimensioni%20medie.jpeg"]
+                highlights: [
+                    "Passeggiate di 1 o 2 ore nel Parco dell'Adda",
+                    "Percorsi comodi e larghi adatti anche ai principianti",
+                    "Possibilità di far abbeverare i cavalli nel fiume",
+                    "Partenza da Rivolta d'Adda",
+                    "Accompagnamento costante di due guide equestri"
+                ],
+                gallery: [
+                    "adda1%20-%20dimensioni%20medie.jpeg",
+                    "adda2%20-%20dimensioni%20medie.jpeg",
+                    "adda3%20-%20dimensioni%20medie.jpeg",
+                    "adda4%20-%20dimensioni%20medie.jpeg",
+                    "adda5%20-%20dimensioni%20medie.jpeg",
+                    "adda6%20-%20dimensioni%20medie.jpeg",
+                    "adda7%20-%20dimensioni%20medie.jpeg"
+                ]
             },
             {
                 id: 4,
@@ -351,8 +427,24 @@
                 image: "Lec1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Lec1%20-%20dimensioni%20medie.jpeg",
                 description: "Parti da Primaluna per una passeggiata a cavallo di un’ora nelle montagne sopra Lecco, a oltre 550 metri di altitudine. L’itinerario segue l’ippovia lungo il fiume Pioverna, attraversando panorami suggestivi della valle e, quando le condizioni lo permettono, anche il corso del fiume prima di entrare nel bosco. L’attività è adatta a tutti, anche ai principianti, ed è sufficiente un abbigliamento comodo con scarpe chiuse e pantaloni lunghi.",
-                highlights: ["Passeggiata a cavallo di 1 ora nelle montagne sopra Lecco", "Percorso panoramico lungo il fiume Pioverna e nei boschi", "Possibile attraversamento del fiume in base alle condizioni", "Attività adatta anche a chi cavalca per la prima volta", "Consigliato abbigliamento comodo con scarpe chiuse e pantaloni lunghi"],
-                gallery: ["Lec1%20-%20dimensioni%20medie.jpeg", "Lec2%20-%20dimensioni%20medie.jpeg", "Lec3%20-%20dimensioni%20medie.jpeg", "Lec4%20-%20dimensioni%20medie.jpeg", "Lec5%20-%20dimensioni%20medie.jpeg", "Lec6%20-%20dimensioni%20medie.jpeg", "Lec7%20-%20dimensioni%20medie.jpeg", "Lec8%20-%20dimensioni%20medie.jpeg", "Lec9%20-%20dimensioni%20medie.jpeg"]
+                highlights: [
+                    "Passeggiata a cavallo di 1 ora nelle montagne sopra Lecco",
+                    "Percorso panoramico lungo il fiume Pioverna e nei boschi",
+                    "Possibile attraversamento del fiume in base alle condizioni",
+                    "Attività adatta anche a chi cavalca per la prima volta",
+                    "Consigliato abbigliamento comodo con scarpe chiuse e pantaloni lunghi"
+                ],
+                gallery: [
+                    "Lec1%20-%20dimensioni%20medie.jpeg",
+                    "Lec2%20-%20dimensioni%20medie.jpeg",
+                    "Lec3%20-%20dimensioni%20medie.jpeg",
+                    "Lec4%20-%20dimensioni%20medie.jpeg",
+                    "Lec5%20-%20dimensioni%20medie.jpeg",
+                    "Lec6%20-%20dimensioni%20medie.jpeg",
+                    "Lec7%20-%20dimensioni%20medie.jpeg",
+                    "Lec8%20-%20dimensioni%20medie.jpeg",
+                    "Lec9%20-%20dimensioni%20medie.jpeg"
+                ]
             },
             {
                 id: 5,
@@ -364,8 +456,18 @@
                 image: "Cana1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Cana1%20-%20dimensioni%20medie.jpeg",
                 description: "Scopri il Canavese, sopra Torino, con una passeggiata a cavallo nella campagna intorno a Rivarossa. Il percorso attraversa colline, boschi, fiumi e praterie, offrendo la possibilità di avvistare fauna locale come cinghiali e cerbiatti. Il ranch immerso nella natura delle valli di Lanzo è il punto di partenza ideale per esplorazioni a cavallo o trekking più lunghi, riservati a un pubblico adulto.",
-                highlights: ["Passeggiata a cavallo nella campagna del Canavese, sopra Torino", "Itinerari tra colline, boschi, fiumi e praterie", "Possibilità di avvistare cinghiali e cerbiatti", "Punto di partenza in un ranch immerso nella natura delle valli di Lanzo"],
-                gallery: ["Cana1%20-%20dimensioni%20medie.jpeg", "Cana2%20-%20dimensioni%20medie.jpeg", "Cana3%20-%20dimensioni%20medie.jpeg", "Cana4%20-%20dimensioni%20medie.jpeg"]
+                highlights: [
+                    "Passeggiata a cavallo nella campagna del Canavese, sopra Torino",
+                    "Itinerari tra colline, boschi, fiumi e praterie",
+                    "Possibilità di avvistare cinghiali e cerbiatti",
+                    "Punto di partenza in un ranch immerso nella natura delle valli di Lanzo"
+                ],
+                gallery: [
+                    "Cana1%20-%20dimensioni%20medie.jpeg",
+                    "Cana2%20-%20dimensioni%20medie.jpeg",
+                    "Cana3%20-%20dimensioni%20medie.jpeg",
+                    "Cana4%20-%20dimensioni%20medie.jpeg"
+                ]
             },
             {
                 id: 6,
@@ -377,8 +479,22 @@
                 image: "Lan1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Lan1%20-%20dimensioni%20medie.jpeg",
                 description: "Esplora i vigneti delle Langhe con una passeggiata a cavallo di un’ora, partendo da San Marzano Oliveto. Il percorso segue sentieri sterrati tra colline e panorami spettacolari, ideale per principianti, famiglie e gruppi di amici. L’esperienza è accompagnata da guide esperte e richiede un abbigliamento comodo con scarpe chiuse e pantaloni lunghi.",
-                highlights: ["Passeggiata a cavallo di 1 ora tra vigneti e colline delle Langhe", "Percorso adatto a principianti, famiglie e gruppi", "Guide esperte sempre presenti durante l’escursione", "Consigliato abbigliamento comodo con scarpe chiuse e pantaloni lunghi"],
-                gallery: ["Lan1%20-%20dimensioni%20medie.jpeg", "Lan2%20-%20dimensioni%20medie.jpeg", "Lan3%20-%20dimensioni%20medie.jpeg", "Lan4%20-%20dimensioni%20medie.jpeg", "Lan5%20-%20dimensioni%20medie.jpeg", "Lan6%20-%20dimensioni%20medie.jpeg", "Lan7%20-%20dimensioni%20medie.jpeg", "Lan8%20-%20dimensioni%20medie.jpeg"]
+                highlights: [
+                    "Passeggiata a cavallo di 1 ora tra vigneti e colline delle Langhe",
+                    "Percorso adatto a principianti, famiglie e gruppi",
+                    "Guide esperte sempre presenti durante l’escursione",
+                    "Consigliato abbigliamento comodo con scarpe chiuse e pantaloni lunghi"
+                ],
+                gallery: [
+                    "Lan1%20-%20dimensioni%20medie.jpeg",
+                    "Lan2%20-%20dimensioni%20medie.jpeg",
+                    "Lan3%20-%20dimensioni%20medie.jpeg",
+                    "Lan4%20-%20dimensioni%20medie.jpeg",
+                    "Lan5%20-%20dimensioni%20medie.jpeg",
+                    "Lan6%20-%20dimensioni%20medie.jpeg",
+                    "Lan7%20-%20dimensioni%20medie.jpeg",
+                    "Lan8%20-%20dimensioni%20medie.jpeg"
+                ]
             },
             {
                 id: 7,
@@ -387,41 +503,50 @@
                 duration: "1 Ora",
                 vicinoATorino: false,
                 cancellazione: "Cancellazione gratuita fino a 48h",
+                // IMMAGINI AGGIORNATE PER VAL SERIANA (con %20 per gli spazi)
                 image: "Oro1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Oro1%20-%20dimensioni%20medie.jpeg",
                 description: "Regalati un’ora a cavallo nella splendida Val Seriana, tra le Prealpi Orobiche in provincia di Bergamo. Il percorso segue il corso del fiume Serio, attraversando boschi, ruscelli e borghi ricchi di storia e tradizioni locali. Prima della passeggiata, una guida equestre ti fornirà istruzioni e consigli per un’esperienza sicura e piacevole. Un modo perfetto per staccare dalla città e immergersi nella natura incontaminata del Parco delle Orobie.",
-                highlights: ["Passeggiata a cavallo di 1 ora nella Val Seriana e Parco delle Orobie", "Itinerario tra boschi, ruscelli e borghi storici della zona", "Briefing e supporto da guida equestre per principianti e non", "Immersione in natura incontaminata, lontano dal caos urbano", "Partenza e arrivo al maneggio con accoglienza professionale"],
-                gallery: ["Oro1%20-%20dimensioni%20medie.jpeg", "Oro2%20-%20dimensioni%20medie.jpeg", "Oro3%20-%20dimensioni%20medie.jpeg", "Oro4%20-%20dimensioni%20medie.jpeg"]
+                highlights: [
+                    "Passeggiata a cavallo di 1 ora nella Val Seriana e Parco delle Orobie",
+                    "Itinerario tra boschi, ruscelli e borghi storici della zona",
+                    "Briefing e supporto da guida equestre per principianti e non",
+                    "Immersione in natura incontaminata, lontano dal caos urbano",
+                    "Partenza e arrivo al maneggio con accoglienza professionale"
+                ],
+                gallery: [
+                    "Oro1%20-%20dimensioni%20medie.jpeg",
+                    "Oro2%20-%20dimensioni%20medie.jpeg",
+                    "Oro3%20-%20dimensioni%20medie.jpeg",
+                    "Oro4%20-%20dimensioni%20medie.jpeg"
+                ]
             }
         ];
 
+        // --- LOGIN LOGIC ---
         function checkLogin() {
             const input = document.getElementById('password-input').value.toLowerCase().trim();
             const errorMsg = document.getElementById('error-msg');
             const loginBox = document.querySelector('#login-screen > div');
             
+            // Password: "nelson", "lulu" o "lulù"
             if (input === 'nelson' || input === 'lulu' || input === 'lulù') { 
-                try {
-                    // Prepara il sito prima di mostrarlo
-                    document.getElementById('login-screen').classList.add('hidden');
-                    const content = document.getElementById('site-content');
-                    content.classList.remove('hidden');
-                    content.classList.add('flex');
-                    document.body.classList.remove('overflow-hidden');
-                    
-                    // Forza un reflow se necessario
-                    void content.offsetWidth;
-                    
-                    generateCatsGrid();
-                    renderHome();
-                } catch(e) {
-                    console.error("Errore avvio sito:", e);
-                    alert("Si è verificato un errore nel caricamento. Ricarica la pagina.");
-                }
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('site-content').classList.remove('hidden');
+                document.getElementById('site-content').classList.add('flex');
+                document.body.classList.remove('overflow-hidden');
+                
+                // INIZIALIZZA LA GRIGLIA DI GATTI APPENA SI ENTRA
+                generateCatsGrid();
+                // RENDERING INIZIALE IMPORTANTE
+                renderHome();
             } else {
+                // MODIFICA RICHIESTA: "NOOOOOOO" GIGANTE
                 errorMsg.innerHTML = "NOOOOOOO";
-                errorMsg.classList.remove('hidden', 'text-sm', 'font-medium', 'flex', 'items-center');
-                errorMsg.classList.add('text-6xl', 'font-black', 'uppercase', 'tracking-tighter', 'mt-6');
+                errorMsg.classList.remove('hidden', 'text-sm', 'font-medium', 'flex', 'items-center'); // Rimuovo stili "gentili"
+                errorMsg.classList.add('text-6xl', 'font-black', 'uppercase', 'tracking-tighter', 'mt-6'); // Aggiungo stili "urlo"
+                
+                // Effetto "shake" per errore
                 loginBox.classList.add('shake');
                 setTimeout(() => {
                     loginBox.classList.remove('shake');
@@ -429,44 +554,62 @@
             }
         }
 
+        // Permette di premere "Invio" per fare il login
         function handleEnter(e) {
             if (e.key === 'Enter') {
                 checkLogin();
             }
         }
 
+        // --- BACKGROUND GENERATOR (TILES) ---
+        // Genera una griglia di tiles con i gatti posizionati
         function generateCatsGrid() {
             const container = document.getElementById('bg-cats-grid');
-            if(!container) return;
+            container.innerHTML = ''; // Pulisci
             
-            container.innerHTML = '';
+            // MODIFICA: Dimensione tile responsive (170px su mobile, 200px su desktop)
             const tileSize = window.innerWidth < 768 ? 170 : 200;
+
+            // Calcola quante tiles servono per coprire lo schermo
             const cols = Math.ceil(window.innerWidth / tileSize) + 1;
             const rows = Math.ceil(window.innerHeight / tileSize) + 1;
             const totalTiles = cols * rows;
 
-            const catImages = ['Cat-Icon-PNG-Pic.png', 'pusheen.png', '3%20s.png', 'cat.png', 'Pusheen_the_Cat.png'];
+            // Lista immagini (spazi codificati per src html)
+            const catImages = [
+                'Cat-Icon-PNG-Pic.png',
+                'pusheen.png',
+                '3%20s.png',
+                'cat.png',
+                'Pusheen_the_Cat.png'
+            ];
+
             let html = '';
             
+            // Genera le tiles con stili inline forzati per ogni immagine
             for(let i=0; i<totalTiles; i++) {
                 html += `
                 <div class="cat-tile" style="width: ${tileSize}px; height: ${tileSize}px;">
-                    <img src="${catImages[0]}" class="cat-icon pos-tl" style="position: absolute; width: 30px; height: 30px; object-fit: contain; top: 15px; left: 15px;" alt="">
-                    <img src="${catImages[1]}" class="cat-icon pos-tr" style="position: absolute; width: 30px; height: 30px; object-fit: contain; top: 15px; right: 15px;" alt="">
-                    <img src="${catImages[2]}" class="cat-icon pos-bl" style="position: absolute; width: 30px; height: 30px; object-fit: contain; bottom: 15px; left: 15px;" alt="">
-                    <img src="${catImages[3]}" class="cat-icon pos-br" style="position: absolute; width: 30px; height: 30px; object-fit: contain; bottom: 15px; right: 15px;" alt="">
-                    <img src="${catImages[4]}" class="cat-icon pos-c" style="position: absolute; width: 30px; height: 30px; object-fit: contain; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="">
+                    <img src="${catImages[0]}" class="cat-icon pos-tl" style="position: absolute; width: 40px; height: 40px; object-fit: contain; top: 15px; left: 15px;" alt="">
+                    <img src="${catImages[1]}" class="cat-icon pos-tr" style="position: absolute; width: 40px; height: 40px; object-fit: contain; top: 15px; right: 15px;" alt="">
+                    <img src="${catImages[2]}" class="cat-icon pos-bl" style="position: absolute; width: 40px; height: 40px; object-fit: contain; bottom: 15px; left: 15px;" alt="">
+                    <img src="${catImages[3]}" class="cat-icon pos-br" style="position: absolute; width: 40px; height: 40px; object-fit: contain; bottom: 15px; right: 15px;" alt="">
+                    <img src="${catImages[4]}" class="cat-icon pos-c" style="position: absolute; width: 40px; height: 40px; object-fit: contain; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="">
                 </div>`;
             }
+            
             container.innerHTML = html;
         }
 
+        // --- APP STATE ---
         const app = document.getElementById('app');
         let currentFilter = 'all'; 
-        let isSpecialMode = false; 
+        let isSpecialMode = false; // Nuovo stato per la modalità speciale
 
+        // --- TOGGLE LOGIC ---
         function toggleSpecialMode() {
             const body = document.body;
+            // Select all sets of icons (desktop & mobile)
             const iconNormal = document.querySelectorAll('#icon-normal-desktop, #icon-normal-mobile');
             const iconSpecial = document.querySelectorAll('#icon-special-desktop, #icon-special-mobile');
             
@@ -474,19 +617,30 @@
             
             if (isSpecialMode) {
                 body.classList.add('special-mode');
-                document.getElementById('bg-cats-grid').style.opacity = '0.25';
+                
+                // Update Icons (Normal -> Gray, Special -> Blue)
                 iconNormal.forEach(i => { i.classList.remove('text-primary-600'); i.classList.add('text-slate-400'); });
                 iconSpecial.forEach(i => { i.classList.remove('text-slate-400'); i.classList.add('text-primary-600'); });
+                
+                console.log("Modalità Speciale Attivata");
+                // Rigenera griglia per assicurarsi che sia corretta
                 generateCatsGrid();
             } else {
                 body.classList.remove('special-mode');
-                document.getElementById('bg-cats-grid').style.opacity = '0';
+                
+                 // Update Icons (Normal -> Green/Primary, Special -> Gray)
                 iconNormal.forEach(i => { i.classList.add('text-primary-600'); i.classList.remove('text-slate-400'); });
                 iconSpecial.forEach(i => { i.classList.add('text-slate-400'); i.classList.remove('text-primary-600'); });
+                
+                console.log("Modalità Normale Attivata");
             }
+            
+            // Sync all checkboxes
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = isSpecialMode);
         }
 
+        // --- MENU LOGIC ---
+        // Funzione modificata per gestire click esterni
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const btn = document.getElementById('mobile-menu-btn');
@@ -503,10 +657,13 @@
             }
         }
         
+        // AGGIUNTA GESTIONE CLICK ESTERNO PER CHIUDERE MENU
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobile-menu');
             const btn = document.getElementById('mobile-menu-btn');
             const icon = btn.querySelector('i');
+            
+            // Se il menu è aperto E il click non è sul menu E non è sul bottone
             if (!menu.classList.contains('hidden') && !menu.contains(event.target) && !btn.contains(event.target)) {
                 menu.classList.add('hidden');
                 icon.classList.remove('fa-xmark');
@@ -514,66 +671,147 @@
             }
         });
 
+
+        // --- HELPER FUNCTIONS ---
         window.scrollGallery = function(direction) {
             const container = document.getElementById('gallery-container');
             if(container) {
                 const scrollAmount = 320; 
                 const maxScroll = container.scrollWidth - container.clientWidth;
+                
                 if (direction === 'left') {
-                    if (container.scrollLeft <= 5) container.scrollTo({ left: maxScroll, behavior: 'smooth' });
-                    else container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    // Se siamo all'inizio (o quasi), vai alla fine
+                    if (container.scrollLeft <= 5) {
+                         container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+                    } else {
+                        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    }
                 } else {
-                    if (container.scrollLeft >= maxScroll - 5) container.scrollTo({ left: 0, behavior: 'smooth' });
-                    else container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    // Se siamo alla fine (o quasi), torna all'inizio
+                    if (container.scrollLeft >= maxScroll - 5) {
+                        container.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
                 }
             }
         };
 
+        // --- RENDER FUNCTIONS ---
+
         function renderHome() {
-            const filteredTrips = currentFilter === 'all' ? trips : trips.filter(t => t.vicinoATorino);
+            // Filter Logic
+            const filteredTrips = currentFilter === 'all' 
+                ? trips 
+                : trips.filter(t => t.vicinoATorino);
+
             let cardsHTML = filteredTrips.map(trip => `
                 <div class="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-orange-100 flex flex-col h-full hover:border-accent-300 relative">
+                    
+                    <!-- Image Area -->
                     <div class="relative h-72 img-zoom-container cursor-pointer" onclick="router('detail', ${trip.id})">
-                        <img src="${trip.image}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('./') || trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') || trip.image.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                        <img 
+                            src="${trip.image}" 
+                            alt="${trip.title}" 
+                            class="w-full h-full object-cover"
+                            ${trip.image.startsWith('./') || trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') || trip.image.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}
+                        >
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                        ${trip.preferito ? `<div class="absolute top-4 right-4 z-20"><span class="bg-gradient-to-r from-accent-500 to-accent-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center border border-white/20"><i data-lucide="heart" class="w-3.5 h-3.5 mr-1.5 fill-current"></i> Preferita da Edo</span></div>` : ''}
-                        ${trip.cancellazione ? `<div class="absolute bottom-4 left-4 z-20"><span class="bg-white/95 backdrop-blur-md text-primary-700 px-3 py-1.5 rounded-lg text-[11px] font-bold shadow-md flex items-center border border-primary-100"><i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-accent-600"></i> ${trip.cancellazione}</span></div>` : ''}
+                        
+                        <!-- Badge Preferito di Edo -->
+                        ${trip.preferito ? `
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-gradient-to-r from-accent-500 to-accent-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center border border-white/20">
+                                <i data-lucide="heart" class="w-3.5 h-3.5 mr-1.5 fill-current"></i> Preferita da Edo
+                            </span>
+                        </div>
+                        ` : ''}
+
+                        <!-- Badge Cancellazione -->
+                        ${trip.cancellazione ? `
+                        <div class="absolute bottom-4 left-4 z-20">
+                             <span class="bg-white/95 backdrop-blur-md text-primary-700 px-3 py-1.5 rounded-lg text-[11px] font-bold shadow-md flex items-center border border-primary-100">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1.5 text-accent-600"></i> ${trip.cancellazione}
+                            </span>
+                        </div>
+                        ` : ''}
                     </div>
+
+                    <!-- Content Area -->
                     <div class="p-7 flex flex-col flex-grow bg-white">
                         <div class="flex justify-between items-start mb-3">
-                            <div class="flex items-center text-primary-600 text-xs font-bold uppercase tracking-wider mb-1 bg-primary-50 px-2 py-1 rounded-md"><i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1.5"></i>${trip.location}</div>
+                            <div class="flex items-center text-primary-600 text-xs font-bold uppercase tracking-wider mb-1 bg-primary-50 px-2 py-1 rounded-md">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1.5"></i>
+                                ${trip.location}
+                            </div>
                         </div>
+                        
                         <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary-700 transition-colors leading-tight">${trip.title}</h3>
                         <p class="text-slate-500 text-sm line-clamp-3 mb-6 leading-relaxed">${trip.description}</p>
+                        
+                        <!-- Footer Card -->
+                        <!-- MODIFICA QUI: Flex justify-between per posizionare il gatto a sinistra -->
                         <div class="mt-auto flex items-center justify-between pt-5 border-t border-slate-100">
-                             <img src="cat.png" class="card-footer-cat" alt="Gatto">
-                            <button onclick="router('detail', ${trip.id})" class="text-primary-700 font-bold text-sm flex items-center group/btn hover:text-accent-600 transition-colors ml-auto">Scopri<div class="bg-primary-100 rounded-full p-1.5 ml-2 group-hover/btn:bg-accent-100 transition-colors"><i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i></div></button>
+                             <!-- GATTO A SINISTRA (VISIBILE SOLO IN SPECIAL MODE) -->
+                            <img src="cat.png" class="card-footer-cat" alt="Gatto">
+
+                            <button onclick="router('detail', ${trip.id})" class="text-primary-700 font-bold text-sm flex items-center group/btn hover:text-accent-600 transition-colors ml-auto">
+                                Scopri
+                                <div class="bg-primary-100 rounded-full p-1.5 ml-2 group-hover/btn:bg-accent-100 transition-colors">
+                                    <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
             `).join('');
 
-            if (filteredTrips.length === 0) cardsHTML = `<div class="col-span-3 text-center py-20 text-slate-400 italic text-lg">Nessuna escursione trovata con questo filtro.</div>`;
+            // Empty state msg
+            if (filteredTrips.length === 0) {
+                cardsHTML = `<div class="col-span-3 text-center py-20 text-slate-400 italic text-lg">Nessuna escursione trovata con questo filtro.</div>`;
+            }
 
+            // Filter Buttons Styles
             const btnBase = "px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 shadow-sm border";
             const btnActive = "bg-primary-800 text-white border-primary-800 shadow-primary-200";
             const btnInactive = "bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-600";
 
             app.innerHTML = `
+                <!-- Hero Section -->
                 <section class="relative h-[600px] flex items-center justify-center fade-in overflow-hidden">
                     <div class="absolute inset-0 z-0">
-                        <img src="home.jpg" alt="Passeggiata a cavallo nella natura" class="w-full h-full object-cover object-center transform scale-105" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1472396961693-142e6e594e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';">
+                        <img 
+                            src="home.jpg" 
+                            alt="Passeggiata a cavallo nella natura" 
+                            class="w-full h-full object-cover object-center transform scale-105"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1472396961693-142e6e594e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';"
+                        >
+                        <!-- Gradient Overlay più elaborato -->
                         <div class="absolute inset-0 bg-gradient-to-b from-primary-900/60 via-primary-900/20 to-orange-50"></div>
                     </div>
+                    
+                    <!-- Contenitore centrale aggiornato per centrare e formattare meglio il testo -->
                     <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-4 max-w-4xl mx-auto mt-0">
-                        <div class="bg-white p-8 rounded-3xl border border-white/20 shadow-2xl">
-                            <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">EdoViaggy Experience</span>
-                            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight drop-shadow-sm">Magia in sella a <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-accent-600">un cavallo.</span></h1>
-                            <p class="text-xl md:text-2xl text-slate-700 mb-2 font-medium max-w-2xl mx-auto">Solo passeggiate tranquille</p>
-                            <p class="text-sm md:text-base text-slate-500 font-light italic">(non siamo capaci di andare a cavallo).</p>
+                        <!-- BOX BIANCO AGGIORNATO (bg-white/95 + text-dark) -->
+                        <div class="bg-white/95 backdrop-blur-sm p-8 rounded-3xl border border-white/20 shadow-2xl">
+                            <span class="inline-block px-4 py-1.5 rounded-full bg-accent-500 text-white uppercase tracking-[0.2em] text-xs font-bold mb-6 shadow-lg">
+                                EdoViaggy Experience
+                            </span>
+                            <!-- TITOLO SCURO -->
+                            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight drop-shadow-sm">
+                                Magia in sella a <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-accent-600">un cavallo.</span>
+                            </h1>
+                            <p class="text-xl md:text-2xl text-slate-700 mb-2 font-medium max-w-2xl mx-auto">
+                                Solo passeggiate tranquille
+                            </p>
+                            <p class="text-sm md:text-base text-slate-500 font-light italic">
+                                (non siamo capaci di andare a cavallo).
+                            </p>
                         </div>
                     </div>
                 </section>
+
+                <!-- Filter Bar -->
                 <div class="max-w-7xl mx-auto px-4 -mt-10 relative z-20 mb-16">
                     <div class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-3 flex flex-wrap gap-4 items-center justify-center md:justify-start border border-white/50">
                         <div class="flex gap-2 w-full md:w-auto overflow-x-auto no-scrollbar justify-center md:justify-start p-1">
@@ -582,37 +820,80 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Trips Grid -->
                 <section id="trips-grid" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
-                    <div class="flex items-center mb-10"><h2 class="text-3xl font-bold text-primary-900">Le Nostre Proposte</h2><div class="h-px bg-primary-200 flex-grow ml-6"></div></div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">${cardsHTML}</div>
+                    <div class="flex items-center mb-10">
+                        <h2 class="text-3xl font-bold text-primary-900">Le Nostre Proposte</h2>
+                        <div class="h-px bg-primary-200 flex-grow ml-6"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        ${cardsHTML}
+                    </div>
                 </section>
             `;
+            
             lucide.createIcons();
             if(window.scrollY > 500) window.scrollTo({top: 500, behavior: 'smooth'}); 
         }
 
         function renderDetail(id) {
             const trip = trips.find(t => t.id === id);
-            if(!trip) { renderHome(); return; }
+            
+            if(!trip) {
+                renderHome();
+                return;
+            }
+
+            // CAROUSEL GENERATION
+            // MODIFICA: Aggiunto 'hidden md:block' ai bottoni per nasconderli su mobile
             const carouselHTML = `
                 <div class="relative group">
-                    <button onclick="scrollGallery('left')" class="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                    <button onclick="scrollGallery('left')" class="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+
                     <div id="gallery-container" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-8 pt-2 px-2 no-scrollbar scroll-smooth">
-                        ${trip.gallery.map(img => `<div class="flex-shrink-0 w-80 md:w-96 snap-center"><img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none border-2 border-white" ${img.startsWith('Col') || img.startsWith('Lan') || img.startsWith('Ser') || img.startsWith('adda') || img.startsWith('Lec') || img.startsWith('Cana') || img.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}></div>`).join('')}
+                        ${trip.gallery.map(img => `
+                            <div class="flex-shrink-0 w-80 md:w-96 snap-center">
+                                <img src="${img}" class="w-full h-64 object-cover rounded-2xl shadow-md hover:shadow-xl transition-all select-none pointer-events-none border-2 border-white" ${img.startsWith('Col') || img.startsWith('Lan') || img.startsWith('Ser') || img.startsWith('adda') || img.startsWith('Lec') || img.startsWith('Cana') || img.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
+                            </div>
+                        `).join('')}
                     </div>
-                    <button onclick="scrollGallery('right')" class="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+
+                    <button onclick="scrollGallery('right')" class="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white transition-all text-primary-800 focus:outline-none focus:ring-2 focus:ring-accent-500 hover:scale-110">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
                 </div>
             `;
-            const highlightsHTML = trip.highlights.map(item => `<li class="flex items-start text-slate-700 mb-4 bg-white p-3 rounded-xl border border-primary-50 shadow-sm"><div class="mt-0.5 mr-3 bg-primary-100 p-1.5 rounded-full text-primary-600"><i data-lucide="check" class="w-4 h-4"></i></div><span class="font-medium">${item}</span></li>`).join('');
+
+            const highlightsHTML = trip.highlights.map(item => `
+                <li class="flex items-start text-slate-700 mb-4 bg-white p-3 rounded-xl border border-primary-50 shadow-sm">
+                    <div class="mt-0.5 mr-3 bg-primary-100 p-1.5 rounded-full text-primary-600">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                    </div>
+                    <span class="font-medium">${item}</span>
+                </li>
+            `).join('');
+
             app.innerHTML = `
                 <div class="fade-in">
+                    <!-- Detail Hero -->
                     <div class="relative h-[65vh] min-h-[400px]">
                         <img src="${trip.heroImage}" alt="${trip.title}" class="w-full h-full object-cover" ${trip.image.startsWith('Col') || trip.image.startsWith('Lan') || trip.image.startsWith('Ser') || trip.image.startsWith('adda') || trip.image.startsWith('Lec') || trip.image.startsWith('Cana') || trip.image.startsWith('Oro') ? '' : `onerror="this.onerror=null;this.src='${fallbackImage}';"`}>
                         <div class="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/40 to-transparent"></div>
-                        <button onclick="router('home')" class="absolute top-8 left-4 md:left-8 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center transition-all border border-white/30 font-medium"><i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Torna alla Home</button>
+                        
+                        <!-- Back Button -->
+                        <button onclick="router('home')" class="absolute top-8 left-4 md:left-8 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center transition-all border border-white/30 font-medium">
+                            <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Torna alla Home
+                        </button>
+
                         <div class="absolute bottom-0 left-0 w-full p-6 md:p-16 max-w-7xl mx-auto">
-                            <div class="inline-flex items-center bg-accent-500/90 text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-4 shadow-lg backdrop-blur-sm">${trip.location.split(',')[0]}</div>
+                            <div class="inline-flex items-center bg-accent-500/90 text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-4 shadow-lg backdrop-blur-sm">
+                                ${trip.location.split(',')[0]}
+                            </div>
                             <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 shadow-sm leading-tight">${trip.title}</h1>
+                            
                             <div class="flex flex-wrap items-center gap-4 text-white/90 text-sm md:text-base font-medium">
                                 <span class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"><i data-lucide="map-pin" class="w-5 h-5 mr-2 text-accent-400"></i> ${trip.location}</span>
                                 <span class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"><i data-lucide="clock" class="w-5 h-5 mr-2 text-accent-400"></i> ${trip.duration}</span>
@@ -620,28 +901,56 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Main Content -->
                     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                         <div class="space-y-16">
+                            
+                            <!-- Description -->
                             <section class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-primary-100 relative overflow-hidden">
                                 <div class="absolute top-0 right-0 w-32 h-32 bg-accent-50 rounded-bl-full z-0 opacity-50"></div>
                                 <h2 class="text-3xl font-bold text-primary-900 mb-6 relative z-10">L'Esperienza</h2>
                                 <p class="text-slate-600 leading-relaxed text-lg relative z-10 font-light">${trip.description}</p>
                             </section>
+
+                            <!-- Highlights -->
                             <section>
-                                <h2 class="text-3xl font-bold text-primary-900 mb-8 flex items-center"><span class="bg-accent-100 p-2 rounded-lg mr-3"><i data-lucide="star" class="w-6 h-6 text-accent-600"></i></span>Cosa è incluso</h2>
-                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">${highlightsHTML}${trip.vicinoATorino ? `<li class="flex items-start text-slate-700 mb-4 bg-white p-3 rounded-xl border border-primary-50 shadow-sm"><div class="mt-0.5 mr-3 bg-primary-100 p-1.5 rounded-full text-primary-600"><i data-lucide="map" class="w-4 h-4"></i></div><span class="font-medium">Vicino a Torino</span></li>` : ''}</ul>
+                                <h2 class="text-3xl font-bold text-primary-900 mb-8 flex items-center">
+                                    <span class="bg-accent-100 p-2 rounded-lg mr-3"><i data-lucide="star" class="w-6 h-6 text-accent-600"></i></span>
+                                    Cosa è incluso
+                                </h2>
+                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    ${highlightsHTML}
+                                    ${trip.vicinoATorino ? `
+                                    <li class="flex items-start text-slate-700 mb-4 bg-white p-3 rounded-xl border border-primary-50 shadow-sm">
+                                        <div class="mt-0.5 mr-3 bg-primary-100 p-1.5 rounded-full text-primary-600">
+                                            <i data-lucide="map" class="w-4 h-4"></i>
+                                        </div>
+                                        <span class="font-medium">Vicino a Torino</span>
+                                    </li>` : ''}
+                                </ul>
                             </section>
-                            <section><h2 class="text-3xl font-bold text-primary-900 mb-8">Galleria Fotografica</h2>${carouselHTML}</section>
+
+                            <!-- Gallery -->
+                            <section>
+                                <h2 class="text-3xl font-bold text-primary-900 mb-8">Galleria Fotografica</h2>
+                                ${carouselHTML}
+                            </section>
+
+                            <!-- Bottom CTA -->
                             <div class="bg-gradient-to-r from-primary-800 to-primary-900 rounded-3xl p-10 text-center text-white shadow-2xl relative overflow-hidden">
                                 <div class="absolute inset-0 bg-pattern opacity-10"></div>
                                 <h3 class="text-3xl font-bold mb-4 relative z-10">Ti piace questo percorso?</h3>
                                 <p class="text-primary-100 mb-8 max-w-xl mx-auto relative z-10">Contattaci subito per verificare la disponibilità e prenotare la tua sella.</p>
-                                <button onclick="router('booking')" class="bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-accent-500/40 transition-all transform hover:-translate-y-1 relative z-10">Richiedi Disponibilità</button>
+                                <button onclick="router('booking')" class="bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-accent-500/40 transition-all transform hover:-translate-y-1 relative z-10">
+                                    Richiedi Disponibilità
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
+            
             lucide.createIcons();
             window.scrollTo(0,0);
         }
@@ -649,94 +958,215 @@
         function renderAbout() {
             app.innerHTML = `
                 <div class="fade-in">
+                    <!-- About Hero -->
                     <div class="relative h-[500px] flex items-center justify-center bg-primary-900">
                         <img src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="About EdoViaggy" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
                         <div class="relative z-10 text-center px-4">
                             <span class="text-accent-400 uppercase tracking-widest font-bold text-sm mb-4 block">La Nostra Storia</span>
                             <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Passione Pura</h1>
-                            <p class="text-xl text-primary-100 max-w-2xl mx-auto font-light">Ovvero: come Edo ha trasformato la sua passione per i cavalli (principalmente quelli delle auto) in una finta agenzia viaggi per <span class="line-through decoration-accent-500 decoration-2 opacity-70">evadere il fisco</span> ehm fare un bellissimo regalo a Sara.</p>
+                            <p class="text-xl text-primary-100 max-w-2xl mx-auto font-light">
+                                Ovvero: come Edo ha trasformato la sua passione per i cavalli (principalmente quelli delle auto) in una finta agenzia viaggi per <span class="line-through decoration-accent-500 decoration-2 opacity-70">evadere il fisco</span> ehm fare un bellissimo regalo a Sara.
+                            </p>
                         </div>
                     </div>
+
+                    <!-- Content Section -->
                     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                        <!-- RIMOSSO GRID A DUE COLONNE, ORA È CENTRATO -->
+                        
+                        <!-- Text Content -->
+                        <!-- CARD BIANCA PER LEGGIBILITÀ -->
                         <div class="bg-white/95 backdrop-blur-sm p-8 md:p-16 rounded-3xl shadow-xl border border-primary-50 relative z-10">
-                            <h2 class="text-4xl font-bold text-primary-900 mb-8 relative flex items-center justify-center">Il "Team" (Sono io, Edo)<span class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-20 h-1.5 bg-accent-500 rounded-full"></span></h2>
+                            <h2 class="text-4xl font-bold text-primary-900 mb-8 relative flex items-center justify-center">
+                                Il "Team" (Sono io, Edo)
+                                <span class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-20 h-1.5 bg-accent-500 rounded-full"></span>
+                            </h2>
+                            
                             <div class="max-w-3xl mx-auto">
-                                <div class="text-slate-600 mb-6 leading-relaxed text-lg font-light flex gap-3"><i class="fa-solid fa-quote-left text-primary-200 mt-1 flex-shrink-0 text-3xl"></i><div>Ciao! Sono Edoardo, fondatore, guida, CFO e Strategic Advisor di <strong>EdoViaggy</strong>.<br><span class="text-sm text-slate-400 italic mt-1 block">PS. ho scritto "chi siamo" al plurale così sembra una roba più seria.</span></div></div>
-                                <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">Il fondatore, famoso imprenditore e filantropo, dopo le numerose iniziative imprenditoriali di successo (un'azienda fallita e l'altra che fattura come una macchinetta delle merendine) ha deciso di ritirarsi ad una vita più tranquilla e a contatto con la natura.</p>
-                                <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">Quando non si gode il suo esteso parco di supercar (sul simulatore di guida, che per la gente normale è un banale videogioco) gestisce una intraprendente agenzia <strong>(di indubbia legittimità e somma osservanza delle legge tributarie)</strong> viaggi specializzata in gite a cavallo.</p>
-                                <p class="text-slate-600 mb-12 leading-relaxed text-lg font-light flex items-center gap-2 bg-primary-50 p-4 rounded-xl border border-primary-100">Non preoccuparti se non sei un cavaliere esperto: non lo sono nemmeno io, speriamo di non perderci nel bosco o cadere dal cavallo.</p>
+                                <div class="text-slate-600 mb-6 leading-relaxed text-lg font-light flex gap-3">
+                                    <i class="fa-solid fa-quote-left text-primary-200 mt-1 flex-shrink-0 text-3xl"></i>
+                                    <div>
+                                        Ciao! Sono Edoardo, fondatore, guida, CFO e Strategic Advisor di <strong>EdoViaggy</strong>.
+                                        <br>
+                                        <span class="text-sm text-slate-400 italic mt-1 block">PS. ho scritto "chi siamo" al plurale così sembra una roba più seria.</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
+                                    Il fondatore, famoso imprenditore e filantropo, dopo le numerose iniziative imprenditoriali di successo (un'azienda fallita e l'altra che fattura come una macchinetta delle merendine) ha deciso di ritirarsi ad una vita più tranquilla e a contatto con la natura.
+                                </p>
+                                <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
+                                    Quando non si gode il suo esteso parco di supercar (sul simulatore di guida, che per la gente normale è un banale videogioco) gestisce una intraprendente agenzia <strong>(di indubbia legittimità e somma osservanza delle legge tributarie)</strong> viaggi specializzata in gite a cavallo.
+                                </p>
+                                <p class="text-slate-600 mb-12 leading-relaxed text-lg font-light flex items-center gap-2 bg-primary-50 p-4 rounded-xl border border-primary-100">
+                                    Non preoccuparti se non sei un cavaliere esperto: non lo sono nemmeno io, speriamo di non perderci nel bosco o cadere dal cavallo.
+                                </p>
+
+                                <!-- PUNTI REINVENTATI -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100"><div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600"><i data-lucide="gamepad-2" class="w-6 h-6"></i></div><div><h4 class="font-bold text-primary-900 mb-1">Garage da Sogno</h4><p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo. Su Gran Turismo 7 sono imbattibile.</p></div></div>
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100"><div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600"><i data-lucide="briefcase" class="w-6 h-6"></i></div><div><h4 class="font-bold text-primary-900 mb-1">Serial Founder</h4><p class="text-sm text-slate-500">Specialista nel lanciare startup che startano e basta.</p></div></div>
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100"><div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600"><i data-lucide="dollar-sign" class="w-6 h-6"></i></div><div><h4 class="font-bold text-primary-900 mb-1">Genio Fiscale</h4><p class="text-sm text-slate-500">Per me l'F24 è il tasto per aggiornare la pagina, non un modello da pagare.</p></div></div>
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100"><div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600"><i data-lucide="heart-handshake" class="w-6 h-6"></i></div><div><h4 class="font-bold text-primary-900 mb-1">Grande Filantropo</h4><p class="text-sm text-slate-500">Dono regolarmente... fastidio ai miei amici con idee strampalate.</p></div></div>
+                                    <!-- 1. Collezione Supercar -->
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Garage da Sogno</h4>
+                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo. Su Gran Turismo 7 sono imbattibile.</p>
+                                        </div>
+                                    </div>
+                                    <!-- 2. Imprenditoria -->
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Serial Founder</h4>
+                                            <p class="text-sm text-slate-500">Specialista nel lanciare startup che startano e basta.</p>
+                                        </div>
+                                    </div>
+                                    <!-- 3. Creatività Fiscale -->
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <!-- ICONA DOLLARO AGGIUNTA -->
+                                            <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Genio Fiscale</h4>
+                                            <p class="text-sm text-slate-500">Per me l'F24 è il tasto per aggiornare la pagina, non un modello da pagare.</p>
+                                        </div>
+                                    </div>
+                                    <!-- 4. Filantropia -->
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
+                                        <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
+                                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary-900 mb-1">Grande Filantropo</h4>
+                                            <p class="text-sm text-slate-500">Dono regolarmente... fastidio ai miei amici con idee strampalate.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- CTA Section (WHITE CARD) -->
                         <div class="mt-16 bg-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-xl border border-primary-50">
                             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-300 via-accent-400 to-primary-300"></div>
                             <h3 class="text-3xl md:text-4xl font-bold text-primary-900 mb-6">Vuoi conoscere Edo (e i cavalli)?</h3>
-                            <p class="text-slate-600 mb-10 max-w-2xl mx-auto text-lg">Prenota un'uscita. Prometto che sarò puntuale.</p>
-                            <button onclick="router('booking')" class="bg-primary-700 hover:bg-primary-800 text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">Organizziamo!</button>
+                            <p class="text-slate-600 mb-10 max-w-2xl mx-auto text-lg">
+                                Prenota un'uscita. Prometto che sarò puntuale (nemmeno lontanamente).
+                            </p>
+                            <button onclick="router('booking')" class="bg-primary-700 hover:bg-primary-800 text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                                Organizziamo!
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
+            
             lucide.createIcons();
             window.scrollTo(0, 0);
         }
 
+        // NUOVA FUNZIONE PER LA PAGINA DI PRENOTAZIONE
         function renderBooking() {
             app.innerHTML = `
                 <div class="fade-in min-h-[calc(100vh-80px)] flex flex-col">
+                    <!-- Booking Hero -->
                     <div class="bg-primary-900 text-white py-24 text-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-pattern opacity-20"></div>
                         <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-accent-600/20 rounded-full blur-3xl"></div>
                         <div class="relative z-10 px-4">
                             <h1 class="text-4xl md:text-6xl font-bold mb-6">Come Prenotare</h1>
-                            <p class="text-primary-100 text-lg md:text-xl max-w-xl mx-auto font-light">Segui questi semplici passaggi per assicurarti la tua esperienza a cavallo.</p>
+                            <p class="text-primary-100 text-lg md:text-xl max-w-xl mx-auto font-light">
+                                Segui questi semplici passaggi per assicurarti la tua esperienza a cavallo.
+                            </p>
                         </div>
                     </div>
+
+                    <!-- Steps Container -->
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-16 relative z-20">
+                        <!-- WHITE CARD CONTAINER FOR STEPS -->
                         <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-16 border border-primary-50">
+                            
                             <div class="space-y-16 relative">
+                                <!-- Vertical Line -->
                                 <div class="absolute left-[27px] top-4 bottom-4 w-0.5 bg-primary-100 hidden md:block"></div>
+
+                                <!-- Step 1 -->
                                 <div class="relative flex flex-col md:flex-row gap-8 items-start group">
-                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-accent-500 z-10 group-hover:scale-110 transition-transform duration-300">1</div>
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-accent-500 z-10 group-hover:scale-110 transition-transform duration-300">
+                                        1
+                                    </div>
                                     <div class="flex-grow pt-2">
-                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">Scegli l'Esperienza</h3>
-                                        <p class="text-slate-600 leading-relaxed mb-4">Naviga nella nostra Home page ed esplora le diverse escursioni disponibili. Leggi i dettagli, controlla la durata e il luogo, e scegli quella perfetta per te.</p>
-                                        <button onclick="router('home')" class="text-sm font-bold text-accent-600 hover:text-accent-700 flex items-center bg-accent-50 px-4 py-2 rounded-lg inline-block transition-colors">Vai alle esperienze <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i></button>
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Scegli l'Esperienza
+                                        </h3>
+                                        <p class="text-slate-600 leading-relaxed mb-4">
+                                            Naviga nella nostra Home page ed esplora le diverse escursioni disponibili. Leggi i dettagli, controlla la durata e il luogo, e scegli quella perfetta per te.
+                                        </p>
+                                        <button onclick="router('home')" class="text-sm font-bold text-accent-600 hover:text-accent-700 flex items-center bg-accent-50 px-4 py-2 rounded-lg inline-block transition-colors">
+                                            Vai alle esperienze <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                                        </button>
                                     </div>
                                 </div>
+
+                                <!-- Step 2 -->
                                 <div class="relative flex flex-col md:flex-row gap-8 items-start group">
-                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">2</div>
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">
+                                        2
+                                    </div>
                                     <div class="flex-grow pt-2">
-                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">Confrontati con i Nostri Specialisti</h3>
-                                        <p class="text-slate-600 leading-relaxed mb-6 font-medium">Per qualsiasi domanda chiedi al tuo Edo personale e scegliete insieme l'esperienza più bella!</p>
+                                        <!-- TITOLO FORMATTATO CORRETTAMENTE -->
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Confrontati con i Nostri Specialisti
+                                        </h3>
+                                        <p class="text-slate-600 leading-relaxed mb-6 font-medium">
+                                            Per qualsiasi domanda chiedi al tuo Edo personale e scegliete insieme l'esperienza più bella!
+                                        </p>
                                     </div>
                                 </div>
+
+                                <!-- Step 3 -->
                                 <div class="relative flex flex-col md:flex-row gap-8 items-start group">
-                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">3</div>
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">
+                                        3
+                                    </div>
                                     <div class="flex-grow pt-2">
-                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">Conferma Disponibilità</h3>
-                                        <p class="text-slate-600 leading-relaxed">Il nostro team (sempre Edo) verificherà la disponibilità dei cavalli e delle guide per la data richiesta. Ti risponderemo nel più breve tempo possibile (sempre che non si dimentichi).</p>
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Conferma Disponibilità
+                                        </h3>
+                                        <p class="text-slate-600 leading-relaxed">
+                                            Il nostro team (sempre Edo) verificherà la disponibilità dei cavalli e delle guide per la data richiesta. Ti risponderemo nel più breve tempo possibile (sempre che non si dimentichi).
+                                        </p>
                                     </div>
                                 </div>
+
+                                <!-- Step 4 -->
                                 <div class="relative flex flex-col md:flex-row gap-8 items-start group">
-                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">4</div>
+                                    <div class="flex-shrink-0 bg-white text-primary-600 w-14 h-14 rounded-full flex items-center justify-center font-bold text-xl shadow-lg border-2 border-primary-200 z-10 group-hover:border-accent-500 group-hover:scale-110 transition-all duration-300">
+                                        4
+                                    </div>
                                     <div class="flex-grow pt-2">
-                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">Prenotazione</h3>
-                                        <p class="text-slate-600 leading-relaxed">Una volta scelta l'esperienza comunica la decisione (meglio ricordarlo con insistenza, altrimenti si perde via) al tuo consulente di viaggio personale così che possa organizzare la gita e confermare le date.</p>
+                                        <h3 class="text-2xl font-bold text-primary-900 mb-3 flex items-center">
+                                            Prenotazione
+                                        </h3>
+                                        <p class="text-slate-600 leading-relaxed">
+                                            Una volta scelta l'esperienza comunica la decisione (meglio ricordarlo con insistenza, altrimenti si perde via) al tuo consulente di viaggio personale così che possa organizzare la gita e confermare le date.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- FAQ Teaser -->
                             <div class="mt-20 pt-10 border-t border-slate-100 text-center">
-                                <div class="inline-block p-4 rounded-full bg-primary-50 text-primary-600 mb-4"><i data-lucide="help-circle" class="w-8 h-8"></i></div>
+                                <div class="inline-block p-4 rounded-full bg-primary-50 text-primary-600 mb-4">
+                                    <i data-lucide="help-circle" class="w-8 h-8"></i>
+                                </div>
                                 <h4 class="font-bold text-xl text-primary-900 mb-2">Hai altre domande?</h4>
                                 <p class="text-slate-500 mb-6">Siamo qui per aiutarti a organizzare l'esperienza perfetta.</p>
                                 <button onclick="router('faq')" class="text-accent-600 font-bold hover:text-accent-700 underline decoration-2 underline-offset-4">Leggi le FAQ o Contattaci</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -745,25 +1175,41 @@
             window.scrollTo(0, 0);
         }
 
+        // NUOVA FUNZIONE FAQ (Humorous)
         function renderFAQ() {
             app.innerHTML = `
                 <div class="fade-in min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4 text-center">
                     <div class="max-w-2xl bg-white rounded-3xl shadow-xl p-8 border border-primary-50 relative overflow-hidden">
-                        <img src="Gemini_Generated.jpeg" alt="Cavallo relax" class="w-full h-64 object-cover rounded-2xl mb-6 grayscale opacity-80">
+                        <!-- Immagine divertente/pigra (uso una generica di cavallo tranquillo per coerenza) -->
+                        <img src="https://images.unsplash.com/photo-1551884831-bbf3ddd77535?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cavallo relax" class="w-full h-64 object-cover rounded-2xl mb-6 grayscale opacity-80">
+                        
                         <h1 class="text-3xl font-bold text-primary-900 mb-4">Sezione FAQ (Ferie Aoltranza Qui)</h1>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6 font-medium">Speravo non cliccassi qua... <br>Ti prego, non chiedermi nulla. Non ho alcuna voglia di lavorare oggi.</p>
+                        
+                        <p class="text-slate-600 text-lg leading-relaxed mb-6 font-medium">
+                            Speravo non cliccassi qua... <br>
+                            Ti prego, non chiedermi nulla. Non ho alcuna voglia di lavorare oggi.
+                        </p>
+                        
                         <div class="bg-primary-50 p-6 rounded-xl border border-primary-100 mb-6">
                             <label class="block text-left text-sm font-bold text-primary-700 mb-2">Scrivi qui la tua domanda (tanto non la leggo)</label>
                             <textarea class="w-full p-4 rounded-lg border-2 border-primary-200 focus:border-accent-500 focus:ring-0 transition-all bg-white h-32" placeholder="Caro Edo, vorrei sapere..."></textarea>
                         </div>
-                        <p class="text-slate-500 italic text-sm mb-8">Inventa pure la risposta che preferisci alla tua domanda, basta che non mi dai qualcosa da fare.<br>Grazy.</p>
-                        <button onclick="router('home')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-6 py-2 rounded-full font-bold transition-all text-sm">Torna alla Home (e lasciami riposare)</button>
+
+                        <p class="text-slate-500 italic text-sm mb-8">
+                            Inventa pure la risposta che preferisci alla tua domanda, basta che non mi dai qualcosa da fare.<br>
+                            Grazy.
+                        </p>
+
+                        <button onclick="router('home')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-6 py-2 rounded-full font-bold transition-all text-sm">
+                            Torna alla Home (e lasciami riposare)
+                        </button>
                     </div>
                 </div>
             `;
             window.scrollTo(0, 0);
         }
 
+        // --- NAVIGATION LOGIC ---
         function setFilter(filterType) {
             currentFilter = filterType;
             renderHome();
@@ -783,6 +1229,12 @@
             }
         }
 
+        // --- INITIALIZATION ---
+        // Non chiamiamo renderHome() qui, lasciamo che sia l'utente a fare il login.
+        // Il contenuto del sito è nascosto di default e il login screen è visibile.
+        
+        // --- RESIZE LISTENER ---
+        // Rigenera la griglia se la finestra cambia dimensione
         window.addEventListener('resize', () => {
             if (document.body.classList.contains('special-mode')) {
                 generateCatsGrid();
