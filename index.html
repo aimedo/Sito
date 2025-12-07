@@ -109,12 +109,15 @@
             transition: background-color 0.5s ease;
         }
 
-        /* Container per la griglia di gatti (Generata via JS per controllo totale) */
+        /* Container per la griglia di gatti (Generata via JS) */
         #bg-cats-grid {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: -5vw; /* Spostato leggermente a sinistra */
+            width: 110vw; /* Più largo dello schermo per evitare buchi a destra */
+            height: 100vh;
             z-index: -1;
-            opacity: 0; /* Invisibile di default */
+            opacity: 0; 
             pointer-events: none;
             transition: opacity 0.5s ease;
             overflow: hidden;
@@ -137,8 +140,8 @@
         /* Stile icone dentro la tile */
         .cat-icon {
             position: absolute;
-            width: 30px; 
-            height: 30px;
+            width: 40px; 
+            height: 40px;
             object-fit: contain;
         }
 
@@ -157,26 +160,23 @@
         body.special-mode .btn-cat-icon { display: inline-block; }
         body.special-mode .btn-calendar-icon { display: none; }
 
-        /* Gatto nella Card */
-        .card-cat-decoration {
-            display: none;
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            width: 50px;
-            height: auto;
-            z-index: 10;
-            pointer-events: none;
+        /* Gatto nella Card (Footer Sinistra) */
+        .card-footer-cat { 
+            display: none; 
+            width: 35px; 
+            height: 35px; 
+            object-fit: contain; 
             opacity: 0.8;
         }
-        body.special-mode .card-cat-decoration {
-            display: block;
-            animation: peeking 3s infinite ease-in-out;
+        body.special-mode .card-footer-cat { 
+            display: block; 
+            animation: wiggly 3s infinite ease-in-out;
         }
-        
-        @keyframes peeking {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-3px) rotate(-3deg); }
+
+        @keyframes wiggly {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
         
         .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
@@ -367,9 +367,9 @@
                 cancellazione: "Cancellazione gratuita fino a 48h",
                 image: "Col1%20-%20dimensioni%20medie.jpeg", 
                 heroImage: "Col1%20-%20dimensioni%20medie.jpeg",
-                description: "Goditi una rilassante passeggiata a cavallo a Colico, all’estremo nord del Lago di Como. Le uscite da un ora, con sella americana, sono perfette anche per chi è alla prima esperienza: prima di partire, una breve introduzione in campo ti aiuterà a prendere confidenza. L’itinerario attraversa spiagge, campi, sentieri verso la Valtellina e, nelle giornate più calde, offre la possibilità di entrare nel lago o nel fiume con il cavallo. In inverno, la magia della neve rende l’esperienza ancora più speciale. Le uscite sono sempre accompagnate da una guida equestre, che ti porterà tra paesaggi naturali affacciati sul Lago di Como. In caso di maltempo, la prenotazione può essere spostata o rimborsata.",
+                description: "Goditi una rilassante passeggiata a cavallo a Colico, all’estremo nord del Lago di Como. Le uscite durano 1 o 2 ore, con sella americana, e sono perfette anche per chi è alla prima esperienza: prima di partire, una breve introduzione in campo ti aiuterà a prendere confidenza. L’itinerario attraversa spiagge, campi, sentieri verso la Valtellina e, nelle giornate più calde, offre la possibilità di entrare nel lago o nel fiume con il cavallo. In inverno, la magia della neve rende l’esperienza ancora più speciale. Le uscite sono sempre accompagnate da una guida equestre, che ti porterà tra paesaggi naturali affacciati sul Lago di Como. In caso di maltempo, la prenotazione può essere spostata o rimborsata.",
                 highlights: [
-                    "Passeggiate adatte anche ai principianti",
+                    "Passeggiate di 1 o 2 ore, adatte anche ai principianti",
                     "Percorsi tra spiagge, campi, boschi e scenari sul Lago di Como",
                     "Possibilità di entrare in acqua con il cavallo nei periodi più caldi",
                     "Uscite guidate alla scoperta di natura, fiumi e montagne",
@@ -425,9 +425,9 @@
                 cancellazione: "Cancellazione gratuita fino a 24h",
                 image: "adda1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "adda1%20-%20dimensioni%20medie.jpeg",
-                description: "Passeggiata a cavallo lungo il fiume Adda, dalla durata di un'ora, attraverso i boschi circostanti è un'esperienza da non perdere. Le passeggiate a cavallo sono adatte anche a principianti, in quanto costituite da comodi e larghi sentieri situati all'interno del Parco dell’Adda. Grazie a questa gita avrete la possibilità di esplorare la natura che caratterizza questi luoghi, e di far abbeverare i cavalli all’interno del fiume. Durante il giro a cavallo, con partenza da Rivolta d'Adda, sarete accompagnati da due guide equestri, che vi conduranno per tutta la durata dell'escursione.",
+                description: "Passeggiata a cavallo lungo il fiume Adda, dalla durata di una o due ore, attraverso i boschi circostanti è un'esperienza da non perdere. Le passeggiate a cavallo sono adatte anche a principianti, in quanto costituite da comodi e larghi sentieri situati all'interno del Parco dell’Adda. Grazie a questa gita avrete la possibilità di esplorare la natura che caratterizza questi luoghi, e di far abbeverare i cavalli all’interno del fiume. Durante il giro a cavallo, con partenza da Rivolta d'Adda, sarete accompagnati da due guide equestri, che vi conduranno per tutta la durata dell'escursione.",
                 highlights: [
-                    "Passeggiate nel Parco dell'Adda",
+                    "Passeggiate di 1 o 2 ore nel Parco dell'Adda",
                     "Percorsi comodi e larghi adatti anche ai principianti",
                     "Possibilità di far abbeverare i cavalli nel fiume",
                     "Partenza da Rivolta d'Adda",
@@ -529,7 +529,6 @@
                 duration: "1 Ora",
                 vicinoATorino: false,
                 cancellazione: "Cancellazione gratuita fino a 48h",
-                // IMMAGINI AGGIORNATE PER VAL SERIANA (con %20 per gli spazi)
                 image: "Oro1%20-%20dimensioni%20medie.jpeg",
                 heroImage: "Oro1%20-%20dimensioni%20medie.jpeg",
                 description: "Regalati un’ora a cavallo nella splendida Val Seriana, tra le Prealpi Orobiche in provincia di Bergamo. Il percorso segue il corso del fiume Serio, attraversando boschi, ruscelli e borghi ricchi di storia e tradizioni locali. Prima della passeggiata, una guida equestre ti fornirà istruzioni e consigli per un’esperienza sicura e piacevole. Un modo perfetto per staccare dalla città e immergersi nella natura incontaminata del Parco delle Orobie.",
@@ -761,8 +760,6 @@
                             </span>
                         </div>
                         ` : ''}
-                        <!-- Cat decoration in special mode -->
-                        <img src="pusheen.png" class="card-cat-decoration" alt="Gatto decorativo">
                     </div>
 
                     <!-- Content Area -->
@@ -778,8 +775,12 @@
                         <p class="text-slate-500 text-sm line-clamp-3 mb-6 leading-relaxed">${trip.description}</p>
                         
                         <!-- Footer Card -->
-                        <div class="mt-auto flex items-center justify-end pt-5 border-t border-slate-100">
-                            <button onclick="router('detail', ${trip.id})" class="text-primary-700 font-bold text-sm flex items-center group/btn hover:text-accent-600 transition-colors">
+                        <!-- MODIFICA QUI: Flex justify-between per posizionare il gatto a sinistra -->
+                        <div class="mt-auto flex items-center justify-between pt-5 border-t border-slate-100">
+                             <!-- GATTO A SINISTRA (VISIBILE SOLO IN SPECIAL MODE) -->
+                            <img src="cat.png" class="card-footer-cat" alt="Gatto">
+
+                            <button onclick="router('detail', ${trip.id})" class="text-primary-700 font-bold text-sm flex items-center group/btn hover:text-accent-600 transition-colors ml-auto">
                                 Scopri
                                 <div class="bg-primary-100 rounded-full p-1.5 ml-2 group-hover/btn:bg-accent-100 transition-colors">
                                     <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i>
