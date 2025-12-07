@@ -555,8 +555,8 @@
             const container = document.getElementById('bg-cats-grid');
             container.innerHTML = ''; // Pulisci
             
-            // MODIFICA: Dimensione tile responsive (170px su mobile, 200px su desktop)
-            const tileSize = window.innerWidth < 768 ? 170 : 200;
+            // MODIFICA: Dimensione tile fissa a 165px come richiesto
+            const tileSize = 165;
 
             // Calcola quante tiles servono per coprire lo schermo
             const cols = Math.ceil(window.innerWidth / tileSize) + 1;
