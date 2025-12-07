@@ -22,7 +22,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Configurazione Tailwind con CSS Variables per il cambio tema -->
+    <!-- Configurazione Tailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class', 
@@ -92,34 +92,7 @@
             --accent-700: #9d004c;
 
             --bg-color: #e0f9ff; /* Sfondo Miami Blue */
-
-            /* TILES SVG GENERATA CON IMMAGINI PNG
-               Dimensioni Tile: 300x300 (Grande spaziatura)
-               Dimensioni Img: 40px
-               Posizioni:
-               - Top-Left: Cat-Icon
-               - Top-Right: pusheen
-               - Bottom-Left: 3 s
-               - Bottom-Right: cat
-               - Center: Pusheen_the_Cat
-            */
-            --bg-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cimage href='Cat-Icon-PNG-Pic.png' x='10' y='10' width='40' height='40' /%3E%3Cimage href='pusheen.png' x='250' y='10' width='40' height='40' /%3E%3Cimage href='3%20s.png' x='10' y='250' width='40' height='40' /%3E%3Cimage href='cat.png' x='250' y='250' width='40' height='40' /%3E%3Cimage href='Pusheen_the_Cat.png' x='130' y='130' width='40' height='40' /%3E%3C/svg%3E");
-            
-            --bg-size: 300px 300px; /* Dimensione della ripetizione */
-            --bg-opacity: 0.25; /* Visibilità */
         }
-
-        /* Gestione visibilità Gatti Extra */
-        .special-cat-icon { display: none; }
-        body.special-mode .special-cat-icon { 
-            display: inline-block; 
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-        
-        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
         /* Transizioni fluide */
         body, div, nav, button, span, i, h1, h2, h3, p, a {
@@ -127,46 +100,68 @@
             transition-duration: 500ms;
         }
 
-        /* --- BACKGROUND LAYERS FISSI --- */
-        #bg-color-layer {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background-color: var(--bg-color);
-            transition: background-color 0.5s ease;
+        /* Visibilità griglia gatti: controllata da classe body */
+        #bg-cats-grid {
+            transition: opacity 0.5s ease;
+            opacity: 0;
         }
-        
-        #bg-pattern-layer {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background-image: var(--bg-image);
-            background-size: var(--bg-size);
-            background-repeat: repeat;
-            opacity: var(--bg-opacity);
-            pointer-events: none;
-            transition: all 0.5s ease;
+        body.special-mode #bg-cats-grid {
+            opacity: 0.25;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* La singola "Mattonella" (Tile) */
+        .cat-tile {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* Gatti Speciali nei componenti */
+        .btn-cat-icon { display: none; width: 20px; height: 20px; object-fit: contain; margin-right: 8px; }
+        .btn-calendar-icon { display: inline-block; }
+        
+        body.special-mode .btn-cat-icon { display: inline-block; }
+        body.special-mode .btn-calendar-icon { display: none; }
+
+        .card-footer-cat { 
+            display: none; 
+            width: 35px; 
+            height: 35px; 
+            object-fit: contain; 
+            opacity: 0.8;
+        }
+        body.special-mode .card-footer-cat { 
+            display: block; 
+            animation: wiggly 3s infinite ease-in-out;
+        }
+
+        @keyframes wiggly {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+
         .img-zoom-container { overflow: hidden; }
         .img-zoom-container img { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .img-zoom-container:hover img { transform: scale(1.1); }
+        
+        /* Gestione visibilità Gatti Extra nel Toggle */
+        .special-cat-icon { display: none; }
+        body.special-mode .special-cat-icon { display: inline-block; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
     </style>
 </head>
 <body class="text-slate-800 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
     
-    <!-- BACKGROUND SYSTEM -->
-    <div id="bg-color-layer"></div>
-    <div id="bg-cats-grid"></div>
+    <!-- BACKGROUND SYSTEM (Stili Inline per sicurezza assoluta) -->
+    <!-- Colore Solido -->
+    <div id="bg-color-layer" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: var(--bg-color); transition: background-color 0.5s ease;"></div>
+    
+    <!-- Griglia Gatti (Generata via JS) - Posizionamento Forced -->
+    <div id="bg-cats-grid" style="position: fixed; top: 0; left: 0; width: 120vw; height: 120vh; z-index: -1; pointer-events: none; overflow: hidden; display: flex; flex-wrap: wrap; align-content: flex-start;"></div>
 
     <!-- === LOGIN SCREEN === -->
     <div id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 transition-colors duration-500" style="background-color: var(--bg-color);">
@@ -572,8 +567,8 @@
             const container = document.getElementById('bg-cats-grid');
             container.innerHTML = ''; // Pulisci
             
-            // MODIFICA: Dimensione tile fissa a 165px come richiesto
-            const tileSize = 165;
+            // MODIFICA: Dimensione tile responsive (170px su mobile, 200px su desktop)
+            const tileSize = window.innerWidth < 768 ? 170 : 200;
 
             // Calcola quante tiles servono per coprire lo schermo
             const cols = Math.ceil(window.innerWidth / tileSize) + 1;
@@ -591,15 +586,15 @@
 
             let html = '';
             
-            // Genera le tiles
+            // Genera le tiles con stili inline forzati per ogni immagine
             for(let i=0; i<totalTiles; i++) {
                 html += `
                 <div class="cat-tile" style="width: ${tileSize}px; height: ${tileSize}px;">
-                    <img src="${catImages[0]}" class="cat-icon pos-tl" alt="">
-                    <img src="${catImages[1]}" class="cat-icon pos-tr" alt="">
-                    <img src="${catImages[2]}" class="cat-icon pos-bl" alt="">
-                    <img src="${catImages[3]}" class="cat-icon pos-br" alt="">
-                    <img src="${catImages[4]}" class="cat-icon pos-c" alt="">
+                    <img src="${catImages[0]}" class="cat-icon pos-tl" style="position: absolute; width: 40px; height: 40px; object-fit: contain; top: 15px; left: 15px;" alt="">
+                    <img src="${catImages[1]}" class="cat-icon pos-tr" style="position: absolute; width: 40px; height: 40px; object-fit: contain; top: 15px; right: 15px;" alt="">
+                    <img src="${catImages[2]}" class="cat-icon pos-bl" style="position: absolute; width: 40px; height: 40px; object-fit: contain; bottom: 15px; left: 15px;" alt="">
+                    <img src="${catImages[3]}" class="cat-icon pos-br" style="position: absolute; width: 40px; height: 40px; object-fit: contain; bottom: 15px; right: 15px;" alt="">
+                    <img src="${catImages[4]}" class="cat-icon pos-c" style="position: absolute; width: 40px; height: 40px; object-fit: contain; top: 50%; left: 50%; transform: translate(-50%, -50%);" alt="">
                 </div>`;
             }
             
@@ -766,8 +761,6 @@
                                     <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:-rotate-45 transition-transform duration-300"></i>
                                 </div>
                             </button>
-                            <!-- ICONA GATTO EXTRA PER MODALITÀ SPECIALE -->
-                            <span class="ml-2 hidden special-cat-icon text-accent-500"><i class="fa-solid fa-cat text-lg"></i></span>
                         </div>
                     </div>
                 </div>
@@ -1195,7 +1188,7 @@
                         <p class="text-slate-600 text-lg leading-relaxed mb-6 font-medium">
                             Speravo non cliccassi qua... <br>
                             Ti prego, non chiedermi nulla. Non ho alcuna voglia di lavorare oggi.
-                        </p>x
+                        </p>
                         
                         <div class="bg-primary-50 p-6 rounded-xl border border-primary-100 mb-6">
                             <label class="block text-left text-sm font-bold text-primary-700 mb-2">Scrivi qui la tua domanda (tanto non la leggo)</label>
