@@ -956,18 +956,20 @@
                     </div>
 
                     <!-- Content Section -->
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                        <!-- RIMOSSO GRID A DUE COLONNE, ORA È CENTRATO -->
+                        
+                        <!-- Text Content -->
+                        <!-- CARD BIANCA PER LEGGIBILITÀ -->
+                        <div class="bg-white/95 backdrop-blur-sm p-8 md:p-16 rounded-3xl shadow-xl border border-primary-50 relative z-10">
+                            <h2 class="text-4xl font-bold text-primary-900 mb-8 relative flex items-center justify-center">
+                                Il "Team" (Sono io, Edo)
+                                <span class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-20 h-1.5 bg-accent-500 rounded-full"></span>
+                            </h2>
                             
-                            <!-- Text Content (Left Column on Desktop) -->
-                            <!-- CARD BIANCA PER LEGGIBILITÀ SU SFONDO GATTI -->
-                            <div class="bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-3xl shadow-xl border border-primary-50 relative z-10 flex flex-col justify-center h-full">
-                                <h2 class="text-4xl font-bold text-primary-900 mb-8 relative flex items-center">
-                                    Il "Team" (Sono io, Edo)
-                                    <span class="absolute -bottom-2 left-0 w-20 h-1.5 bg-accent-500 rounded-full"></span>
-                                </h2>
+                            <div class="max-w-3xl mx-auto">
                                 <div class="text-slate-600 mb-6 leading-relaxed text-lg font-light flex gap-3">
-                                    <i class="fa-solid fa-quote-left text-primary-200 mt-1 flex-shrink-0"></i>
+                                    <i class="fa-solid fa-quote-left text-primary-200 mt-1 flex-shrink-0 text-3xl"></i>
                                     <div>
                                         Ciao! Sono Edoardo, fondatore, guida, CFO e Strategic Advisor di <strong>EdoViaggy</strong>.
                                         <br>
@@ -980,24 +982,24 @@
                                 <p class="text-slate-600 mb-6 leading-relaxed text-lg font-light">
                                     Quando non si gode il suo esteso parco di supercar (sul simulatore di guida, che per la gente normale è un banale videogioco) gestisce una intraprendente agenzia <strong>(di indubbia legittimità e somma osservanza delle legge tributarie)</strong> viaggi specializzata in gite a cavallo.
                                 </p>
-                                <p class="text-slate-600 mb-10 leading-relaxed text-lg font-light flex items-center gap-2">
+                                <p class="text-slate-600 mb-12 leading-relaxed text-lg font-light flex items-center gap-2 bg-primary-50 p-4 rounded-xl border border-primary-100">
                                     Non preoccuparti se non sei un cavaliere esperto: non lo sono nemmeno io, speriamo di non perderci nel bosco o cadere dal cavallo.
                                 </p>
 
                                 <!-- PUNTI REINVENTATI -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <!-- 1. Collezione Supercar -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="gamepad-2" class="w-6 h-6"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-primary-900 mb-1">Garage da Sogno</h4>
-                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo.</p>
+                                            <p class="text-sm text-slate-500">Possiedo le auto più veloci del mondo. Su Gran Turismo 7 sono imbattibile.</p>
                                         </div>
                                     </div>
                                     <!-- 2. Imprenditoria -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="briefcase" class="w-6 h-6"></i>
                                         </div>
@@ -1007,9 +1009,10 @@
                                         </div>
                                     </div>
                                     <!-- 3. Creatività Fiscale -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
-                                            <i data-lucide="file-spread-sheet" class="w-6 h-6"></i>
+                                            <!-- ICONA DOLLARO AGGIUNTA -->
+                                            <i data-lucide="dollar-sign" class="w-6 h-6"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-primary-900 mb-1">Genio Fiscale</h4>
@@ -1017,7 +1020,7 @@
                                         </div>
                                     </div>
                                     <!-- 4. Filantropia -->
-                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300">
+                                    <div class="flex items-start p-4 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-transparent hover:border-slate-100">
                                         <div class="bg-primary-100 p-3 rounded-lg mr-4 text-primary-600">
                                             <i data-lucide="heart-handshake" class="w-6 h-6"></i>
                                         </div>
@@ -1028,26 +1031,10 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Image Cards (Right Column on Desktop) -->
-                            <div class="flex flex-col gap-4 h-full relative z-10">
-                                <!-- Card Immagine 1 -->
-                                <div class="lg:h-1/2 w-full rounded-3xl shadow-xl border border-white/20 overflow-hidden relative">
-                                    <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Edo a cavallo" class="w-full h-full object-cover">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
-                                </div>
-                                <!-- Card Immagine 2 -->
-                                <div class="lg:h-1/2 w-full rounded-3xl shadow-xl border border-white/20 overflow-hidden relative">
-                                     <img src="https://images.unsplash.com/photo-1598556868222-6e9389bd6f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dettaglio natura" class="w-full h-full object-cover">
-                                     <div class="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
-                                </div>
-                                <!-- Decorative Blur (hidden on mobile to avoid overflow issues) -->
-                                <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-100 rounded-full blur-3xl z-0 hidden lg:block"></div>
-                            </div>
                         </div>
 
                         <!-- CTA Section (WHITE CARD) -->
-                        <div class="mt-24 bg-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-xl border border-primary-50">
+                        <div class="mt-16 bg-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-xl border border-primary-50">
                             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-300 via-accent-400 to-primary-300"></div>
                             <h3 class="text-3xl md:text-4xl font-bold text-primary-900 mb-6">Vuoi conoscere Edo (e i cavalli)?</h3>
                             <p class="text-slate-600 mb-10 max-w-2xl mx-auto text-lg">
